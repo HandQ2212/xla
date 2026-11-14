@@ -2,56 +2,71 @@
 
 Đồ án Xử lý ảnh – Lựa chọn 2 (dự án thực tế). Không dùng học sâu hay mô hình huấn luyện sẵn.
 
-**Đầu vào:** ảnh gốc chụp mặt đường (RGB, kích thước bất kỳ).
-**Đầu ra:** mặt nạ nhị phân vết nứt cùng kích thước với ảnh gốc, và ảnh phủ mặt nạ đỏ.
+**Đầu vào:** ảnh gốc RGB chụp mặt đường (Pavement Crack Segmentation Dataset: 1702×866 hoặc 1080×760).
+**Đầu ra:** mặt nạ nhị phân vết nứt cùng kích thước ảnh gốc (ảnh không nứt cho mặt nạ rỗng), và ảnh gốc phủ mặt nạ đỏ.
+
+Pipeline được xây trước trên bộ CFD (`code/crack_segmentation_cfd.ipynb`, `PIPELINE_CFD.md`), rồi chỉnh lại cho bộ dữ liệu hiện tại (`code/crack_segmentation.ipynb`, `PIPELINE.md`).
 
 ## Pipeline
-| Bước | Nội dung | Chương |
-|---|---|---|
-| Dữ liệu | CFD (118 ảnh) + CRACK500 (249 ảnh gốc), GT vẽ tay mức pixel; tune/test = 60/58 và 49/200 | – |
-| Tiền xử lý | Cạnh dài → 480 px, ảnh xám, lọc trung vị 3×3, bù chiếu sáng R = 128·I/B (B = trung vị 41–61) | C2, C3, C4 |
-| Xử lý chính | Làm trơn lược đồ (W = 3) + ngưỡng tam giác (Zack) trên ảnh R | C5 |
-| Hậu xử lý | Phép đóng 5×5 → lọc vùng theo diện tích (≥ 30/60 px) → lọc theo độ dãn dài (≥ 3, tính từ mômen) | C7, C8 |
-| Đánh giá | Dice, IoU (kèm Precision, Recall) ở độ phân giải gốc; đối chứng Otsu và Canny; nghiên cứu cắt bỏ | C8 |
+| Bước | Việc làm | Chương | CFD → **Chọn cho bộ mới** |
+|---|---|---|---|
+| 1. Dữ liệu | Chia sẵn train 1480 / val 498 / test 231; nhãn = xám > 127 | 9 | tune 300 ảnh train phân tầng; chọn trên val |
+| **2.0 Thu nhỏ (mới)** | Cạnh dài 640 px, INTER_AREA | 2 | – → **640** |
+| 2.1 Ảnh xám | Y = 0.299R + 0.587G + 0.114B | 4 | – |
+| 2.2 Khử nhiễu | Lọc trung vị | 3 | 3×3 → **5×5** |
+| 2.3 Bù chiếu sáng | B = trung vị cửa sổ lớn; R = 128·I/B | 3 | 31 → **71** |
+| 3.1 Làm trơn lược đồ | Trung bình trượt W | 5 | 3 → **3** |
+| 3.2 Vùng tối D | Ngưỡng tam giác, D = (R < θ) | 5 | tự động |
+| 3.3 Vùng gần biên E | Sobel \|Gx\| + \|Gy\| → Otsu → giãn ellipse | 5, 7 | 7×7 → **3×3** |
+| 3.4 Mặt nạ thô | M = D ∩ E | – | – |
+| 4.1 Phép đóng | Ellipse | 7 | 7×7 → **7×7** |
+| 4.2 Lọc diện tích | Bỏ vùng nhỏ | 7 | 60 → **30** px |
+| 4.3 Lọc độ dãn | L/S của hộp chữ nhật xoay | 7 | 2 → **3** |
+| **4.4 Quyết định mức ảnh (mới)** | Tổng diện tích < t_min% ảnh thì mặt nạ rỗng | 7 | – → **0.3%** |
+| 5. Đánh giá | Dice, IoU, Precision, Recall ở kích thước gốc; so với Otsu, Canny, pipeline CFD | 5 | – |
 
-## Kết quả trên tập test (Dice / IoU trung bình theo ảnh)
-| Phương pháp | CFD (58 ảnh) | CRACK500 (200 ảnh) |
-|---|---|---|
-| Otsu (đối chứng) | 0.058 / 0.030 | 0.076 / 0.040 |
-| Canny (đối chứng) | 0.053 / 0.029 | 0.047 / 0.024 |
-| **Pipeline đề xuất** | **0.575 / 0.414** | **0.549 / 0.400** |
+Lưới 4320 cấu hình trên 300 ảnh train; 10 cấu hình tốt nhất được xác nhận trên 498 ảnh val. Chi tiết từng bước kèm mô phỏng bằng text: xem `PIPELINE.md`.
+
+## Kết quả trên tập test (231 ảnh, 45 ảnh không nứt)
+Ảnh không nứt: dự đoán rỗng thì Dice = IoU = 1, ngược lại 0. "Dice ảnh nứt" chỉ tính trên 186 ảnh có nứt. "Gộp" là cộng TP/FP/FN của mọi ảnh rồi mới tính.
+
+| Phương pháp | Dice | IoU | Dice ảnh nứt | Dice gộp | Ảnh lành đúng |
+|---|---|---|---|---|---|
+| Otsu (đối chứng) | 0.024 | 0.012 | 0.030 | 0.027 | 0/45 |
+| Canny (đối chứng) | 0.018 | 0.009 | 0.022 | 0.019 | 0/45 |
+| Pipeline CFD (tham số CFD) | 0.271 | 0.197 | **0.337** | 0.349 | 0/45 |
+| **Pipeline mới** | **0.339** | **0.274** | 0.303 | **0.426** | **22/45** |
+
+Mức tăng chủ yếu đến từ ảnh không nứt (bước 4.4) và từ việc báo nhầm ít hơn. Đổi lại, 45/186 ảnh có nứt nhỏ bị trả rỗng, nên Dice trên ảnh có nứt giảm nhẹ.
 
 ## Cài đặt
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt jupyter matplotlib pandas
+pip install -r requirements.txt jupyter matplotlib pandas scikit-image
 ```
 
 ## Dữ liệu
-Đặt thư mục `pavement crack datasets/` (gồm `CFD/` và `CRACK500/` dạng zip) **cạnh** thư mục `DoAn/`:
 ```
-XLA/
-├── pavement crack datasets/   (CFD/cfd_image.zip, CFD/cfd_gt.zip, CRACK500/valdata.zip, CRACK500/testdata.zip)
-└── DoAn/
-    ├── code/crack_segmentation.ipynb
-    ├── samples/               5 ảnh test CFD + 5 ảnh test CRACK500, kèm GT (*_gt.png)
-    ├── data/                  (sinh tự động khi chạy)
-    └── results/               (sinh tự động khi chạy)
+DoAn/
+├── data/Pavement_Crack_Segmentation_Dataset/{train,val,test}/{images/*.jpg, masks/*.png}
+├── code/crack_segmentation.ipynb        (bộ hiện tại)
+├── code/crack_segmentation_cfd.ipynb    (bản CFD; cần "pavement crack datasets/CFD" cạnh DoAn/)
+├── samples_pcs/   10 ảnh test: <id>.jpg, <id>_gt.png, <id>_pred.jpg (kết quả phủ đỏ)
+└── results/pcs/   (sinh tự động khi chạy)
 ```
-Nguồn tải: CFD – https://github.com/cuilimeng/CrackForest-dataset ; CRACK500 – https://github.com/fyangneil/pavement-crack-detection
 
 ## Chạy
 ```bash
 cd code
 jupyter nbconvert --to notebook --execute --inplace crack_segmentation.ipynb   # hoặc mở bằng Jupyter rồi Run All
 ```
-* Lần chạy đầu sẽ giải nén dữ liệu vào `data/`. Toàn bộ notebook mất khoảng 6 phút trên laptop (phần tìm tham số khoảng 4.5 phút).
-* Đặt `RUN_TUNING = False` ở cell đầu để bỏ qua bước tìm tham số và dùng lại `results/best_params.json`.
+Notebook chạy khoảng 2 phút trên laptop 10 nhân (song song theo ảnh bằng `multiprocessing`, kiểu fork). Riêng phần tìm tham số mất khoảng 2 phút.
 
-## Đầu ra mong đợi
-* `results/best_params.json`: tham số tốt nhất cho từng tập và từng phương pháp.
-* `results/tune_log_*.csv`: toàn bộ các cấu hình đã thử khi tìm tham số.
-* `results/test_summary_{cfd,crack500}.csv`: bảng Dice/IoU trên tập test.
-* `results/test_per_image_*.csv`: độ đo của từng ảnh.
-* Trong notebook: 5 ảnh trước và sau cho mỗi bước biến đổi không gian ảnh, lược đồ và ngưỡng, ảnh phủ mặt nạ đỏ, bản đồ lỗi TP/FP/FN.
+## Đầu ra (`results/pcs/`)
+* `split.json`: seed, danh sách ảnh tune / val / test.
+* `tune_log.csv`: 4320 cấu hình với Dice/IoU trên tune.
+* `val_log.csv`: 10 cấu hình tốt nhất, cùng P0 và tham số CFD, trên val.
+* `best_params.json`: tham số đã chọn.
+* `test_summary.csv`, `test_by_group.csv`, `test_per_image.csv`: kết quả test (tổng hợp, theo nhóm A/B/C, từng ảnh).
+* Trong notebook: 5 ảnh trước và sau cho mỗi bước biến đổi, lược đồ và ngưỡng, ảnh phủ mặt nạ đỏ, bản đồ lỗi TP/FP/FN.
 # xla

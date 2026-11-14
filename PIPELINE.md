@@ -1,449 +1,253 @@
-# Pipeline phát hiện và phân đoạn vết nứt mặt đường (xử lý ảnh cổ điển)
+# Pipeline phát hiện và phân đoạn vết nứt mặt đường – bộ Pavement Crack Segmentation Dataset (xử lý ảnh cổ điển)
 
-> **Đầu vào:** ảnh gốc chụp mặt đường (RGB, kích thước bất kỳ).
-> **Đầu ra:** mặt nạ nhị phân cùng kích thước ảnh gốc (1 = vết nứt) và ảnh gốc được phủ mặt nạ màu đỏ.
-> **Ràng buộc:** chỉ dùng kiến thức Chương 1–9 của học phần; không dùng học sâu hay mô hình huấn luyện sẵn.
-> **Code:** `code/crack_segmentation.ipynb`
+> **Đầu vào:** ảnh gốc RGB chụp mặt đường (1702×866 hoặc 1080×760).
+> **Đầu ra:** mặt nạ nhị phân cùng kích thước ảnh gốc (1 = vết nứt; ảnh không nứt cho mặt nạ rỗng) và ảnh gốc phủ mặt nạ đỏ.
+> **Ràng buộc:** chỉ dùng kiến thức của học phần; không dùng học sâu hay mô hình huấn luyện sẵn.
+> **Code:** `code/crack_segmentation.ipynb`. Pipeline gốc trên CFD: `PIPELINE_CFD.md`, `code/crack_segmentation_cfd.ipynb`.
 
 ---
 
-## 0. Toàn cảnh
+## 0. Pipeline CFD phải sửa gì cho bộ mới
+
+| Khác biệt của bộ mới (đo được) | Hậu quả nếu giữ pipeline CFD | Sửa | Bằng chứng (đo) |
+|---|---|---|---|
+| Ảnh lớn gấp 4–10 lần CFD; vết nứt GT rộng 7–12 px (CFD 1–3 px) | Các cửa sổ cố định (nền 31, đóng 7, a_min 60) sai tỉ lệ | **Thêm 2.0: thu nhỏ cạnh dài về 640 px** | Bỏ 2.0: Dice test 0.339 → 0.267 |
+| Mặt nạ lưu dạng xám / RGB / RGBA; 27/2209 mặt nạ có mép khử răng cưa | Đọc sai kênh, giữ mức trung gian | **Nhãn về nhị phân:** đọc xám, > 127 | – |
+| **45/231 ảnh test (19%) không có vết nứt** (CFD: 0) | Pipeline luôn tìm ra "vết nứt", nên mọi ảnh lành bị Dice = 0 | **Thêm 4.4: quyết định mức ảnh** theo tổng diện tích | Bỏ 4.4: Dice 0.339 → 0.274 |
+| 3 nhóm ảnh A, B, C rất khác nhau; nền sỏi thô | Tham số CFD xếp hạng 3842/4320 | **Chọn lại tham số** (tune trên train, xác nhận trên val) | Val: CFD 0.253 → chọn lại 0.364 |
+| (Đã thử, **không** dùng) nền bằng phép đóng thay trung vị | – | Giữ trung vị | Đóng 7–21: Dice 0.06–0.20 so với trung vị 0.24 |
+
+## 1. Toàn cảnh
 
 ```
- ẢNH GỐC (RGB, vd 2560×1440)
+ ẢNH GỐC RGB (1702×866 / 1080×760)
     │
     ▼
-┌───────────────────────── BƯỚC 1: DỮ LIỆU ─────────────────────────┐
-│ CFD 118 ảnh + CRACK500 249 ảnh gốc, GT vẽ tay mức pixel            │
-│ Chia: tune (chọn tham số) / test (đánh giá, 258 ảnh)               │
-└─────────────────────────────────────────────────────────────────────┘
-    │
+┌──────────────────────── 1. DỮ LIỆU (C9) ─────────────────────────────┐
+│ Chia sẵn: train 1480 / val 498 / test 231; nhãn = (xám > 127)          │
+│ tune = 300 ảnh train phân tầng (A 30, B 90, C 180, seed 42)            │
+└───────────────────────────────────────────────────────────────────────┘
     ▼
-┌──────────────────── BƯỚC 2: TIỀN XỬ LÝ (C2, C3, C4) ───────────────┐
-│ 2.1 Chuẩn hóa kích thước : cạnh dài → 480 px (INTER_AREA)           │
-│ 2.2 Chuyển ảnh xám       : Y = 0.299R + 0.587G + 0.114B             │
-│ 2.3 Cân bằng lược đồ     : ĐÃ THỬ – KHÔNG DÙNG                     │
-│ 2.4 Khử nhiễu            : lọc trung vị 3×3                         │
-│ 2.5 Bù chiếu sáng        : B = trung vị lớn; R = 128·I/B            │
-└─────────────────────────────────────────────────────────────────────┘
-    │  ảnh tỉ số R (nền ≈ 128, vết nứt < 128)
+┌──────────────────────── 2. TIỀN XỬ LÝ (C2, C3, C4) ──────────────────┐
+│ 2.0 Thu nhỏ   cạnh dài = 640 px, INTER_AREA                    (MỚI) │
+│ 2.1 Ảnh xám   Y = 0.299R + 0.587G + 0.114B                           │
+│ 2.2 Khử nhiễu trung vị 5×5                                            │
+│ 2.3 Bù sáng   B = trung vị 71×71;  R = 128·I/(B+1), cắt [0, 255]      │
+└───────────────────────────────────────────────────────────────────────┘
+    ▼  ảnh tỉ số R (nền ≈ 128, vết nứt < 128)
+┌──────────────────────── 3. XỬ LÝ CHÍNH (C5, C7) ─────────────────────┐
+│ 3.1 Làm trơn lược đồ R, W = 3                                         │
+│ 3.2 Ngưỡng tam giác θ              →  D = (R < θ)                     │
+│ 3.3 Sobel |Gx|+|Gy| → Otsu → giãn 3×3 →  E                            │
+│ 3.4 M = D ∩ E                                                         │
+└───────────────────────────────────────────────────────────────────────┘
     ▼
-┌────────────────────── BƯỚC 3: XỬ LÝ CHÍNH (C5) ────────────────────┐
-│ 3.1 Làm trơn lược đồ W = 3                                          │
-│ 3.2 Ngưỡng tam giác θ        →  D = (R < θ)        "tối hơn nền"    │
-│ 3.3 Sobel |∇R| + Otsu + giãn →  E                  "gần biên mạnh"  │
-│ 3.4 Mặt nạ thô = D ∩ E                                              │
-└─────────────────────────────────────────────────────────────────────┘
-    │  mặt nạ nhị phân thô (480 px)
+┌──────────────────────── 4. HẬU XỬ LÝ (C7) ───────────────────────────┐
+│ 4.1 Đóng ellipse 7×7                                                  │
+│ 4.2 Bỏ thành phần liên thông < 30 px                                  │
+│ 4.3 Bỏ vùng có độ dãn L/S (hộp chữ nhật xoay) < 3                     │
+│ 4.4 Tổng diện tích < 0.3% ảnh  →  mặt nạ RỖNG                  (MỚI) │
+│     Phóng mặt nạ về kích thước gốc (láng giềng gần nhất)              │
+└───────────────────────────────────────────────────────────────────────┘
     ▼
-┌──────────────────── BƯỚC 4: HẬU XỬ LÝ (C7, C8) ────────────────────┐
-│ 4.1 Phép đóng (ellipse 5×5 / 7×7) : nối đoạn đứt                    │
-│ 4.2 Phép mở                       : ĐÃ THỬ – KHÔNG DÙNG             │
-│ 4.3 Lọc vùng theo diện tích       : bỏ vùng < 30 / 60 px            │
-│ 4.4 Lọc theo độ dãn dài (mômen)   : bỏ vùng tròn, độ dãn < 3        │
-│ 4.5 Phóng về kích thước gốc       : INTER_NEAREST                   │
-└─────────────────────────────────────────────────────────────────────┘
-    │  mặt nạ cuối (kích thước gốc)
-    ▼
-┌────────────────────── BƯỚC 5: ĐÁNH GIÁ (C8) ───────────────────────┐
-│ Dice, IoU (+ Precision, Recall) trên tập test, so với Otsu và Canny │
-└─────────────────────────────────────────────────────────────────────┘
+┌──────────────────────── 5. ĐÁNH GIÁ (C5) ────────────────────────────┐
+│ Dice, IoU, P, R trên 231 ảnh test, ở kích thước gốc;                  │
+│ so với Otsu, Canny, pipeline CFD                                      │
+└───────────────────────────────────────────────────────────────────────┘
 ```
 
-**Pipeline cuối cùng:** "Sobel ∩ tam giác" (mã **V-A** trong notebook). Đây là cấu hình cho **Dice và IoU cao nhất** trên tập test của cả hai bộ dữ liệu. Nếu bỏ bước 3.3 (mặt nạ thô = D) thì được phương pháp "tam giác" (mã **M**), thấp hơn khoảng 0.01 Dice.
+### Bảng tham số
 
-### Bảng tham số cuối cùng
+| Bước | Tham số | CFD (= khởi đầu) | Dãy thử | **Chọn** | Dice tune tốt nhất theo từng giá trị |
+|---|---|---|---|---|---|
+| 2.0 | cạnh dài | 640 | 480, 640 | **640** | 480: 0.328 · 640: 0.326 |
+| 2.2 | trung vị | 3×3 | 3, 5 | **5×5** | 3: 0.309 · 5: **0.328** |
+| 2.3 | cửa sổ nền | 31 | 31, 51, 71 | **71** | 31: **0.328** · 51: 0.326 · 71: 0.319 |
+| 3.1 | làm trơn W | 3 | 3, 5 | **3** | 3: **0.328** · 5: 0.317 |
+| 3.3 | giãn biên | 7×7 | 3, 5, 7 | **3×3** | 3: **0.328** · 5: 0.320 · 7: 0.318 |
+| 4.1 | phép đóng | 7×7 | 5, 7 | **7×7** | 5: 0.317 · 7: **0.328** |
+| 4.2 | a_min | 60 | 30, 60, 120 | **30** | 30: **0.328** · 60: **0.328** · 120: 0.314 |
+| 4.3 | e_min | 2 | 2, 3 | **3** | 2: **0.328** · 3: **0.328** |
+| 4.4 | t_min | – (P0: 0.2%) | 0, 0.1, 0.2, 0.3, 0.4% | **0.3%** | 0: 0.285 · 0.1: 0.300 · 0.2: 0.325 · 0.3: **0.328** · 0.4: **0.328** |
 
-| Bước | Tham số | CFD | CRACK500 | Cách chọn |
-|---|---|---|---|---|
-| 2.1 | `size` (cạnh dài) | 480 | 480 | Cố định |
-| 2.3 | `equalize` | Không | Không | Tìm theo lưới {Không, Có} |
-| 2.4 | `median` | 3 | 3 | Tìm theo lưới {0, 3, 5} |
-| 2.5 | `bg` | 61 | 41 | Tìm theo lưới {0, 21, 41, 61} |
-| 3.1 | `hist_w` | 3 | 3 | Tìm theo lưới {1, 3, 5} |
-| 3.3 | `dil` | 3 | 5 | Tìm theo lưới {3, 5} |
-| 4.1 | `close` | 5 | 7 | Tìm theo lưới {0, 3, 5, 7} |
-| 4.2 | `open` | 0 (tắt) | 0 (tắt) | Tìm theo lưới {0, 3} |
-| 4.3 | `a_min` | 30 | 60 | Tìm theo lưới {0, 30, 60, 120, 200} |
-| 4.4 | `e_min` | 3 | 3 | Tìm theo lưới {0, 2, 3, 4} |
+* **Lưới:** 2 × 2 × 3 × 2 × 3 × 2 × 3 × 2 × 5 = **4320 cấu hình**, thử toàn bộ trên 300 ảnh tune (khoảng 2 phút, 10 tiến trình).
+* **Chọn:** 10 cấu hình có Dice tune cao nhất được chạy trên **toàn bộ 498 ảnh val** ở kích thước gốc. Cấu hình có Dice val cao nhất (0.364) được chọn; trên tune nó xếp hạng 10 (0.319). Mười cấu hình đầu chỉ chênh nhau 0.009 trên tune.
+* **Tham số CFD** xếp hạng 3842/4320 trên tune (0.237).
 
 ---
 
-## BƯỚC 1 – Dữ liệu
+## BƯỚC 1 – Dữ liệu (Chương 9)
 
-### 1.1 Nguồn
-| Tập | Mô tả | Ảnh dùng |
-|---|---|---|
-| **CFD** (CrackForest) | Mặt đường đô thị, chụp bằng điện thoại | `cfd_image/001–118.jpg`, 480×320 RGB. Ảnh `201–329` không có GT nên bị loại |
-| **CRACK500** | Mặt đường ở Đại học Temple | `valdata.zip` (50) + `testdata.zip` (200), **ảnh đầy đủ** 1440×2560 đến 3264×2448. Không dùng bản cắt nhỏ |
+| | train | val | test |
+|---|---|---|---|
+| Số ảnh (A / B / C) | 1480 (81 / 440 / 959) | 498 (27 / 155 / 316) | **231** (13 / 82 / 136) |
+| Ảnh không nứt | 261 | 115 | **45** (44 thuộc nhóm C) |
+| % pixel nứt trung bình | 0.86 | 0.82 | 0.93 |
+| Kích thước | A, B: 1702×866 · C: 1080×760 | | |
 
-### 1.2 Cách gán nhãn
-Người gán nhãn **vẽ tay** mặt nạ nhị phân PNG lên từng ảnh, ở mức pixel: 255 = vết nứt, 0 = nền.
-* GT của CFD **mảnh**, 1–3 px, vẽ theo đường tâm vết nứt.
-* GT của CRACK500 **dày**, bao trọn bề rộng vết nứt.
-
-```
-  Ảnh gốc (một đoạn)          Mặt nạ GT
-  ░░░░░░░░░░░░░░░░            ················
-  ░░░░▓▓░░░░░░░░░░            ····██··········
-  ░░░░░▓▓▓░░░░░░░░    ──►     ·····███········
-  ░░░░░░░░▓▓▓▓░░░░            ········████····
-  ░░░░░░░░░░░░▓▓░░            ············██··
-```
-
-### 1.3 Chia tập
-```
-CFD      : 001 ─────── 060 │ 061 ─────── 118
-                tune (60)  │  test (58)
-
-CRACK500 : valdata (49)    │ testdata (200)
-                tune       │  test
-```
-* **tune:** chỉ dùng để chọn tham số.
-* **test:** chỉ dùng **một lần** để báo cáo kết quả. Tổng cộng **258 ảnh ≥ 50**, đạt yêu cầu đề.
-
-### 1.4 Thống kê
-| Tập | Ảnh | % pixel nứt TB (min – max) |
-|---|---|---|
-| CFD tune / test | 60 / 58 | 1.64% (0.35 – 6.22) / 1.60% (0.73 – 6.33) |
-| CRACK500 tune / test | 49 / 200 | 2.45% (0.31 – 8.68) / 2.49% (0.15 – 7.01) |
-
-Vết nứt chỉ chiếm khoảng 2% số pixel, tức dữ liệu **lệch lớp rất nặng**. Đây là lý do của nhiều lựa chọn ở các bước sau.
-
-### 1.5 Hai lỗi dữ liệu đã xử lý
-1. **EXIF Orientation.** 132/250 ảnh CRACK500 (25 val + 107 test) có thẻ EXIF yêu cầu xoay. OpenCV mặc định sẽ xoay ảnh 90° nhưng không xoay mặt nạ, nên ảnh và GT lệch nhau. Cách sửa: đọc ảnh với cờ `IMREAD_IGNORE_ORIENTATION`.
-   ```
-   imread mặc định : ảnh 1440×2560  ≠  GT 2560×1440   ✗
-   IGNORE_ORIENT.  : ảnh 2560×1440  =  GT 2560×1440   ✓
-   ```
-2. **Trùng ảnh.** `20160329_103807` có ở cả valdata và testdata. Ảnh này bị loại khỏi tune (50 → 49 ảnh) để tránh rò rỉ dữ liệu sang tập test.
+* **Nguồn:** `data/Pavement_Crack_Segmentation_Dataset/` (từ `Pavement_Crack_Segmentation_Dataset.zip`), đã chia sẵn `train/val/test`, mỗi tập có `images/*.jpg` và `masks/*.png`. Tiền tố A_, B_, C_ là 3 nhóm nguồn. Pipeline không dùng thông tin nhóm khi dự đoán.
+* **Nhãn:** mặt nạ mức pixel, tô **cả bề rộng** vết nứt. Mặt nạ lưu ở 3 dạng: xám (160 ảnh C), RGB (1744 ảnh), RGBA (305 ảnh C). 27 mặt nạ có mép khử răng cưa. Nhãn được đưa về nhị phân bằng **GT = đọc xám > 127**.
+* **Vai trò các tập:** tune = 300 ảnh train phân tầng (thử lưới) → val (chọn 1 trong 10 cấu hình) → test (báo cáo **một lần**).
 
 ---
 
-## BƯỚC 2 – Tiền xử lý (Chương 2, 3, 4)
+## BƯỚC 2 – Tiền xử lý
 
-### 2.1 Chuẩn hóa kích thước (Ch2: lấy mẫu, độ phân giải)
+### 2.0 Thu nhỏ (MỚI, Chương 2: lấy mẫu)
 | | |
 |---|---|
-| **Phương pháp** | Lấy mẫu lại sao cho cạnh dài = 480 px, giữ tỉ lệ khung hình, nội suy `INTER_AREA` |
-| **Tham số** | `size = 480` |
-| **Lý do chọn** | (1) Mọi tham số phía sau tính bằng **pixel** (cửa sổ lọc, phần tử cấu trúc, ngưỡng diện tích) nên mọi ảnh phải về cùng một thang đo. (2) 480 bằng đúng kích thước của CFD nên CFD không bị biến đổi. (3) CRACK500 chạy nhanh hơn khoảng 30 lần. (4) `INTER_AREA` lấy trung bình vùng điểm ảnh nên chống răng cưa khi thu nhỏ. Nội suy láng giềng gần nhất có thể làm đứt vết nứt mảnh |
-
-**Mô phỏng:**
-```
-2560 × 1440  ──( s = 480/2560 = 0.1875 )──►  480 × 270
-Vết nứt rộng 20 px ở ảnh gốc  →  20 × 0.1875 ≈ 3.75 px  (vẫn đủ để nhận ra)
-CFD 480 × 320  →  s = 1  →  giữ nguyên
-```
-
-### 2.2 Chuyển ảnh xám (Ch4: hệ màu)
-| | |
-|---|---|
-| **Phương pháp** | RGB → Y (độ chói) theo công thức `Y = 0.299R + 0.587G + 0.114B` |
-| **Tham số** | Không có (hệ số cố định theo chuẩn BT.601) |
-| **Lý do chọn** | Vết nứt khác nền về **độ sáng** (khe hở ít nhận sáng nên tối hơn), **không khác về màu**. Kênh H của HSV gần như vô nghĩa với mặt đường ít màu. Các trọng số mô phỏng độ nhạy của mắt người |
-
-**Mô phỏng:**
-```
-Pixel (R, G, B) = (120, 110, 100)
-Y = 0.299·120 + 0.587·110 + 0.114·100 = 35.88 + 64.57 + 11.40 = 111.85 → 112
-Ảnh: 480×270×3  →  480×270×1
-```
-
-### 2.3 Cân bằng lược đồ (Ch3) – đã thử, KHÔNG dùng
-| | |
-|---|---|
-| **Phương pháp** | `equalizeHist`: biến đổi mức xám theo hàm phân phối tích lũy (CDF) |
-| **Tham số** | `equalize ∈ {Không, Có}` |
-| **Kết quả** | Dice tune: CFD **0.516 → 0.075**, CRACK500 **0.638 → 0.375** khi bật |
-| **Lý do loại** | (1) Khuếch đại cả kết cấu hạt của mặt đường. (2) Là phép phi tuyến, kéo đỉnh nền ra toàn dải [0, 255], làm lược đồ mất dạng "một đỉnh + đuôi" mà ngưỡng tam giác cần. Ngưỡng khi đó rơi vào giữa vùng nền, nên gần như cả ảnh bị gán là vết nứt |
+| **Phương pháp** | Cạnh dài = 640 px, giữ tỉ lệ, **INTER_AREA** (mỗi pixel mới là trung bình vùng nó phủ, tương đương lọc thông thấp trước khi lấy mẫu lại nên chống răng cưa). Mặt nạ kết quả được phóng về kích thước gốc bằng **láng giềng gần nhất** |
+| **Lý do** | Đưa bề rộng vết nứt về dải mà các cửa sổ của pipeline được thiết kế cho. Đồng thời ít pixel hơn 4–7 lần nên thử được 4320 cấu hình |
+| **Đo** | Bề rộng GT (px): gốc A 8.4 / B 12.1 / C 7.4; ở 640 px còn 3.2 / 4.7 / 4.5; ở 480 px còn 2.4 / 3.5 / 3.4. Với tham số CFD, Dice tune: 480 px 0.258, 640 px 0.246, 800 px 0.228. Vì vậy 800 bị loại; 480 và 640 vào lưới |
 
 ```
-Lược đồ trước:          Lược đồ sau cân bằng:
-      ▆█▆                ▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
-   ▁▂▄███▄▂▁             (trải đều → mất đỉnh nền, mất "đuôi" vết nứt)
-──────────────►         ──────────────►
+1702×866 ──INTER_AREA──► 640×326     1 pixel mới ≈ trung bình khối 2.66×2.66 pixel cũ
+vết nứt rộng 12 px     ──►  ≈ 4.5 px
+                                      ┌ 10 20 ┐
+Ví dụ thu nhỏ 2×: khối 2×2 pixel      └ 30 40 ┘  ──► 25 (trung bình)
+Láng giềng gần nhất sẽ lấy 10 và bỏ 3 pixel còn lại: vết nứt 1 px có thể bị mất hẳn.
 ```
 
-### 2.4 Khử nhiễu: lọc trung vị (Ch3)
-| | |
-|---|---|
-| **Phương pháp** | Lọc trung vị k×k: mỗi pixel được thay bằng **trung vị** của cửa sổ lân cận |
-| **Tham số** | `median = 3` (lưới {0, 3, 5}) |
-| **Lý do chọn phương pháp** | Hạt sỏi tạo nhiễu dạng **muối tiêu**, mà trung vị là bộ lọc tốt nhất cho loại nhiễu này. Lọc trung bình hoặc Gauss thì **làm nhòe** vết nứt mảnh |
-| **Lý do chọn k = 3** | Dice tune theo k = 0 / **3** / 5: CFD 0.496 / **0.516** / 0.498; CRACK500 0.592 / **0.638** / 0.626 |
+### 2.1 Ảnh xám (Chương 4)
+Y = 0.299R + 0.587G + 0.114B. Vết nứt khác nền ở **độ sáng**, không ở màu; phần có màu trong bộ mới là vạch sơn và vỉa hè. Ví dụ: (120, 110, 100) → 111.85 ≈ **112**.
 
-**Mô phỏng** (nền = 120, nhiễu hoặc vết nứt = 30 hoặc 60):
+### 2.2 Lọc trung vị 5×5 (Chương 3) – khác CFD (3×3)
+Hạt sỏi tạo nhiễu kiểu **muối tiêu**, và lọc trung vị là bộ lọc phù hợp nhất cho loại nhiễu này. Trên CFD, 5×5 xóa nét 2 px. Ở bộ mới sau khi thu nhỏ, vết nứt rộng 3–5 px nên 5×5 vẫn giữ được, và khử mạnh hơn nền sỏi thô (nhóm B).
+
 ```
-(a) Đốm nhiễu 1 px         → trung vị 3×3 →  bị xóa  ✓
-  120 120 120 120 120          120 120 120 120 120
-  120 120 120 120 120          120 120 120 120 120
-  120 120  30 120 120   ──►    120 120 120 120 120
-  120 120 120 120 120          120 120 120 120 120
-   Cửa sổ quanh tâm: [30,120,120,120,120,120,120,120,120] → trung vị = 120
-
-(b) Vết nứt rộng 2 px      → trung vị 3×3 →  GIỮ NGUYÊN  ✓
-  120 120 120  60  60 120 120     120 120 120  60  60 120 120
-  120 120 120  60  60 120 120 ──► 120 120 120  60  60 120 120
-   Cửa sổ tại cột 60: [60,60,60,60,60,60,120,120,120] → trung vị = 60
-
-(c) Cùng vết nứt 2 px      → trung vị 5×5 →  BỊ XÓA  ✗  (nên không chọn k = 5)
-   Cửa sổ 5×5 chỉ có 10/25 pixel tối → trung vị = 120
-
-(d) Vết nứt rộng 1 px      → trung vị 3×3 →  bị xóa (3/9 pixel tối)
-   → đây là lý do không dùng cửa sổ lớn hơn 3
+Vết nứt rộng 3 px, cửa sổ 5×5:            Đốm nhiễu 2×2, cửa sổ 5×5:
+120  60  60  60 120                         4/25 pixel tối → trung vị = 120: BỊ XÓA ✓
+120  60  60  60 120   15/25 pixel tối
+120  60  60  60 120   → trung vị = 60: GIỮ ✓
 ```
 
-### 2.5 Bù chiếu sáng: ảnh tỉ số I/B (Ch3: lọc trung vị + biến đổi điểm)
-| | |
-|---|---|
-| **Phương pháp** | (1) Ước lượng nền: `B = trung vị(I, bg×bg)` với cửa sổ **lớn**. (2) Ảnh tỉ số: `R = 128 · I / (B + 1)`, cắt về [0, 255] |
-| **Tham số** | `bg = 61` (CFD), `41` (CRACK500), lưới {0 = tắt, 21, 41, 61} |
-| **Lý do chọn phương pháp** | Vết nứt mảnh (3–6 px) so với cửa sổ (41–61 px) nên trung vị cửa sổ chính là **mức nền cục bộ**, và vết nứt bị xóa khỏi B. Bóng đổ thay đổi **chậm** nên nằm trong B; chia cho B sẽ **triệt tiêu** bóng đổ. Dùng phép **chia** thay vì phép trừ vì ánh sáng tác động theo kiểu nhân |
-| **Lý do chọn bg** | Dice tune theo bg = 0 / 21 / 41 / 61: CFD 0.377 / 0.489 / 0.513 / **0.516**; CRACK500 0.576 / 0.600 / **0.638** / 0.634. Cửa sổ 21 quá nhỏ vì vết nứt rộng chiếm gần nửa cửa sổ, lọt vào B rồi bị "chia mất". CRACK500 có bóng thay đổi nhanh hơn nên cửa sổ nhỏ hơn (41) tốt hơn |
+### 2.3 Bù chiếu sáng: R = 128·I/(B + 1), B = trung vị 71×71 (Chương 3)
+Bóng đổ và độ sáng giảm dần theo chiều sâu (ảnh chụp xiên) thay đổi chậm nên nằm trong B và bị triệt tiêu khi chia. Dùng phép **chia** vì ánh sáng tác động theo kiểu nhân. Bỏ bước này thì Dice ảnh nứt giảm từ 0.303 xuống 0.206.
 
-**Mô phỏng** trên một hàng pixel, bên trái nắng, bên phải bóng râm, có 2 vết nứt:
 ```
-vị trí    :   0    1    2    3    4    5    6    7    8    9   10
-              ── nắng ──────────►  chuyển dần  ──── bóng râm ────
-I (xám)   : 160  160  [96] 160  150  130  110  100  [60] 100  100
-B (nền)   : 160  160  160  160  150  130  110  100  100  100  100
-R=128·I/B : 127  127  [76] 127  127  127  126  126  [76] 126  126
-                       ↑ nứt                          ↑ nứt
-
-• Nếu tách ngưỡng trực tiếp trên I (vd I < 105): các vị trí 7, 9, 10 (bóng râm) bị
-  gán NHẦM là vết nứt.
-• Trên R: nền luôn ≈ 127, cả hai vết nứt đều = 76, nên một ngưỡng dùng chung cho
-  cả ảnh là đủ.
+I         : 160  160  [96] 160  150  130  110  100  [60] 100  100     (nắng → bóng râm)
+B         : 160  160  160  160  150  130  110  100  100  100  100
+R=128·I/B : 127  127  [76] 127  127  127  126  126  [76] 126  126     → một ngưỡng duy nhất là đủ
 ```
-
-Sau bước này, lược đồ của **mọi ảnh** có cùng dạng: một đỉnh nền ở khoảng 128 và một đuôi tối là vết nứt.
+Đã thử thay B bằng **phép đóng** (cực đại cục bộ rồi cực tiểu): nền bị nâng theo các hạt sỏi sáng, nên cả mặt đường thành "tối hơn nền". Dice chỉ đạt 0.06–0.20, thấp hơn trung vị (0.24), nên không dùng.
 
 ---
 
-## BƯỚC 3 – Xử lý chính (Chương 5)
+## BƯỚC 3 – Xử lý chính
 
-### 3.1 Làm trơn lược đồ (Ch5, tr.62)
-| | |
-|---|---|
-| **Phương pháp** | Trung bình trượt cửa sổ W trên lược đồ h[b], không làm dịch vị trí đỉnh |
-| **Tham số** | `hist_w = 3` (lưới {1 = tắt, 3, 5}) |
-| **Lý do** | Dao động nhỏ ở vùng đuôi làm ngưỡng tam giác "nhảy" thất thường. Dice tune theo W = 1 / **3** / 5: CFD 0.481 / **0.516** / 0.510; CRACK500 0.572 / **0.638** / 0.634 |
+### 3.1 Làm trơn lược đồ R, W = 3 (Chương 5, tr.62)
+R được làm tròn từ số nguyên nên lược đồ có **gai ở 128 cạnh hố ở 127**. Trung bình trượt h'[b] = (h[b−1] + h[b] + h[b+1]) / 3 xóa răng cưa này trước khi tìm ngưỡng.
 
-### 3.2 Ngưỡng tam giác (Ch5, tr.78) → mặt nạ "tối hơn nền" D
-| | |
-|---|---|
-| **Phương pháp** | Thuật toán Zack: (1) nối đỉnh lược đồ (b_max) với mức khác 0 xa nhất về phía đuôi (b_min) bằng đường Δ; (2) với mỗi b, tính khoảng cách d từ h[b] tới Δ; (3) θ = b có d lớn nhất. Gán **D = (R < θ)** |
-| **Tham số** | Không có. θ được tính tự động cho **từng ảnh** |
-| **Lý do chọn tam giác** | Lược đồ R có **một đỉnh lớn** (nền, khoảng 98%) và **một đuôi mỏng** (nứt, khoảng 2%), đúng loại lược đồ mà phương pháp tam giác được thiết kế cho. **Otsu** giả định hai đỉnh nên đặt ngưỡng vào giữa đỉnh nền: trên ảnh `cfd/001`, Otsu gán 27.5% ảnh là nứt, tam giác gán 2.1%, trong khi GT là 1.2%. **Đối xứng nền** cần thêm hai tham số và cho kết quả kém hơn trên tập tune |
-
-**Mô phỏng** trên lược đồ đồ chơi 16 mức (sau khi làm trơn W = 3):
 ```
-b    :  0    1    2    3    4    5    6    7    8     9    10   11   12   13   14   15
-h[b] : 0.3  1.0  1.3  2.0  2.0  3.0  4.0  8.3  20.3  48.3 63.3 56.7 28.3 8.7  2.0  0.3
-       └──────────── đuôi tối (vết nứt) ────────┘ └──── đỉnh nền ────┘
+b      : 125   126   127   128   129
+h      : 900  1000   300  2600  1100     ← hố 127 cạnh gai 128
+h' (W=3):  …    733  1300  1333   …       ← trơn, đỉnh vẫn ở 128
+```
+Trên bộ mới, bỏ bước này **không làm giảm** Dice (0.340 so với 0.339): với trung vị 5×5, R ít bị lượng tử hóa hơn. Bước này được giữ để an toàn (trên CFD nó ngăn 11/88 ảnh hỏng).
 
-          h
-     63 ┤                                         ●  ← b_max = 10
-        │                                      ●     ●
-        │                                 ╱
-     20 ┤                           ╱  ●
-        │                     Δ ╱    ↕ d lớn nhất
-      8 ┤               ╱      ●  ← b = 7
-        │         ╱ ●  ●
-      0 ●──●──●───────────────────────────────────────── b
-        b_min=0
+### 3.2 Ngưỡng tam giác → D = (R < θ) (Chương 5, tr.78)
+Lược đồ R có **một đỉnh lớn** (nền khoảng 99%) và **đuôi mỏng** về phía tối (vết nứt khoảng 1%). Thuật toán: nối đỉnh b_max với mức khác 0 tối nhất b_min bằng đường Δ; **θ = b có khoảng cách tới Δ lớn nhất**. Otsu cần lược đồ hai đỉnh nên thất bại ở đây. Ví dụ ảnh mẫu B: Otsu gán **56.9%** ảnh là nứt; tam giác gán **1.5%**; GT 0.8%.
 
-Khoảng cách d(b) từ h[b] tới Δ:
-b : 0     1     2     3     4     5     6     7     8     9    10
-d : 0.00  0.88  1.82  2.70  3.69  4.52  5.35 [5.66] 4.77  1.36  0.00
-                                              ↑ lớn nhất → θ = 7
-Mặt nạ D: pixel có R < 7 (chân đỉnh nền) là "tối hơn nền".
+```
+ h │                 █ ← b_max (nền)
+   │                ██
+   │               ███
+   │  Δ        . ' ███
+   │     . '   ↕d max ███
+   │. '  ▂▃▄▅▆▇█████████▇▅▃
+   └──┬──────────┬────┬──── b
+    b_min        θ  128
 ```
 
-### 3.3 Sobel + Otsu + giãn (Ch5: gradient) → mặt nạ "gần biên mạnh" E
-| | |
-|---|---|
-| **Phương pháp** | (1) Gradient Sobel 3×3: `|∇R| = √(Gx² + Gy²)`, chuẩn hóa về [0, 255]. (2) Tách ngưỡng **Otsu** trên `|∇R|` để lấy biên mạnh. (3) **Giãn** mặt nạ biên bằng ô vuông `dil×dil` để được E |
-| **Tham số** | `dil = 3` (CFD), `5` (CRACK500), lưới {3, 5} |
-| **Lý do chọn phương pháp** | Vết nứt thật vừa **tối** vừa có **biên sắc**. Mặt nạ E loại bỏ các mảng tối nhưng chuyển sáng tối **từ từ** (vệt bóng còn sót, vết ẩm loang). Otsu dùng **hợp lý** ở đây vì lược đồ gradient có hai nhóm rõ ràng hơn (vùng phẳng và vùng biên) |
-| **Lý do phải giãn** | Ngay **tại tâm** vết nứt, gradient bằng 0 (xem mô phỏng). Biên chỉ nằm ở **hai bờ**, nên phải giãn ra mới phủ được thân vết nứt. CRACK500 có vết nứt rộng hơn nên cần dil = 5 |
+### 3.3 Vùng gần biên E: Sobel L1 → Otsu → giãn 3×3 (Chương 5, 7) – khác CFD (7×7)
+Vết nứt có biên sắc; vùng tối loang thì không. Tại tâm vết nứt gradient = 0, nên phải giãn để phủ thân vết nứt. Trên CFD, giãn 7×7 làm E phủ gần hết ảnh nên bước này vô tác dụng. Ở bộ mới, giãn **3×3** cho E chặt hơn: bỏ 3.3 thì Dice giảm 0.339 → 0.329, và số ảnh lành đoán đúng giảm 22 → 16.
 
-**Mô phỏng** trên vết nứt rộng 1 px (R = 80 trên nền 128):
 ```
-R:                              Gx (Sobel ngang):              |∇R|:
-128 128 128  80 128 128 128     0  0 -192   0 192  0  0       0  0 192   0 192  0  0
-128 128 128  80 128 128 128     0  0 -192   0 192  0  0       0  0 192   0 192  0  0
-128 128 128  80 128 128 128     0  0 -192   0 192  0  0       0  0 192   0 192  0  0
-                                                                      ↑ tâm nứt = 0 !
-Otsu(|∇R|) → biên ở cột 2 và 4:   · · █ · █ · ·
-Giãn 3×3 → E phủ cột 1..5:        · █ █ █ █ █ ·   (đã phủ tâm vết nứt)
+R:     128 128 128  80 128 128 128
+|∇R|:    0   0 192   0 192   0   0      (tâm nứt = 0)
+Otsu:    ·   ·   █   ·   █   ·   ·
+giãn:    ·   █   █   █   █   █   ·  = E (phủ thân vết nứt)
 ```
 
-### 3.4 Kết hợp: mặt nạ thô = D ∩ E
-```
-D (tối hơn nền)            E (gần biên mạnh)          D ∩ E
-· · · · · · ·  · ·         · · · · · · · · ·          · · · · · · · · ·
-· █ █ █ █ █ ·  · ·         · · █ █ █ · · · ·          · · █ █ █ · · · ·
-· █ █ █ █ █ ·  █ ·    ∩    · · █ █ █ · · █ ·    =     · · █ █ █ · · █ ·
-· █ █ █ █ █ ·  · ·         · · █ █ █ · · · ·          · · █ █ █ · · · ·
-  └ mảng tối loang ┘ └nứt┘   (mảng loang không có biên → bị loại; vết nứt giữ lại)
-```
-Ví dụ trên là minh họa trên lưới nhỏ. Mặt nạ D ∩ E luôn là **tập con** của D: bước này chỉ xóa bớt pixel, không bao giờ thêm.
-
-**So sánh các phương án xử lý chính** (Dice trung bình, đã kèm hậu xử lý):
-
-| Phương án | Tune CFD | Tune CRACK500 | **Test CFD** | **Test CRACK500** |
-|---|---|---|---|---|
-| Tam giác (D) | 0.518 | **0.638** | 0.575 | 0.549 |
-| **Sobel ∩ tam giác (D ∩ E)** | **0.520** | 0.635 | **0.584** | **0.556** |
-| Đối xứng nền + phát triển vùng | 0.512 | 0.574 | 0.528 | 0.511 |
+### 3.4 M = D ∩ E
+Pixel là vết nứt khi **vừa tối hơn nền vừa gần biên mạnh**.
 
 ---
 
-## BƯỚC 4 – Hậu xử lý (Chương 7 + đặc trưng hình dạng Chương 8)
+## BƯỚC 4 – Hậu xử lý (Chương 7)
 
-Phần tử cấu trúc là hình **ellipse (đĩa)**. Hình này đẳng hướng, nên vết nứt theo hướng nào cũng được xử lý như nhau. Ellipse 5×5 của OpenCV có dạng:
+### 4.1 Phép đóng ellipse 7×7: (A ⊕ B) ⊖ B
+Nối các đoạn nứt đứt, không làm dày vĩnh viễn.
 ```
-· · █ · ·
-█ █ █ █ █
-█ █ █ █ █
-█ █ █ █ █
-· · █ · ·
-```
-
-### 4.1 Phép đóng: A • B = (A ⊕ B) ⊖ B
-| | |
-|---|---|
-| **Phương pháp** | Giãn rồi co: lấp khe nhỏ và **nối** các đoạn vết nứt bị lệch hoặc đứt, mà không làm dày vết nứt vĩnh viễn |
-| **Tham số** | `close = 5` (CFD), `7` (CRACK500), lưới {0, 3, 5, 7} |
-| **Lý do** | Dice tune khi không đóng: CFD 0.496, CRACK500 0.607. Đóng k = 5: **0.518** và **0.638**. CRACK500 chọn 7 vì bước 3.3 làm thủng phần ruột của vết nứt rộng, cần phép đóng lớn hơn để lấp lại |
-
-**Mô phỏng:** hai đoạn nứt lệch nhau 1 hàng, chỉ chạm nhau ở góc chéo:
-```
-Trước (2 vùng):                         Sau phép đóng 5×5 (1 vùng):
-···················                     ···················
-·███████···········                     ·███████···········
-·███████·█████████·          ──►        ·█████████████████·
-·········█████████·                     ·········█████████·
-                                                 ↑ thêm đúng 1 pixel nối 2 đoạn
+·███████···········          ·███████···········
+·███████·█████████·   ──►    ·█████████████████·
+·········█████████·          ·········█████████·
 ```
 
-### 4.2 Phép mở: A ∘ B = (A ⊖ B) ⊕ B – đã thử, KHÔNG dùng
-| | |
-|---|---|
-| **Tham số** | `open = 0` (lưới {0, 3}) |
-| **Lý do loại** | Phép mở 3×3 xóa **mọi** cấu trúc mảnh hơn B, kể cả vết nứt rộng 1–2 px. Dice tune: CFD 0.518 → 0.475, CRACK500 0.638 → 0.615. Việc khử đốm do bước 4.3 đảm nhận |
+### 4.2 Lọc diện tích < 30 px (thành phần liên thông 8-láng giềng)
+Xóa đốm sỏi rời rạc. Ở bộ mới chọn **30** (CFD 60): quyết định "ảnh có nứt hay không" đã chuyển sang 4.4, nên 4.2 chỉ cần xóa vụn và không nên xóa đoạn nứt ngắn.
 
+### 4.3 Lọc độ dãn L/S < 3 (hộp chữ nhật xoay `minAreaRect`) – CFD dùng 2
+| Hình | L/S hộp xoay | L/S hộp thẳng | Giữ (e_min = 3)? |
+|---|---|---|---|
+| đốm tròn r = 5 | 1.00 | 1.00 | không |
+| đốm vuông 9×9 | 1.00 | 1.00 | không |
+| nứt ngang dày 2, dài 40 | 21.0 | 14.3 | giữ |
+| nứt chéo 45° dày 2 | 20.5 | **1.00** (hộp thẳng xóa nhầm) | giữ |
+| nứt cong (cung tròn) | 2.75 | 2.65 | **không** |
+
+Vết nứt ở bộ mới **thẳng** hơn CFD nên chịu được e_min = 3, và lọc thêm được các vết dầu, nắp cống gần tròn.
+
+### 4.4 Quyết định mức ảnh: s = diện tích / diện tích ảnh < 0.3% → mặt nạ rỗng (MỚI)
 ```
-Trước:                        Sau phép mở 3×3:
-···············               ···············
-··██···········               ···············
-··██···········      ──►      ···············
-·█████████████·               ···············   ← vết nứt 1 px bị xóa sạch ✗
+ảnh lành   : sau 4.3 còn vài khe nối, vết bẩn → s = 0.05% < 0.3% → RỖNG   (Dice 0 → 1)
+ảnh có nứt : s = 0.9% ≥ 0.3%                                  → giữ nguyên
+ảnh nứt nhỏ: s = 0.2% < 0.3%                                  → RỖNG   (mất vết nứt: cái giá)
 ```
-
-### 4.3 Lọc vùng theo diện tích (gán nhãn thành phần liên thông)
-| | |
-|---|---|
-| **Phương pháp** | Gán nhãn các thành phần liên thông theo 8-láng giềng (cùng nguyên lý với phát triển vùng và làm đầy vùng), bỏ vùng có diện tích < `a_min` |
-| **Tham số** | `a_min = 30` (CFD), `60` (CRACK500), lưới {0, 30, 60, 120, 200} |
-| **Lý do** | Hạt sỏi tạo vùng nhỏ, vết nứt tạo vùng dài và lớn. Đây là bước hậu xử lý **quan trọng nhất**: không lọc thì Dice tune chỉ còn CFD 0.411, CRACK500 0.556. Lọc mạnh quá (200) thì mất các đoạn nứt ngắn |
-
-### 4.4 Lọc theo độ dãn dài (Ch8: đặc trưng hình dạng, mômen)
-| | |
-|---|---|
-| **Phương pháp** | Tính mômen trung tâm bậc 2 μ₂₀, μ₀₂, μ₁₁. Lấy λ₁ ≥ λ₂ là trị riêng của ma trận [[μ₂₀, μ₁₁], [μ₁₁, μ₀₂]]. **Độ dãn dài = √(λ₁/λ₂)**. Bỏ vùng có độ dãn < `e_min`. Vùng lớn (≥ 5·a_min) luôn được giữ, vì mạng nứt chằng chịt có độ dãn thấp |
-| **Tham số** | `e_min = 3` (lưới {0, 2, 3, 4}) |
-| **Lý do** | Vết nứt **dài và mảnh** nên λ₁ ≫ λ₂. Vết dầu, ổ gà, đốm tối thì **gần tròn** (≈ 1). Bước này tăng Dice tune thêm khoảng 0.02 |
-
-**Mô phỏng 4.3 + 4.4** (CFD: a_min = 30, e_min = 3, ngưỡng "luôn giữ" = 5 × 30 = 150):
-```
-Vùng                     Diện tích   Độ dãn √(λ1/λ2)   4.3 (≥30?)  4.4                    Kết quả
-───────────────────────  ─────────   ───────────────   ──────────  ─────────────────────  ───────
-Đốm sỏi 3×3                    9          –               ✗         –                      BỎ
-Đốm tối tròn (r = 5)          81        1.0               ✓         81 < 150 và 1.0 < 3    BỎ
-Đoạn nứt chéo dày 2 px       120       16.7               ✓         16.7 ≥ 3               GIỮ
-Mạng nứt lớn (giả định)      900        2.1               ✓         900 ≥ 150 → giữ luôn   GIỮ
-```
-
-### 4.5 Phóng về kích thước gốc
-Mặt nạ 480 px được phóng về kích thước gốc bằng `INTER_NEAREST`, vì phép này giữ được giá trị nhị phân 0/1. Ví dụ 480×270 → 2560×1440. Đầu ra cuối cùng là ảnh gốc được **phủ mặt nạ màu đỏ**.
+* **Vì sao tổng diện tích:** đây là đặc trưng tách ảnh nứt / không nứt tốt nhất trong các đặc trưng đơn giản đã thử. AUC trên tune: tổng diện tích **0.72**, diện tích vùng lớn nhất 0.71, độ dài vùng dài nhất 0.67, số vùng 0.59, độ tương phản trung bình 0.46.
+* **Đo trên test:** 22/45 ảnh lành được trả rỗng đúng (không có 4.4: 2/45), đổi lại 45/186 ảnh có nứt bị trả rỗng (C 30, B 14, A 1).
 
 ---
 
-## BƯỚC 5 – Đánh giá (Chương 8)
+## BƯỚC 5 – Đánh giá trên test (231 ảnh, đánh giá ở kích thước gốc)
 
-### 5.1 Độ đo
-Các độ đo tính trên từng pixel, ở **độ phân giải gốc**, so với GT:
-```
-                         GT = nứt     GT = nền
-  Dự đoán = nứt            TP            FP
-  Dự đoán = nền            FN            TN
+**Độ đo:** Dice = 2TP/(2TP+FP+FN), IoU = TP/(TP+FP+FN). **Ảnh không nứt:** dự đoán rỗng thì Dice = IoU = 1, có pixel nào thì 0. Precision và Recall chỉ tính trên ảnh có nứt. **Gộp** = cộng TP, FP, FN mọi ảnh rồi mới tính.
 
-  Dice = 2TP / (2TP + FP + FN)      (= F1 mức pixel)
-  IoU  = TP / (TP + FP + FN)        (IoU = Dice / (2 − Dice) ≤ Dice)
-```
-**Mô phỏng:** TP = 600, FP = 400, FN = 350
-```
-Dice      = 1200 / (1200 + 400 + 350) = 0.615
-IoU       =  600 / ( 600 + 400 + 350) = 0.444
-Precision =  600 / ( 600 + 400)       = 0.600
-Recall    =  600 / ( 600 + 350)       = 0.632
-```
-**Không dùng Accuracy.** Nền chiếm 97.6–98.4% số pixel, nên một mô hình "đoán toàn nền" vẫn đạt accuracy 98.4% (CFD) trong khi không tìm được vết nứt nào.
+| Phương pháp | Dice | IoU | Dice ảnh nứt | P | R | Dice gộp | IoU gộp | Ảnh lành đúng | Ảnh nứt bị trả rỗng |
+|---|---|---|---|---|---|---|---|---|---|
+| Otsu | 0.024 | 0.012 | 0.030 | 0.015 | 0.723 | 0.027 | 0.014 | 0/45 | 0 |
+| Canny | 0.018 | 0.009 | 0.022 | 0.012 | 0.352 | 0.019 | 0.010 | 0/45 | 0 |
+| Pipeline CFD (tham số CFD, không 4.4) | 0.271 | 0.197 | **0.337** | 0.460 | 0.325 | 0.349 | 0.211 | 0/45 | 4 |
+| Pipeline mới – khởi đầu P0 | 0.296 | 0.227 | 0.319 | 0.399 | 0.314 | 0.345 | 0.209 | 9/45 | 32 |
+| **Pipeline mới – đã chọn** | **0.339** | **0.274** | 0.303 | 0.328 | 0.312 | **0.426** | **0.271** | **22/45** | 45 |
 
-### 5.2 Chọn tham số (chỉ trên tập tune)
-```
-Giai đoạn A: lưới {equalize, median, bg, hist_w, dil} = 2×3×4×3×2 = 144 cấu hình
-             (hậu xử lý cố định: close 5, open 0, a_min 60, e_min 3)
-                  │ giữ cấu hình có Dice tune cao nhất
-                  ▼
-Giai đoạn B: lưới {close, open, a_min, e_min}         = 4×2×5×4 = 160 cấu hình
-                  │ giữ cấu hình có Dice tune cao nhất
-                  ▼
-        Tham số cuối cùng  →  chạy MỘT LẦN trên tập test
-```
+**Theo nhóm** (Dice theo ảnh; trong ngoặc là Dice ảnh nứt): CFD A 0.183 (0.183) · B 0.587 (0.595) · C 0.089 (0.132). Pipeline mới A 0.126 (0.126) · B 0.554 (0.548) · **C 0.231** (0.113).
 
-### 5.3 Kết quả trên tập test
-| Phương pháp | CFD Dice | CFD IoU | CRACK500 Dice | CRACK500 IoU |
-|---|---|---|---|---|
-| Otsu (đối chứng) | 0.058 | 0.030 | 0.076 | 0.040 |
-| Canny (đối chứng) | 0.053 | 0.029 | 0.047 | 0.024 |
-| Tam giác (không Sobel) | 0.575 | 0.414 | 0.549 | 0.400 |
-| **Pipeline cuối (Sobel ∩ tam giác)** | **0.584** | **0.423** | **0.556** | **0.404** |
+**Bỏ từng bước** (giữ tham số đã chọn):
+| Thay đổi | Dice | Dice ảnh nứt | Ảnh lành đúng |
+|---|---|---|---|
+| (đầy đủ) | 0.339 | 0.303 | 22/45 |
+| Bỏ bước 4 | 0.214 | 0.265 | 0/45 |
+| Bỏ 2.0 (kích thước gốc) | 0.267 | 0.197 | 25/45 |
+| Bỏ 4.4 | 0.274 | 0.329 | 2/45 |
+| Bỏ 2.3 | 0.283 | 0.206 | 27/45 |
+| Bỏ 3.3 | 0.329 | 0.323 | 16/45 |
+| Bỏ 3.1 | 0.340 | 0.304 | 22/45 |
 
-Độ đo phụ của pipeline cuối: Precision 0.618 / 0.578, Recall 0.612 / 0.619 (CFD / CRACK500).
-
-* Dice tăng **khoảng 10 lần** so với các phương pháp đối chứng.
-* **Otsu** có recall 0.88 nhưng precision chỉ 0.03: phủ đỏ khoảng một nửa ảnh.
-* **Canny** bắt biên của mọi hạt sỏi.
-
-### 5.4 Nghiên cứu cắt bỏ (thay đổi một bước, đo Dice test của phương pháp tam giác)
-| Thay đổi | CFD | CRACK500 |
-|---|---|---|
-| Đầy đủ | 0.575 | 0.549 |
-| Bỏ bù chiếu sáng | 0.476 (−0.10) | 0.479 (−0.07) |
-| Bỏ lọc trung vị | 0.566 (−0.01) | 0.415 (−0.13) |
-| Thêm cân bằng lược đồ | 0.041 (−0.53) | 0.082 (−0.47) |
-| Bỏ toàn bộ hậu xử lý | 0.413 (−0.16) | 0.414 (−0.14) |
-| Chỉ hình thái, không lọc vùng | 0.425 (−0.15) | 0.430 (−0.12) |
-
-Mọi bước đều có đóng góp. Hai bước đóng góp lớn nhất là **hậu xử lý (lọc vùng)** và **bù chiếu sáng**.
-
-### 5.5 Phân tích lỗi
-* **FN (bỏ sót):** đoạn nứt mờ hoặc rất hẹp. Các đoạn này không vượt được ngưỡng θ, hoặc chỉ còn là mảnh ngắn < a_min nên bị lọc mất.
-* **FP (báo nhầm):** vệt tối dài nhưng không phải nứt (mép vạch sơn, vệt dầu, khe giữa các viên sỏi lớn).
-* **Giới hạn của GT CFD (1–3 px):** dự đoán lệch 1 px so với đường tâm cũng bị tính là FP + FN.
+### Đọc kết quả
+1. Pipeline mới tốt hơn pipeline CFD: Dice **0.271 → 0.339**, IoU **0.197 → 0.274**, Dice gộp **0.349 → 0.426**. Tune → val → test: 0.32 → 0.36 → 0.34, nên không có dấu hiệu khớp quá mức.
+2. Mức tăng chủ yếu đến từ **ảnh lành** (bước 4.4) và từ việc **báo nhầm ít hơn** (Dice gộp tăng). Trên ảnh có nứt, Dice **giảm nhẹ** (0.337 → 0.303) vì 45 ảnh nứt nhỏ bị trả rỗng. Đây là đánh đổi của 4.4 và cần nêu rõ khi báo cáo.
+3. Theo nhóm: C tăng mạnh nhờ 4.4; B giảm nhẹ (do 4.4: bỏ 4.4 thì B đạt 0.582); A giảm do tham số chung hợp với B, C hơn (bỏ 4.4 thì A vẫn là 0.128). A chỉ có 13 ảnh nên con số dao động lớn.
+4. **Lỗi còn lại:** FN do vết nứt mờ ở xa trong ảnh chụp xiên, và do GT tô cả bề rộng trong khi D chỉ lấy lõi tối. FP do vạch sơn bị nứt, mép vỉa hè, nắp cống, khe nối và vết dầu dài: chúng tối, dài và có biên giống vết nứt.
 
 ---
 
 ## Tổng kết kiến thức theo chương
-| Chương | Kiến thức dùng | Bước |
+| Chương | Kiến thức | Bước |
 |---|---|---|
-| C2 | Lấy mẫu lại, độ phân giải không gian | 2.1, 4.5 |
-| C3 | Lọc trung vị, biến đổi điểm (ảnh tỉ số), cân bằng lược đồ (đã thử, bị loại) | 2.3, 2.4, 2.5 |
-| C4 | Hệ màu RGB → ảnh xám | 2.2 |
-| C5 | Làm trơn lược đồ, ngưỡng tam giác, Otsu, gradient Sobel, Canny (đối chứng), đối xứng nền và phát triển vùng (biến thể) | 3.1 – 3.4 |
-| C7 | Phần tử cấu trúc, phép giãn, phép co, phép đóng, phép mở, thành phần liên thông | 3.3, 4.1 – 4.3 |
-| C8 | Mômen bậc 2 và độ dãn dài, ma trận nhầm lẫn, Precision / Recall / F1 (= Dice) | 4.4, 5 |
+| C2 | Lấy mẫu lại (INTER_AREA, láng giềng gần nhất), lượng tử hóa | 2.0, 3.1 |
+| C3 | Lọc trung vị (khử nhiễu, ước lượng nền), biến đổi điểm (ảnh tỉ số) | 2.2, 2.3 |
+| C4 | RGB → xám | 1, 2.1 |
+| C5 | Làm trơn lược đồ, tam giác, Sobel, Otsu, Canny, độ đo | 3.1–3.3, 5 |
+| C7 | Giãn, đóng, thành phần liên thông, diện tích, độ dãn, quyết định mức ảnh | 3.3, 4.1–4.4 |
+| C9 | Nguồn dữ liệu, nhãn nhị phân, train/val/test, tránh rò rỉ | 1 |
