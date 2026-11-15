@@ -1,25 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Pipeline phát hiện vết nứt mặt đường (xử lý ảnh cổ điển) – bản module dùng chung.
-
-Tách nguyên văn từ `crack_segmentation.ipynb` (bộ Pavement Crack Segmentation Dataset)
-để notebook và app Streamlit import chung một nguồn: KHÔNG đổi logic nào.
-Chi tiết từng bước và lý do chọn tham số: xem PIPELINE.md.
-
-Dùng nhanh:
-    import cv2, pipeline
-    mask = pipeline.pipeline(img, pipeline.P)        # ảnh BGR -> mặt nạ bool kích thước gốc
-    vis  = pipeline.overlay_red(img, mask)           # ảnh gốc phủ đỏ kết quả
+"""Phân đoạn vết nứt cổ điển; pipeline(img_bgr, P) trả mask bool kích thước gốc.
+P đã đánh giá; P_RECON/P_THIN cần xác nhận trên val. Xem docs/pipeline-experiments.md.
 """
 import numpy as np
 import cv2
 
-# Tham số ĐÃ CHỌN (khớp bảng "Bảng tham số" trong PIPELINE.md và best_params.json
-# mà notebook sinh ra; notebook có assert kiểm tra lại khớp cấu hình chọn trên val).
+# Tham số đã chọn trên val, khớp PIPELINE.md và assert trong notebook.
 P = dict(size=640, median=5, bg=71, hist_w=3, dil=3, close=7, a_min=30, e_min=3, tmin=0.3)
 
 # Tham số khởi đầu trước khi tune (để so sánh trong app, giống P0 trong notebook)
 P0 = dict(size=640, median=3, bg=31, hist_w=3, dil=7, close=7, a_min=60, e_min=2, tmin=0.2)
-
+P_RECON = {**P, "edge_mode": "reconstruct"}
+P_THIN = {**P, "median": 3}
 
 # ---- Tiện ích ảnh ----
 def rgb(img):
@@ -38,15 +30,14 @@ def ncc(m):
 
 def resize_long(img, size, interp=cv2.INTER_AREA):
     h, w = img.shape[:2]; s = size / max(h, w)
-    return cv2.resize(img, (round(w * s), round(h * s)), interpolation=interp)
+    return cv2.resize(img, (max(1, round(w * s)), max(1, round(h * s))), interpolation=interp)
 
 def to_orig(mask, shape):
     return cv2.resize(mask.astype(np.uint8), (shape[1], shape[0]), interpolation=cv2.INTER_NEAREST) > 0
 
 def small(img, size=640, nearest=False):
     """Thu nhỏ chỉ để HIỂN THỊ."""
-    h, w = img.shape[:2]; s = size / max(h, w)
-    return cv2.resize(img, (round(w * s), round(h * s)), interpolation=cv2.INTER_NEAREST if nearest else cv2.INTER_AREA)
+    return resize_long(img, size, cv2.INTER_NEAREST if nearest else cv2.INTER_AREA)
 
 def overlay_red(img, mask, alpha=0.6):
     out = img.copy()
@@ -58,7 +49,6 @@ def error_map(pred, gt):
     m = np.zeros(gt.shape + (3,), np.uint8)
     m[pred & gt] = (0, 200, 0); m[pred & ~gt] = (0, 0, 255); m[~pred & gt] = (255, 0, 0)
     return m
-
 
 # ---- Bước 2: tiền xử lý ----
 def to_gray(img):
@@ -75,7 +65,6 @@ def illumination_ratio(img, k, mode="median", op="div"):
     I, B = img.astype(np.float32), bg.astype(np.float32)
     R = 128.0 + I - B if op == "sub" else 128.0 * I / (B + 1.0)
     return np.clip(R, 0, 255).astype(np.uint8), bg
-
 
 # ---- Bước 3: xử lý chính ----
 def histogram(img, w=1):
@@ -111,6 +100,16 @@ def edge_region(ratio, dil):
     t, edge = cv2.threshold(g, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     return cv2.dilate(edge, ellipse(dil)) > 0, g, edge > 0, t
 
+def reconstruct(seed, support):
+    """Tái tạo nhị phân 8-láng giềng: giữ vùng support chạm seed (C7).
+
+    Tương đương lặp X = dilate(X) ∩ support đến ổn định, nhưng chỉ gán nhãn một lần.
+    """
+    _, labels = cv2.connectedComponents(support.astype(np.uint8), connectivity=8)
+    keep = np.zeros(int(labels.max()) + 1, dtype=bool)
+    keep[np.unique(labels[seed & support])] = True
+    keep[0] = False
+    return keep[labels]
 
 # ---- Bước 4: hậu xử lý ----
 def closing(mask, k):
@@ -134,21 +133,22 @@ def elongation(comp, rect="rotated"):
         (_, _), (w, h), _ = cv2.minAreaRect(pts)
     return max(w, h) / max(min(w, h), 1.0)
 
-def elongation_filter(mask, e_min, rect="rotated"):
+def elongation_filter(mask, e_min, rect="rotated", a_min=0, return_area=False):
+    """Lọc diện tích và độ dãn trong cùng một lượt gán nhãn."""
     n, lab, st, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8), connectivity=8)
+    area_keep = st[:, cv2.CC_STAT_AREA] >= a_min
+    area_keep[0] = False
     keep = np.zeros(n, bool)
-    for i in range(1, n):
+    for i in np.flatnonzero(area_keep):
         x, y, w, h = st[i, :4]
         keep[i] = elongation(lab[y:y + h, x:x + w] == i, rect) >= e_min
-    return keep[lab]
+    return (area_keep[lab], keep[lab]) if return_area else keep[lab]
 
 def image_decision(mask, tmin):
     s = mask.mean() * 100
     return (mask if s >= tmin else np.zeros_like(mask)), s
 
-
-# ---- Toàn bộ pipeline. Các khóa tùy chọn (denoise, bg_mode, op, thresh, use_edge, morph, rect, post)
-# ---- chỉ dùng cho các thí nghiệm kiểm chứng; mặc định là phương pháp đã chọn.
+# ---- Pipeline: P mặc định; các khóa tùy chọn dùng để kiểm chứng.
 def raw_mask(img, p):
     """Bước 2 + 3: ảnh gốc -> mặt nạ thô M ở kích thước đã thu nhỏ (và các ảnh trung gian)."""
     small_ = resize_long(img, p["size"]) if p.get("size") else img
@@ -160,27 +160,26 @@ def raw_mask(img, p):
         theta, _ = cv2.threshold(ratio, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU); D = ratio < theta
     else:
         D, theta = dark_region(ratio, p["hist_w"])
-    M = D & edge_region(ratio, p["dil"])[0] if p.get("use_edge", True) else D
-    return M, dict(small=small_, gray=gray, den=den, ratio=ratio, D=D, theta=theta)
+    E = edge_region(ratio, p["dil"])[0] if p.get("use_edge", True) else np.ones_like(D)
+    seed = D & E
+    M = reconstruct(seed, D) if p.get("edge_mode") == "reconstruct" else seed
+    return M, dict(small=small_, gray=gray, den=den, ratio=ratio, D=D, E=E, seed=seed, theta=theta)
 
 def post(M, p):
     """Bước 4: đóng -> lọc diện tích -> lọc độ dãn -> quyết định mức ảnh."""
     morph = p.get("morph", "close")
     C = closing(M, p["close"]) if morph == "close" else opening(M, p["close"]) if morph == "open" else M
-    A = area_filter(C, p["a_min"])
-    F = elongation_filter(A, p["e_min"], p.get("rect", "rotated"))
+    A, F = elongation_filter(C, p["e_min"], p.get("rect", "rotated"), p["a_min"], return_area=True)
     Z, s = image_decision(F, p["tmin"])
     return Z, C, A, F
 
 def pipeline(img, p, steps=False):
     """Ảnh gốc -> mặt nạ nhị phân ở KÍCH THƯỚC GỐC."""
     M, st = raw_mask(img, p)
+    Z, C, A, F = post(M, p) if p.get("post", True) else (M, M, M, M)
     if steps:
-        Z, C, A, F = post(M, p)
         return dict(st, M=M, C=C, A=A, F=F, Z=Z)
-    Z = post(M, p)[0] if p.get("post", True) else M
     return to_orig(Z, img.shape[:2])
-
 
 # ---- Đánh giá & đối chứng ----
 def scores(pred, gt):

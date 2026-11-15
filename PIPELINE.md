@@ -4,6 +4,7 @@
 > **Đầu ra:** mặt nạ nhị phân cùng kích thước ảnh gốc (1 = vết nứt; ảnh không nứt cho mặt nạ rỗng) và ảnh gốc phủ mặt nạ đỏ.
 > **Ràng buộc:** chỉ dùng kiến thức của học phần; không dùng học sâu hay mô hình huấn luyện sẵn.
 > **Code:** `code/crack_segmentation.ipynb`. Pipeline gốc trên CFD: `PIPELINE_CFD.md`, `code/crack_segmentation_cfd.ipynb`.
+> **Bản `hieugm`:** notebook và app dùng chung `code/pipeline.py`; cấu hình `P` bên dưới giữ nguyên. Các ứng viên tái tạo vùng, lọc trung vị 3×3 và giới hạn đánh giá được ghi riêng trong [thử nghiệm cải thiện](docs/pipeline-experiments.md).
 
 ---
 

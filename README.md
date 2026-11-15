@@ -40,10 +40,14 @@ Lưới 4320 cấu hình trên 300 ảnh train; 10 cấu hình tốt nhất đư
 Mức tăng chủ yếu đến từ ảnh không nứt (bước 4.4) và từ việc báo nhầm ít hơn. Đổi lại, 45/186 ảnh có nứt nhỏ bị trả rỗng, nên Dice trên ảnh có nứt giảm nhẹ.
 
 ## Cài đặt
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt jupyter matplotlib pandas scikit-image
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt jupyter matplotlib pandas
 ```
+
+Linux/macOS: kích hoạt môi trường bằng `source .venv/bin/activate`.
 
 ## Dữ liệu
 ```
@@ -56,11 +60,34 @@ DoAn/
 ```
 
 ## Chạy
+
+App Streamlit (chạy từ thư mục repo, dùng ngay 10 ảnh mẫu PCS):
+
+```bash
+python -m streamlit run code/app.py
+```
+
+Notebook cần bộ dữ liệu đầy đủ:
+
 ```bash
 cd code
 jupyter nbconvert --to notebook --execute --inplace crack_segmentation.ipynb   # hoặc mở bằng Jupyter rồi Run All
 ```
 Notebook chạy khoảng 2 phút trên laptop 10 nhân (song song theo ảnh bằng `multiprocessing`, kiểu fork). Riêng phần tìm tham số mất khoảng 2 phút.
+
+## Thử nghiệm cải thiện trên nhánh `hieugm`
+
+Nhánh này phát triển từ `mailinh`, đã bao gồm pipeline của `develop`. `P` tiếp tục là cấu hình mặc định đã được đánh giá trước đây. App và notebook dùng chung `code/pipeline.py`; app giữ kích thước ảnh gốc và nút tắt hậu xử lý hoạt động đúng cả khi xem từng bước.
+
+Hai ứng viên xử lý ảnh cổ điển có thể chọn trong app: `P_RECON` tái tạo vùng tối từ hạt giống gần biên bằng liên thông 8-láng giềng (C7); `P_THIN` giảm trung vị xuống 3×3 để giữ vết nứt mảnh (C3). Trên **10 ảnh PCS mẫu**, Dice lần lượt là 0.326 và 0.335, so với 0.324 của `P`. Chúng giảm điểm trên 10 ảnh CFD mẫu, nên chưa được chọn làm mặc định. Đây là khảo sát trên ảnh test mẫu đã quan sát, **chưa chứng minh cải thiện trên toàn bộ tập test**.
+
+```bash
+python -m unittest discover -s tests
+python code/benchmark.py
+python code/benchmark.py --data-root data/Pavement_Crack_Segmentation_Dataset --split val --output results/benchmark-val
+```
+
+Benchmark ghi `per_image.csv`, `summary.csv` và `metadata.json`. Không truyền `--data-root` thì chỉ chạy 20 ảnh mẫu kèm repo. Xem [cách hoạt động, kết quả và giới hạn thử nghiệm](docs/pipeline-experiments.md).
 
 ## Đầu ra (`results/pcs/`)
 * `split.json`: seed, danh sách ảnh tune / val / test.
