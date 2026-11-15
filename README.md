@@ -79,7 +79,9 @@ Notebook chạy khoảng 2 phút trên laptop 10 nhân (song song theo ảnh b�
 
 Nhánh này phát triển từ `mailinh`, đã bao gồm pipeline của `develop`. `P` tiếp tục là cấu hình mặc định đã được đánh giá trước đây. App và notebook dùng chung `code/pipeline.py`; app giữ kích thước ảnh gốc và nút tắt hậu xử lý hoạt động đúng cả khi xem từng bước.
 
-Hai ứng viên xử lý ảnh cổ điển có thể chọn trong app: `P_RECON` tái tạo vùng tối từ hạt giống gần biên bằng liên thông 8-láng giềng (C7); `P_THIN` giảm trung vị xuống 3×3 để giữ vết nứt mảnh (C3). Trên **10 ảnh PCS mẫu**, Dice lần lượt là 0.326 và 0.335, so với 0.324 của `P`. Chúng giảm điểm trên 10 ảnh CFD mẫu, nên chưa được chọn làm mặc định. Đây là khảo sát trên ảnh test mẫu đã quan sát, **chưa chứng minh cải thiện trên toàn bộ tập test**.
+Đã thử tái tạo vùng bằng liên thông (C7) và giảm lọc trung vị xuống 3×3 (C3), sau đó kiểm tra trên **100 ảnh đường thật cùng nhãn pixel từ PaveSeg công khai**. Cả hai ứng viên **bị loại**: trên 50 ảnh discovery, Dice ảnh có nứt tăng từ 0.0178 lên 0.0297/0.0291 nhưng không đạt mức tăng đã đặt trước; số ảnh không có nứt hở bị báo nhầm tăng từ 12/17 lên 17/17 và 16/17. Chúng cũng không đạt kiểm tra lật ảnh, thay đổi gamma, JPEG và bóng đổ tổng hợp. Các ứng viên chỉ còn trong `code/experiments.py` để tái hiện nghiên cứu, không có trong app hay pipeline dùng thực tế.
+
+50 ảnh còn lại chỉ chạy `P` để chẩn đoán baseline: Dice ảnh có nứt 0.0337, báo nhầm 15/19 ảnh không có nứt hở. Gộp hai tập ảnh gốc, baseline báo nhầm **27/36 ảnh âm (75%)**. Đây là bằng chứng pipeline còn yếu khi đổi miền dữ liệu; giữ `P` để tái lập bài tập, chưa thể xem là bộ phát hiện đáng tin cậy ngoài thực tế. Vệt trám, khe nối, vạch sơn và bóng có thể bị nhầm với vết nứt. Xem [báo cáo ảnh ngoài và stress test](docs/external-stress-report.md), gồm nguồn, nhãn, từng ảnh và ca thất bại.
 
 ```bash
 python -m unittest discover -s tests
@@ -88,6 +90,14 @@ python code/benchmark.py --data-root data/Pavement_Crack_Segmentation_Dataset --
 ```
 
 Benchmark ghi `per_image.csv`, `summary.csv` và `metadata.json`. Không truyền `--data-root` thì chỉ chạy 20 ảnh mẫu kèm repo. Xem [cách hoạt động, kết quả và giới hạn thử nghiệm](docs/pipeline-experiments.md).
+
+Tái hiện kiểm tra nguồn ngoài (cần mạng để tải lần đầu):
+
+```bash
+python code/external_data.py --download
+python code/stress_eval.py --split discovery --output results/external-discovery
+python code/stress_eval.py --split confirmation --variants legacy --output results/external-confirmation
+```
 
 ## Đầu ra (`results/pcs/`)
 * `split.json`: seed, danh sách ảnh tune / val / test.

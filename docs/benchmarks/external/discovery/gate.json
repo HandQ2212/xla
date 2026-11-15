@@ -1,0 +1,196 @@
+[
+  {
+    "transform": "flip",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.011915580622582675,
+    "worst_individual_dice_delta": -0.02852737786884724,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "precision_regressed",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "flip",
+    "variant": "thin",
+    "positive_dice_gain": 0.011219233134483197,
+    "worst_individual_dice_delta": -0.07416350974612064,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "individual_dice_loss_over_0.05",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased",
+      "stratum_regressed:patch"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "gamma075",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.006984889023227341,
+    "worst_individual_dice_delta": -0.030557342534259534,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "precision_regressed",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "gamma075",
+    "variant": "thin",
+    "positive_dice_gain": 0.01868726793542871,
+    "worst_individual_dice_delta": 0.0,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "gamma125",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.010133736505246464,
+    "worst_individual_dice_delta": -0.036908498960751226,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "gamma125",
+    "variant": "thin",
+    "positive_dice_gain": 0.00986506474438353,
+    "worst_individual_dice_delta": -0.07654936941819811,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "individual_dice_loss_over_0.05",
+      "new_empty_positive",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased",
+      "stratum_regressed:patch"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "jpeg60",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.014533903079806761,
+    "worst_individual_dice_delta": -0.043444512529372536,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "jpeg60",
+    "variant": "thin",
+    "positive_dice_gain": 0.01118236327085607,
+    "worst_individual_dice_delta": -0.07261842021196432,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "individual_dice_loss_over_0.05",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased",
+      "stratum_regressed:patch"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "original",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.01182689629445078,
+    "worst_individual_dice_delta": -0.02852737786884724,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "precision_regressed",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "original",
+    "variant": "thin",
+    "positive_dice_gain": 0.011224574333157405,
+    "worst_individual_dice_delta": -0.07416350974612064,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "individual_dice_loss_over_0.05",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased",
+      "stratum_regressed:patch"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "shadow",
+    "variant": "reconstruct",
+    "positive_dice_gain": 0.010192323600065778,
+    "worst_individual_dice_delta": -0.034459163881037286,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased"
+    ],
+    "independent_source_gate_pass": false
+  },
+  {
+    "transform": "shadow",
+    "variant": "thin",
+    "positive_dice_gain": 0.006933291501517551,
+    "worst_individual_dice_delta": -0.07561948806417076,
+    "numerical_pass": false,
+    "failures": [
+      "positive_dice_gain_below_0.02",
+      "individual_dice_loss_over_0.05",
+      "new_negative_false_alarm",
+      "negative_false_alarms_increased",
+      "negative_mean_area_pct_increased",
+      "negative_max_area_pct_increased",
+      "stratum_regressed:patch"
+    ],
+    "independent_source_gate_pass": false
+  }
+]

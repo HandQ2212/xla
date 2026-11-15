@@ -16,11 +16,12 @@ import pipeline as pl
 
 
 class AppTests(unittest.TestCase):
-    def test_original_size_metrics_post_ablation_and_candidate_selection(self):
+    def test_original_size_metrics_post_ablation_and_no_candidate_selector(self):
         # Run by absolute path from repository root, rather than relying on cd code.
         app = AppTest.from_file(str(ROOT / "code" / "app.py"), default_timeout=15).run()
         self.assertEqual(len(app.exception), 0)
         self.assertEqual(len(app.button), 10)
+        self.assertEqual(len(app.selectbox), 0)
         app.button(key="sample_B_00038.jpg").click().run()
         self.assertEqual(len(app.exception), 0)
         image = cv2.imread(str(ROOT / "samples_pcs" / "B_00038.jpg"))
@@ -37,11 +38,8 @@ class AppTests(unittest.TestCase):
         self.assertNotEqual(app.metric[0].value, f"{expected['dice']:.3f}")
 
         app.checkbox[3].check().run()
-        for option, params in zip(app.selectbox[0].options[1:], (pl.P_RECON, pl.P_THIN)):
-            app.selectbox[0].select(option).run()
-            self.assertEqual(len(app.exception), 0)
-            expected = pl.scores(pl.pipeline(image, params), gt)
-            self.assertEqual(app.metric[0].value, f"{expected['dice']:.3f}")
+        self.assertEqual(len(app.selectbox), 0)
+        self.assertEqual(app.metric[0].value, f"{expected['dice']:.3f}")
 
     def test_upload_named_like_sample_does_not_get_sample_ground_truth(self):
         app = AppTest.from_file(str(ROOT / "code" / "app.py"), default_timeout=15).run()

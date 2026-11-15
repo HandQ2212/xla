@@ -1,0 +1,1683 @@
+{
+  "source": "https://github.com/FuturePave/PaveSeg-Dataset",
+  "commit": "dc21495f61867c94336283636959c754d192e18a",
+  "license": "Apache-2.0 (repository LICENSE)",
+  "positive_labels": [
+    30,
+    150
+  ],
+  "negative_labels": [
+    0,
+    60,
+    90,
+    120,
+    180,
+    210
+  ],
+  "split_seed": 42,
+  "group_rule": "Ten consecutive IDs per block, five blocks per split",
+  "limitation": "One source; capture sessions unknown. Blocks do not establish independent scenes.",
+  "cross_split_near_duplicate_screen": [],
+  "cases": [
+    {
+      "id": "000001",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000001.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000001_mask.png",
+      "image_sha256": "7228719629900dd68880ca060108eebd4761d409c418115a71591817a6a72dd4",
+      "label_sha256": "94b652b5590aeb4f64a5c3b362d50861ca665f191b26dafb17f8e0836d4869db",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000002",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000002.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000002_mask.png",
+      "image_sha256": "a03e445d2f80e6349f9e8f762edd178300a6585421b657b96b40fcce3c3d28d1",
+      "label_sha256": "0d10a487dad83168a44d634ad99f3a673943a98fd5f2135c82bc71817592ee01",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000003",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000003.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000003_mask.png",
+      "image_sha256": "24f1c49ee3942aade789fd855a23e7c5517689e270549f4270d8ee9eb359b5f5",
+      "label_sha256": "88803e9a2a3971f27afe3a105ce581df4fbe079da876d803121dbbdcc1fbaeb4",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "patch"
+      ]
+    },
+    {
+      "id": "000004",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000004.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000004_mask.png",
+      "image_sha256": "b7e7595aebaa8fda9a889086863f7f7f479c497eecaea7253c8d397cb54591c7",
+      "label_sha256": "6a57912c1cab2251ffd7849af42de6969ae32f29712474be69acd1adcf000eff",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000005",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000005.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000005_mask.png",
+      "image_sha256": "6bb4ea8df070f924d62da3bdafe111ad10bd4c034b2b72f64f0eddee97b5a93e",
+      "label_sha256": "046e44ed8992560838e0c4dc4a5c26982c3e65979854d60f3d7b353f8151cf1d",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000006",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000006.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000006_mask.png",
+      "image_sha256": "f1e07f8bdf8e741fa3eedd9399d97336663a8789532c0399721a675a692fd65e",
+      "label_sha256": "7500287b57fbd769f2b27ad8371d0377756ad658fdd181c9de6a2e91990dcb0a",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000007",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000007.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000007_mask.png",
+      "image_sha256": "bcc40050d56416976c967a0e9330dda26ddc1ab431446532aa3a2407ac9ae311",
+      "label_sha256": "b00903e6ac9096e78e384150d388d78cff23da5a67b7b9dd2d77fb62ebbee8fc",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000008",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000008.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000008_mask.png",
+      "image_sha256": "1393686e97f029a19917efae9a093b1d336101dfbbf7c4f65e3ab64fda7df70d",
+      "label_sha256": "e642784f39af22b1901bcf17f63850e1b9e18cf50bcf75d20415ad033c8088b2",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000009",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000009.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000009_mask.png",
+      "image_sha256": "f320747fd300206eced9608726a6b9a69db759c8dd9b9e8109bb97a211494bef",
+      "label_sha256": "34a40aedb6bb797dd29e1afddb07114ec47cc91199b52452142f411d58699cf0",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000010",
+      "source": "paveseg-preview",
+      "group": "id-block-00",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000010.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000010_mask.png",
+      "image_sha256": "4028954a83814c2c6f2f2e3b23bf6d6c2155fcd44848e0dfe6d92cbc57b7de7d",
+      "label_sha256": "58dc5c7f0c9ffc29018a16751eaffed699bdf165c763e7bd5be16671227556ce",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000011",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000011.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000011_mask.png",
+      "image_sha256": "e388851c3417ad28e05e865184ba6beafe887142ea56b9c054b44d1b614b730c",
+      "label_sha256": "85cd10cfcc56287e3eaa9e0a15203b5f1d27387e99222c4be6e9d01f35686358",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000012",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000012.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000012_mask.png",
+      "image_sha256": "ce8d316a9d8cfee4303048176bf5da2bee1d1af97a3ac5b913a3032bdf37a934",
+      "label_sha256": "960653bf01471a0931d35b38d04cb2d0b5248a666ff0e6834000934675e9325b",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000013",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000013.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000013_mask.png",
+      "image_sha256": "c105442e265b244f3d70c06af8b267575df317f1c4e39e7757cbb84ef71b28c9",
+      "label_sha256": "9cc5d713c1adffc3af21e85e3d04e8de1e6114eab2569c724609ebbd7d95e46c",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000014",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000014.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000014_mask.png",
+      "image_sha256": "f0457fc40028e7f8e6cce018f39e38fa3c6ac0bb60e6fbff2539aed2c1846d56",
+      "label_sha256": "8b1ba0cb5f4fb1229ec8e9994c8e475fd24159eb5de47fcb8b2ff6995511e6f6",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000015",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000015.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000015_mask.png",
+      "image_sha256": "eff5ec9f50aacd30e2df9ec171cac7bd0427f23c424bf48bf9ca4e94828c130d",
+      "label_sha256": "b16e59b71405d0cfdc34ea7cae947ab48abd258e0eb5ebcafa06d954f713cac4",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000016",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000016.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000016_mask.png",
+      "image_sha256": "78cd0437def8fe4fe48b5dce85a0806a159ea9e1467f328182b3fd0385810a34",
+      "label_sha256": "0666bab47be9ea4379cbddafa6b92bafdc6e09f9b6a3aa27b53bf940917fa919",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000017",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000017.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000017_mask.png",
+      "image_sha256": "9961a099be2622e0cb55378ac4aeeb227fd12b9fba7b655e43006e585ad91697",
+      "label_sha256": "30b10938a7299ed514fcdde6c21ccc7949beb733faedf1cf057210a71d8f2527",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000018",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000018.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000018_mask.png",
+      "image_sha256": "a8aa03c9a7b98b469c289a0dc71457c07ab18325fa6eaed954054aec04eccd12",
+      "label_sha256": "879d764568dda23818707ea5dd1a4d57efa12fcf9a83bd2445ba20f7f83ddb58",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000019",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000019.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000019_mask.png",
+      "image_sha256": "dc0da47694b4510d22e4ab5935414d5a4203d59ff26e398b146a83e10eb2ad18",
+      "label_sha256": "bd6da4cf300d368c74f67335570efbefc42b826d29dbd480e39c6d6f1d4a899c",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000020",
+      "source": "paveseg-preview",
+      "group": "id-block-01",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000020.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000020_mask.png",
+      "image_sha256": "036d7c4d766b2ddb8f5690065bbcec7d8be77b9ade93683583fbda4e4218d578",
+      "label_sha256": "ab7e40d1a1e20da5667d9681c9ba05474dd28fed2c576f9b73a1a13a4ebc1c5b",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000021",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000021.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000021_mask.png",
+      "image_sha256": "3354f1b0384d1ec88fafc0c7d409e46ebe791a609ddfb6c9f8cd7689d1f29e6f",
+      "label_sha256": "1c7f8a91686d1b46edd2e96eb55b86114e022ac3c0d73b1d9199bc911553f8f6",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000022",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000022.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000022_mask.png",
+      "image_sha256": "fbce0506a8b39f889e6481a04c083e4ebbac73fe11c0a11600bbec67c6ad6b04",
+      "label_sha256": "080de5317190cf2abff4053b48f8b1a60976e87439099e4320a89517314d36d6",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000023",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000023.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000023_mask.png",
+      "image_sha256": "10152d7afb43ed1b8197b1b7815066da0496b7084ef0226cb3330888f82221d4",
+      "label_sha256": "83df637ad2382cba04a8a3f91e6e00df0313e996d5b1aa2ff2aa04484a3673e7",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000024",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000024.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000024_mask.png",
+      "image_sha256": "53212e60a4c1d89612a62b8d404c663c84cc5d7fe4a0821060cedd212d65a899",
+      "label_sha256": "9cb0a8734b5233fc3055de65f958729e8b19ab9ec9b0dd7a0d88c350c8d0692e",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000025",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000025.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000025_mask.png",
+      "image_sha256": "4272e9be81426d9c9e650827ae3b54c3ff8344f7746161860fd08cf206a57228",
+      "label_sha256": "cc4cd7136d32f46113dc79b5b5aa2d251fbce93bc28fa3b8db4fdadedfc6dace",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000026",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000026.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000026_mask.png",
+      "image_sha256": "82048e6d8da13b69f2ffeb3e4b5502e58c55c828f498e26862180f0eab6bce8d",
+      "label_sha256": "6d0c0b1d6bab468fc981250db53c80a885f1696ccb829527221c29d377c51404",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000027",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000027.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000027_mask.png",
+      "image_sha256": "be25c02a49a4f2a58e5b972b3fb7993a5b63e2e9f39580f6e2788b25b08534a5",
+      "label_sha256": "b7542157f021dde468dec254b4ec4095ced1d1df0853f85b563b794032485c11",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "cover"
+      ]
+    },
+    {
+      "id": "000028",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000028.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000028_mask.png",
+      "image_sha256": "85392e396293a860d9eeedc4f190888d2bcd871b5bde161c1e1f3b0cad348c85",
+      "label_sha256": "3a4c084e075bf27d1fed829dd53ab51ace627e027907fcc61d77d75b3093791a",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000029",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000029.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000029_mask.png",
+      "image_sha256": "1f332ca01c6b4beb778070c783f0630c22a3c67636d98e86ec4b55d2528f42a6",
+      "label_sha256": "fb650ad56590107e1e83c2eba5614b5ef781f113479cbf6ac28ca447d5ca4c48",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "patch",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000030",
+      "source": "paveseg-preview",
+      "group": "id-block-02",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000030.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000030_mask.png",
+      "image_sha256": "3039bdf39dcd85b2d37dc3fd2a777e59a22d177d62b3cad8230aba21bf7838af",
+      "label_sha256": "a8504a5b9cc9b9786c73f56a732a7d45650b12e15a99840c17fee6fac56208ec",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000031",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000031.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000031_mask.png",
+      "image_sha256": "7e094b1ec4c90f38ffc106b0d8b92f511f10eed0d3e5ee4f199baa1fd2620b7b",
+      "label_sha256": "02492d928661860dba81393568d6e90749b70849c8bad7a4cf2b517ddad64a6c",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000032",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000032.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000032_mask.png",
+      "image_sha256": "7a25a4ec0d4f4f07647fa16e382b441190b24a2196305398ec2f74aa51cb5ddb",
+      "label_sha256": "a33d10bc88b19a73089308ffe9de080dc5ea30f9a116aa8102954f2f703fc5c9",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed",
+        "cover"
+      ]
+    },
+    {
+      "id": "000033",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000033.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000033_mask.png",
+      "image_sha256": "6793da5eca1a6ac0936be27cdf668e89a6da682d59d7cdc5f644515bfa41c19c",
+      "label_sha256": "2fdbca284fb95425ed842d4c832529f86a63ad2a8b20ce661dd092cd45cf6173",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole",
+        "sealed",
+        "patch"
+      ]
+    },
+    {
+      "id": "000034",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000034.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000034_mask.png",
+      "image_sha256": "105f173de43c3b6836817be42f9d142ee101c3da6965b1cd081685d3ca0c575b",
+      "label_sha256": "6bd1f0a6085a9bd4db635b425f5bf1fb298fa0473089924a70794f495a60eab9",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000035",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000035.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000035_mask.png",
+      "image_sha256": "11939997b56a547da3da170a5fdfb072300a8a528eac57b7397597969c5ffe25",
+      "label_sha256": "363bcf5f8ef4d332e67a96f79d490bf5edc37622348f3a6facf30ebde7353584",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000036",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000036.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000036_mask.png",
+      "image_sha256": "e9ed76b70fd305a95847181aa7d69fd368eff280ce1e7c66e008cd80d53eb1d6",
+      "label_sha256": "e614a057543235c737aab4115cf5145e86d79e3916015f1175b998ba56d35a23",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000037",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000037.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000037_mask.png",
+      "image_sha256": "887fef11475462043797c6a5043e772c0600595b58e280b518f83afcb5c141b4",
+      "label_sha256": "d8ea60035a1a2d2350e2e40043f1a31a5fc0fc6c72ac054b6f030696962a9246",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000038",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000038.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000038_mask.png",
+      "image_sha256": "801e1f12be5b8896145ec402f4f5da60ba2b4b0eb39df7db0a0804f04a49b6a0",
+      "label_sha256": "ab5ca76971ece2829159b466cbebd8194b483065352a001ea728921dac131902",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "sealed",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000039",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000039.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000039_mask.png",
+      "image_sha256": "a6dd751f7653166220a087a7a529c91daa0bfa70341f917585a92cc561947c72",
+      "label_sha256": "346f9a8f37ee636a928c4218867726be42f00cc21d9ade1441c7f25670713231",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "pothole"
+      ]
+    },
+    {
+      "id": "000040",
+      "source": "paveseg-preview",
+      "group": "id-block-03",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000040.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000040_mask.png",
+      "image_sha256": "2e1b8744888452da831fc7745419eafafaaa315a3fd441557aa35c958e19c331",
+      "label_sha256": "7b1c96000fed805ea5dcb1a6ee5a808dce685940d99068cf133a2b51a20eb02a",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000041",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000041.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000041_mask.png",
+      "image_sha256": "4409af6c86f86a0da8a98ed37f07c22d27955ff65860ceea1ebf601ee63459d3",
+      "label_sha256": "3232dc0eb13350299fba8cfd3f1082a4b0afe24fe76c796e2c91969b461e8a59",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000042",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000042.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000042_mask.png",
+      "image_sha256": "2a7e52ba8a3fff4b393e9c51b0e42b5fa0fcf2cd098c5a64731adec4da674610",
+      "label_sha256": "c6f50f69444a4be817a4379f6d6855786ecc4ae78f7f8f602e575edd941da02e",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000043",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000043.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000043_mask.png",
+      "image_sha256": "2de437156a01dac1d36407df1c07b3ae9637c368b1da21eb11422518645e1e09",
+      "label_sha256": "674f0b38cd8fce7e7eb22e1a22dab1fd30b1c840b5169f7701af76645c22b858",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole"
+      ]
+    },
+    {
+      "id": "000044",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000044.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000044_mask.png",
+      "image_sha256": "fd0f9c68e536751330d86138361e92f0dff103272e2888d310f638c9c1aff66a",
+      "label_sha256": "1f0dbd11f648b0b25c6aba4c7f6a3bfd5e9e0e0d63325b7a332dfa256a679eb2",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000045",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000045.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000045_mask.png",
+      "image_sha256": "5b8ed5325c614eded834decf7f151729faad105f7c91eda2205b6893feb26e02",
+      "label_sha256": "b80a5168ba13b801b4020c09e4de565f0fad502528a50fa97c0f84ff17e2e05b",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "patch"
+      ]
+    },
+    {
+      "id": "000046",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000046.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000046_mask.png",
+      "image_sha256": "04353cf087460cdef9431edd207a6b42e9709d6203c28f9574dc33bef3875204",
+      "label_sha256": "fbd5eb57648c6ff27b387e9b82b91ad5e757ec3b7da6e75c9ef0547905df20d7",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000047",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000047.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000047_mask.png",
+      "image_sha256": "e0e7d211b6e9bb3b67d38b04eb8350f48d3b5daa1b125368353e9b860dfdc7f9",
+      "label_sha256": "52154a089ded7d1fdecf853e24de13c76c708a26cd254bcd04140b3dbaa7f5b3",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000048",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000048.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000048_mask.png",
+      "image_sha256": "d42f23a97d87acbbf940847e73801b27ff8139423e5960991e4112c8fb955183",
+      "label_sha256": "eabc6e0686e7a6ee21dcc7b35e468326ede370163b8636d1d15f660fca3e64ab",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000049",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000049.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000049_mask.png",
+      "image_sha256": "036f75da8c08502d5b3a5a32567cb0bdbe573d9cbeac73a05bcd4e9c0650cf40",
+      "label_sha256": "13c5953b10b10909c49f81e10821a43115e7ba17c8e6c5a68160856b40b26a39",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000050",
+      "source": "paveseg-preview",
+      "group": "id-block-04",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000050.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000050_mask.png",
+      "image_sha256": "576b0228849a4771cbedaa6a8f029add948b8bbe3ab1890483b2efc0033eac38",
+      "label_sha256": "ebee959ff9311763094e3feab44ebde5f18f1b12febcc758dd99650eb2381cfe",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "patch"
+      ]
+    },
+    {
+      "id": "000051",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000051.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000051_mask.png",
+      "image_sha256": "3bdbf68ae556b1307a0de2b49efaf9bdf1ccba2d968624e7824244e519b8c34c",
+      "label_sha256": "3af0688b8be8b174ae9f1b4a01d68f2efad333fd8b8e431b76c50d0774bb2b2b",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000052",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000052.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000052_mask.png",
+      "image_sha256": "7c6a4732bc9e16fd77feb20bba7a9ba6de7cc777c3a9a1d282d915168dddc4e8",
+      "label_sha256": "b18d9505a1768da9aa711521f6e2ebf6f4dc5fda64f82704a7b12fffd61be3bf",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "patch",
+        "cover"
+      ]
+    },
+    {
+      "id": "000053",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000053.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000053_mask.png",
+      "image_sha256": "8e070bd872f3e914cc95f3c7adb3ef086d440b31b46538c8a3c3ca0b85a592e9",
+      "label_sha256": "145f37382ffc2f3aa39aaa2b5116ae4e3d3a30c2671c5afa9f824c1fd8adf43c",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000054",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000054.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000054_mask.png",
+      "image_sha256": "da3a25df4b8704e059307e63100fb640a91fc8b2db857929c963903027c216db",
+      "label_sha256": "f9c84d74e8682f99e7b3487c82d538584d2e2ff6da7926fcc4b1e31dc173693b",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed",
+        "patch",
+        "cover"
+      ]
+    },
+    {
+      "id": "000055",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000055.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000055_mask.png",
+      "image_sha256": "062ee0304c117caa5f5a16aca3f59642b458fd4630950433fdcb3319a95c22f2",
+      "label_sha256": "9bb6c69217a5c1eecabcdf626873b574e2fce8f73508136605bc8dfb4bba63c7",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000056",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000056.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000056_mask.png",
+      "image_sha256": "2929e4ff3ac50c844bc7c3fc4e587facc1ef483fcede207119e879b0e2132e23",
+      "label_sha256": "064fe345721388e7624119837dc1c6f93143d5693eba071b2ea72feef1f437cf",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "alligator"
+      ]
+    },
+    {
+      "id": "000057",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000057.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000057_mask.png",
+      "image_sha256": "6f44a9b88493ea20895e3c02ef9270b06b89c54355665482031f313405fecfb9",
+      "label_sha256": "b12f5a5df0eeb2a5ea68cc7d873c3e9893597c6d717b9248cda67b250c34dd77",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000058",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000058.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000058_mask.png",
+      "image_sha256": "07e206459b16eeb761bb40feea24b5b95c923bafd135a9970e94f50da9e23934",
+      "label_sha256": "8b78aaf03c23f6f990adf92afe501a64e9f82e95b9b8c23026bb5879c130502e",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000059",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000059.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000059_mask.png",
+      "image_sha256": "7d9517af19efd0e1bb6e327c4aa87de38c4aabb2600a17e762e362fc5ea3fd0f",
+      "label_sha256": "24e0ef7695fb782e078166c8350fd6b3b233a0c59ef18bdbcd2ccd93be0fd3cf",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator",
+        "cover"
+      ]
+    },
+    {
+      "id": "000060",
+      "source": "paveseg-preview",
+      "group": "id-block-05",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000060.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000060_mask.png",
+      "image_sha256": "efc5079d1efc0c2cb6f3989919acf1765f2c78bc2607c35aca293344f55afea9",
+      "label_sha256": "821fbc4705d3a99ae435a5a1972e806b452f5688b2e738007a331175b53adf7b",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000061",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000061.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000061_mask.png",
+      "image_sha256": "eadf4933f945fcebf380debb33b593d28a920679a2f40b5b31231c361aaeb27f",
+      "label_sha256": "dbe3dd6bec286ede47d1afabe75150184b8e96586f5db17de860121914cf99f9",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "joint"
+      ]
+    },
+    {
+      "id": "000062",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000062.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000062_mask.png",
+      "image_sha256": "d13138606103301f3d0643721023619b65875599d8bec0600d597661ce5fa475",
+      "label_sha256": "063e5b8fa0ce429172c1a2c3ef0d687c29e31420ef802538a41a7f595c90bce2",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000063",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000063.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000063_mask.png",
+      "image_sha256": "7b165f02e11ead32bc0caeacb4048ef14e52261d55dc8e02faa915585d1d900d",
+      "label_sha256": "7823bbc9427864cfa14e8d7ac0e87b86a2dd40b866db2248a6f823040473ac08",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000064",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000064.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000064_mask.png",
+      "image_sha256": "c25a1cd1767631a576b9de326db9c161f74cecc03752855b746b3d140addeceb",
+      "label_sha256": "6b63d424a311c80eda1ca7e7faa586da496278a8b6c13fbbcfbf0496e498bf99",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000065",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000065.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000065_mask.png",
+      "image_sha256": "d6f1073c5e75bdb7e0b2fbdb2da3e14e2e0f79b3d5c44ba4a65ec6d349ab17a6",
+      "label_sha256": "d2c9c18536afd130ab86f9f3af10020d91c43e0699256bc5ca0aad6c4c7e6e36",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed",
+        "joint"
+      ]
+    },
+    {
+      "id": "000066",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000066.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000066_mask.png",
+      "image_sha256": "fe185be9a48d03b8d96526e62fcbe9f666d6479261a42feaf7a42b7246b98c36",
+      "label_sha256": "b7fc977486ddaee23fc70da1ce458c6889045a523ae9323a35d077986a7726f3",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000067",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000067.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000067_mask.png",
+      "image_sha256": "d21a2871e4f0541ee559af738864b372ef179c1a1964fadfdceba5c8ebfd8d13",
+      "label_sha256": "66b9da5dc4fcf173ac3a2b604e5cc8f0759c2e4c431897d6e1b1f279745fc56f",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "cover"
+      ]
+    },
+    {
+      "id": "000068",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000068.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000068_mask.png",
+      "image_sha256": "7fed22b067d06943c7049ec09714e4ea85e6d5fd2e7c5e7d94416d851f1d10dd",
+      "label_sha256": "9842f10ce06e3d0e2dd6cd654ffe46a8557a157f67739f9a4c35646680f3606a",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000069",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000069.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000069_mask.png",
+      "image_sha256": "18ed8b09cfb0bfb8ea9c980b954487d2de82fa89b7bd17c832a08fd90f5fb48b",
+      "label_sha256": "d3ce19edb5be473f397dc5c2fbdd0dd4dd6a948cb705522c205d7f5b75e37107",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000070",
+      "source": "paveseg-preview",
+      "group": "id-block-06",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000070.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000070_mask.png",
+      "image_sha256": "b0fe1242088b37b043fe99d5439fe5a4a02ceae32874b004aea132bf1299beb7",
+      "label_sha256": "5be7710ff4295ae61b67b515225a3ec5c8bfacf20aa6bb25784e35b9de704c5d",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "cover"
+      ]
+    },
+    {
+      "id": "000071",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000071.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000071_mask.png",
+      "image_sha256": "403a53c5ae65db5d010a3400cc2ebf975bf1691f9858f44b991f47e0171664d4",
+      "label_sha256": "37f3d4d2da0fbf472ce08e840a15b7b6544d943fb7b4c4029e6a49feab00ce3b",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000072",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000072.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000072_mask.png",
+      "image_sha256": "c6da337eb87fa3ea3aec63c2f7e9ab0596ba2f8104a6b657aa083d58fcd45fae",
+      "label_sha256": "f8b33d3ee2f0fea649845f0f900e789869d5ec994e02406485389610a0aa66c4",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000073",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000073.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000073_mask.png",
+      "image_sha256": "9e0e80f29f1d2799784284868ad9ee52b06b50af4dd40cb4fbd9b603b2098317",
+      "label_sha256": "f7aa056fa4959f1137fd9d4dca4507ad6f51c9f38a46def0f5d24394b40d1022",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "patch",
+        "alligator",
+        "cover"
+      ]
+    },
+    {
+      "id": "000074",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000074.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000074_mask.png",
+      "image_sha256": "e03b98a16f1f6c64a919d0d6f1aec7733a5ca0eae95b2074946f87b3ee9edfc3",
+      "label_sha256": "5f28637f0e3f7d1b14adb50a20a02fbdf3f8397b3b64ee1b9133bc0dc3cd597d",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000075",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000075.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000075_mask.png",
+      "image_sha256": "1604a516b289a30176a9f0d9472b0652bf4305e24ae108f9ba863e605d1c5ac0",
+      "label_sha256": "8adc49e6487fd64c1b47331480290bccaac9a46224a3d9242b52404a76a11c8c",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "patch"
+      ]
+    },
+    {
+      "id": "000076",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000076.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000076_mask.png",
+      "image_sha256": "8714d1da493f737a27bb5d4e1b6857f03d624a9f78d2aabab9d75fb33d477b90",
+      "label_sha256": "7da812e56b6789760ed29442fcf165a79b9fbca37a617db75f13c3d1ca320859",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000077",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000077.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000077_mask.png",
+      "image_sha256": "efd8c7e4cb39e2cd91326f7134f5df0518ec4ced5c75444a9d41fcf3badf5c9c",
+      "label_sha256": "cafbae040bcf6eca6d969d5bbab1e0d04d4b1b7a5af589aaee240e0965384b48",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "cover"
+      ]
+    },
+    {
+      "id": "000078",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000078.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000078_mask.png",
+      "image_sha256": "a5822f7bf8c601a0c580ae794fa262014ac64d66946ef46555889fbf5abf2fac",
+      "label_sha256": "dafe408c4b6c7b1bbb90f8f6bb6e21b3acf07b99393820b0f9e0217ccad76ae4",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000079",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000079.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000079_mask.png",
+      "image_sha256": "5eef1e3b1cffe352256f9f02818da774b872fd03b5c191816afcad3788c6c1af",
+      "label_sha256": "00aa17f9c6195b07d02c0a85a402223837254abd39a4b1fa879b7af1eaa5504b",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000080",
+      "source": "paveseg-preview",
+      "group": "id-block-07",
+      "split": "discovery",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000080.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000080_mask.png",
+      "image_sha256": "3db50ce7a5e285712a1d34f0e3ae5639e2b669c06c4d64a8fa2adb684364939f",
+      "label_sha256": "009014538ab888cdf006fe497c6f4b3986b14d18f2463b3f3c564b546fb63221",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000081",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000081.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000081_mask.png",
+      "image_sha256": "bc27d4aba9df6c377d21643a4c0df3243966758a60afa916776183c5e892512e",
+      "label_sha256": "1bc7aa4661bedcc29949bd395df2a14a0195deb9b2f9538763657aed9b90d4db",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000082",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000082.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000082_mask.png",
+      "image_sha256": "4b4a06eafdb6890b6fd546dcc1afe6593675e4c69ec385897a66739df662566e",
+      "label_sha256": "1f091f471671fed04b22e749e92074238b863124729812666d678ed9c506e208",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "alligator",
+        "cover"
+      ]
+    },
+    {
+      "id": "000083",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000083.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000083_mask.png",
+      "image_sha256": "463d63a73ed2f931c790837685ed1a2ebcd1332c3c3673b91e38f5dfa679a834",
+      "label_sha256": "2e4f60e59749aed323fc50811c658f3cb0910f044e036f2fed8d4a936dc20c34",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000084",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000084.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000084_mask.png",
+      "image_sha256": "6c57d7d0f599ba6c700e0eddf2cb68d144526da78ca1b3b6f15be3a02563c2a1",
+      "label_sha256": "05b5ee2bf432ac0354db177d621e59057f775d9f835a3a4691906f14b1b52587",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000085",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000085.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000085_mask.png",
+      "image_sha256": "0238594d99c102b66331dbebedc8f42c1a8009146c49460f781cf01ea3ebe188",
+      "label_sha256": "8ec70a2c6fb728536f66466bd490857b48e06d64173873a83d2793ed7e7a6145",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole",
+        "patch",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000086",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000086.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000086_mask.png",
+      "image_sha256": "7a726c39b587e6c8120239df381d3c9ba5e6bc773abf76ba9a8c22ff329ad8fe",
+      "label_sha256": "664da5d19add3aaa2696b79e4ece86dd75e9055da3a477b07d8cde17cabc9ab4",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "patch",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000087",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000087.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000087_mask.png",
+      "image_sha256": "8c04f354e538760c98f3393829dac476faa75e2ae75d7de1aff9cd3fc0f542e4",
+      "label_sha256": "ae3536c62e3458e3b8e2c669d3fcf17ab94b98d0af460e26ce1287e303b29e52",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000088",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000088.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000088_mask.png",
+      "image_sha256": "3b9b66ef6ea7c1c1ab7b9d19c12fc44a23d219fa7ec945736bf008f50b61c383",
+      "label_sha256": "c2118949103916df384114572e81362df506ade486c6a1c18bff3a7c6bfa58fc",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000089",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000089.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000089_mask.png",
+      "image_sha256": "a0e146eda70e398079a9d72ccf52ade71e553aa7e41ce44a91c441ab3ae8c23a",
+      "label_sha256": "15a559ae9edf239d7f49e8a2688a9e2c495810f619c3f52bb8ae5dc989edb3d4",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000090",
+      "source": "paveseg-preview",
+      "group": "id-block-08",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000090.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000090_mask.png",
+      "image_sha256": "55bde0b978dfa970ce662cb8bd875e3d1cdff6150250bbe29052ae4fe70bc6a4",
+      "label_sha256": "9b771b2edf264857c739b42cf04cb68a696ee68660fb471b05999fe18b6d00d5",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000091",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000091.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000091_mask.png",
+      "image_sha256": "6ac05b8a9d98f12699091a0c76a7e526f3160b8afe6e421d10d4d0aa841f73d5",
+      "label_sha256": "f61e59a61bb9ffa2e6b86fa65a8e6e37f376be53e193bfc822d0edb56518344a",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000092",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000092.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000092_mask.png",
+      "image_sha256": "ec8b4de30e4602a5ad0ae7e578236bfff8ff23a7d06b672d1c2b399dc885cfe5",
+      "label_sha256": "fb0ae57917c4b2ec0fd0ce447dddc9d0cc301f376ea084c8b8af252bd0a00f73",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "sealed"
+      ]
+    },
+    {
+      "id": "000093",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000093.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000093_mask.png",
+      "image_sha256": "86c1087ab9f7169f6f0bab7d9434010c4e0add75f19dab60cb3a536dbaac09d7",
+      "label_sha256": "ae5d8625c0147227346280141003c027301890094317a70d9c1845c8ff91678d",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000094",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000094.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000094_mask.png",
+      "image_sha256": "02b8df6d7e2c352a3826bbb35fb879212c7f7a1eccb4b08c875967a0a6649684",
+      "label_sha256": "d342345d614281533e54a3ec20fd238a05fe7e9ce86820c330ca56f0eaf14312",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack"
+      ]
+    },
+    {
+      "id": "000095",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000095.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000095_mask.png",
+      "image_sha256": "34a90a968de6856247e9a40f40b6db34582c64a5f2f8aff48ab7154ee87081af",
+      "label_sha256": "ba7082a1a326ffe450e9b144bee4d0f5337fc1531bd13ca28e567cc6233a03ac",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed",
+        "joint"
+      ]
+    },
+    {
+      "id": "000096",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000096.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000096_mask.png",
+      "image_sha256": "62a7eaee6aca664e31426f3238bfe5856f37a4c2765e7e20405cff3d30514a67",
+      "label_sha256": "9fdfc3af8c76a994b0eab2b68a4b1afe43c1c2643069aff81f8d88b8aaeec37c",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    },
+    {
+      "id": "000097",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000097.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000097_mask.png",
+      "image_sha256": "c8d21cc07539a45677623228fa73af0f6f4d8b2d4e6ca653e6bb0f751dd3fc21",
+      "label_sha256": "a8521bf92ca11300187db7b5b05083fc9aab51581502d7e9f4459c95e48abf85",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "patch",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000098",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000098.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000098_mask.png",
+      "image_sha256": "c9542188756017988a05705175a453194c7fd3793c25dac292b7ccc7c7e9914e",
+      "label_sha256": "7810a3d13a8cd5ed77cbed814df0706505b7666a60c7ddc620c19c607e2f2185",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000099",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000099.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000099_mask.png",
+      "image_sha256": "848a89f9b5fe3b7aee2ce995a1e66f6801dd818654c29b9b898a7c737dc22814",
+      "label_sha256": "e5609dfc3b1fb52ff43b226ace24865dab133adedcc5f8aa8988f249170c120b",
+      "height": 1080,
+      "width": 1280,
+      "positive": true,
+      "tags": [
+        "crack",
+        "pothole",
+        "alligator"
+      ]
+    },
+    {
+      "id": "000100",
+      "source": "paveseg-preview",
+      "group": "id-block-09",
+      "split": "confirmation",
+      "image_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/img_preview/000100.jpg",
+      "label_url": "https://raw.githubusercontent.com/FuturePave/PaveSeg-Dataset/dc21495f61867c94336283636959c754d192e18a/label_preview/000100_mask.png",
+      "image_sha256": "99985efcf87d9f19f3bfec64251844ce264546e187b551743f01a80a69f3378c",
+      "label_sha256": "bd553c1c561427ed0f613faae76d8c3070b5bcd7a2487a2b12f409115bd25bc5",
+      "height": 1080,
+      "width": 1280,
+      "positive": false,
+      "tags": [
+        "sealed"
+      ]
+    }
+  ]
+}

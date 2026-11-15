@@ -1,0 +1,59 @@
+{
+  "split": "discovery",
+  "variants": {
+    "legacy": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3
+    },
+    "reconstruct": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3,
+      "edge_mode": "reconstruct"
+    },
+    "thin": {
+      "size": 640,
+      "median": 3,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3
+    }
+  },
+  "transforms": [
+    "original",
+    "flip",
+    "gamma075",
+    "gamma125",
+    "jpeg60",
+    "shadow"
+  ],
+  "opencv": "5.0.0",
+  "numpy": "2.3.4",
+  "threads": 1,
+  "manifest_sha256": "4ef8333baf81dcf7dffdadccdd127bc6fc08b4bd2d24a9a07770d68dcbf41012",
+  "pipeline_sha256": "dbe6c4e1242fa52f2a6cb22c2d08325455f583fecb37b6eec05cf3f3b1027bba",
+  "timings": "One warmup and median of three pipeline-only runs per image/method/transform",
+  "limitation": "One source; capture sessions unknown. Blocks do not establish independent scenes.",
+  "evaluated_core_ref": "b9271891ca18777a6d4d4e3c646199f923e7be8e:code/pipeline.py",
+  "note": "The timed measurements preceded moving rejected candidates into experiments.py; that relocation is checked separately for pixel equivalence.",
+  "pipeline_lf_sha256": "12c0557c7adfcc6cd2645760841155e5fba18b7fcc52a914b2b6dba6bc70de5b",
+  "manifest_lf_sha256": "9c1c9fd66fa8798f2eef4c304afd3d3cabf7eefe9eb9378e3ffad654484f6d09",
+  "raw_file_line_endings": "CRLF (Windows); *_lf_sha256 normalizes CRLF to LF"
+}

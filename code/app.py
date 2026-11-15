@@ -81,10 +81,6 @@ with st.sidebar:
                 set_image(fh.read(), f, is_sample=True)
 
     st.divider()
-    presets = {"P đã xác nhận": pl.P, "Tái tạo vùng (thử nghiệm)": pl.P_RECON, "Trung vị 3×3 (thử nghiệm)": pl.P_THIN}
-    profile = st.selectbox("Phương án xử lý", list(presets))
-    chosen = presets[profile]
-    st.caption("Hai phương án thử nghiệm cần đánh giá trên train/val trước khi thay P.")
     st.header("⚙️ Bước xử lý (ablation)")
     st.caption("Bỏ tick một bước = chạy lại thí nghiệm \"bỏ từng bước\" của PIPELINE.md.")
     use_size = st.checkbox("2.0 Thu nhỏ về 640 px", value=True)
@@ -93,7 +89,7 @@ with st.sidebar:
     use_post = st.checkbox("4. Hậu xử lý (đóng, lọc)", value=True)
     use_tmin = st.checkbox("4.4 Quyết định mức ảnh (0.3%)", value=True)
 
-    params = dict(chosen)
+    params = dict(pl.P)
     if not use_size:
         params["size"] = None
     if not use_bg:
@@ -111,7 +107,7 @@ with st.sidebar:
 st.title("🛣️ Phát hiện & phân đoạn vết nứt mặt đường")
 st.caption("Xử lý ảnh cổ điển – không học sâu. Tham số đã chọn trên tập val "
            "P: test 231 ảnh Dice 0.339, IoU 0.274. Điểm lịch sử này chỉ áp dụng cho P nguyên bản.")
-st.caption(f"Đang chạy: {profile}" + (" · đã thay đổi bước xử lý" if params != chosen else ""))
+st.caption("Vệt trám, khe nối và bóng đổ có thể bị nhận nhầm. Kết quả là vùng nghi nứt để kiểm tra lại.")
 
 if st.session_state.img_data is None:
     st.info("⬅️ Tải một ảnh lên hoặc chọn ảnh mẫu ở thanh bên để bắt đầu.")
@@ -164,7 +160,7 @@ with st.expander("🔬 Xem từng bước của pipeline", expanded=False):
         ("3.3 · Vùng biên E (Sobel → Otsu → giãn)", pl.u8(E),
          f"Sobel → Otsu → giãn {params['dil']}×{params['dil']}" if use_edge else "Đã bỏ qua biên: E = toàn bộ ảnh"),
         ("3.4 · Mặt nạ thô M", pl.u8(st_["M"]),
-         "Tái tạo từ D ∩ E trong D" if params.get("edge_mode") == "reconstruct" else "Giao vùng tối và vùng gần biên: D ∩ E"),
+         "Giao vùng tối và vùng gần biên: D ∩ E"),
         ("4.1 · Phép đóng", pl.u8(st_["C"]),
          f"Ellipse {params['close']}×{params['close']}: nối các đoạn nứt bị đứt gãy"),
         ("4.2 · Lọc diện tích", pl.u8(st_["A"]),
@@ -190,7 +186,7 @@ with st.expander("⚖️ So sánh với phương pháp đối chứng", expanded
              caption="Đối chứng: Otsu đơn lẻ", use_container_width=True)
     b2.image(pl.rgb(pl.overlay_red(img, run_baseline(st.session_state.img_data, "canny"))),
              caption="Đối chứng: Canny đơn lẻ", use_container_width=True)
-    b3.image(pl.rgb(pl.overlay_red(img, mask)), caption=f"Pipeline: {profile}", use_container_width=True)
+    b3.image(pl.rgb(pl.overlay_red(img, mask)), caption="Pipeline P", use_container_width=True)
     st.caption("Kết quả lịch sử trên test 231 ảnh, P nguyên bản: Otsu Dice 0.024 · Canny 0.018 · P 0.339. "
                "Otsu/Canny không có bước quyết định mức ảnh nên luôn báo nứt, cả trên ảnh lành.")
 

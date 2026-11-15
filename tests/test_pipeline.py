@@ -10,6 +10,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "code"))
 import pipeline as pl
+import experiments as exp
 
 
 class ReconstructionTests(unittest.TestCase):
@@ -23,7 +24,7 @@ class ReconstructionTests(unittest.TestCase):
         seed[8, 11] = True  # A marker outside support must not leak into it.
         expected = support.copy()
         expected[:, 9:] = False
-        np.testing.assert_array_equal(pl.reconstruct(seed, support), expected)
+        np.testing.assert_array_equal(exp.reconstruct(seed, support), expected)
 
     def test_matches_iterated_constrained_dilation(self):
         rng = np.random.default_rng(2026)
@@ -37,12 +38,12 @@ class ReconstructionTests(unittest.TestCase):
                 if np.array_equal(grown, expected):
                     break
                 expected = grown
-            np.testing.assert_array_equal(pl.reconstruct(seed, support), expected)
+            np.testing.assert_array_equal(exp.reconstruct(seed, support), expected)
 
     def test_no_marker_and_empty_support(self):
         empty = np.zeros((11, 17), bool)
-        self.assertFalse(pl.reconstruct(empty, ~empty).any())
-        self.assertFalse(pl.reconstruct(~empty, empty).any())
+        self.assertFalse(exp.reconstruct(empty, ~empty).any())
+        self.assertFalse(exp.reconstruct(~empty, empty).any())
 
 
 class PipelineRegressionTests(unittest.TestCase):
@@ -82,10 +83,10 @@ class PipelineRegressionTests(unittest.TestCase):
         self.assertFalse(np.array_equal(direct, pl.pipeline(self.image, pl.P)))
 
     def test_direct_and_step_modes_agree_for_each_preset(self):
-        for params in (pl.P, pl.P_RECON, pl.P_THIN):
+        for params in (pl.P, exp.P_RECON, exp.P_THIN):
             with self.subTest(params=params):
-                steps = pl.pipeline(self.image, params, steps=True)
-                prediction = pl.pipeline(self.image, params)
+                steps = exp.pipeline(self.image, params, steps=True)
+                prediction = exp.pipeline(self.image, params)
                 np.testing.assert_array_equal(prediction, pl.to_orig(steps["Z"], self.image.shape))
                 self.assertEqual(prediction.shape, self.image.shape[:2])
                 self.assertEqual(prediction.dtype, np.bool_)
@@ -95,13 +96,17 @@ class PipelineRegressionTests(unittest.TestCase):
     def test_uniform_images_do_not_create_cracks_or_change_output_shape(self):
         for shape in ((1, 1), (53, 79), (1, 2000), (2000, 1)):
             for value in (0, 128, 255):
-                for params in (pl.P, pl.P_RECON):
+                for params in (pl.P, exp.P_RECON):
                     with self.subTest(shape=shape, value=value, params=params):
                         image = np.full(shape + (3,), value, np.uint8)
-                        result = pl.pipeline(image, params)
+                        result = exp.pipeline(image, params)
                         self.assertEqual(result.shape, shape)
                         self.assertEqual(result.dtype, np.bool_)
                         self.assertFalse(result.any())
+
+    def test_rejected_candidates_are_absent_from_production_api(self):
+        for name in ("P_RECON", "P_THIN", "reconstruct"):
+            self.assertFalse(hasattr(pl, name), name)
 
     def test_display_resize_preserves_nonzero_short_dimension(self):
         image = np.zeros((1, 2000), np.uint8)

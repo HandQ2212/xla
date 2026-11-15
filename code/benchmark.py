@@ -11,14 +11,15 @@ import cv2
 import numpy as np
 
 import pipeline as pl
+import experiments as exp
 
 ROOT = Path(__file__).resolve().parents[1]
 VARIANTS = {
     "legacy": pl.P,
-    "reconstruct": pl.P_RECON,
-    "thin": pl.P_THIN,
+    "reconstruct": exp.P_RECON,
+    "thin": exp.P_THIN,
     "close3": {**pl.P, "close": 3},
-    "reconstruct_close3": {**pl.P_RECON, "close": 3},
+    "reconstruct_close3": {**exp.P_RECON, "close": 3},
 }
 
 
@@ -88,7 +89,7 @@ def main():
         manifest.append(dict(dataset=dataset, id=sid, sha256_pair=digest))
         for name, params in VARIANTS.items():
             started = time.perf_counter()
-            prediction = pl.pipeline(image, params)
+            prediction = exp.pipeline(image, params)
             elapsed = (time.perf_counter() - started) * 1000
             rows.append(dict(dataset=dataset, id=sid, variant=name,
                              **pl.scores(prediction, gt), elapsed_ms=elapsed))

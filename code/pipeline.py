@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Phân đoạn vết nứt cổ điển; pipeline(img_bgr, P) trả mask bool kích thước gốc.
-P đã đánh giá; P_RECON/P_THIN cần xác nhận trên val. Xem docs/pipeline-experiments.md.
+P giữ benchmark lịch sử; giới hạn ngoài miền dữ liệu: docs/external-stress-report.md.
 """
 import numpy as np
 import cv2
@@ -10,8 +10,6 @@ P = dict(size=640, median=5, bg=71, hist_w=3, dil=3, close=7, a_min=30, e_min=3,
 
 # Tham số khởi đầu trước khi tune (để so sánh trong app, giống P0 trong notebook)
 P0 = dict(size=640, median=3, bg=31, hist_w=3, dil=7, close=7, a_min=60, e_min=2, tmin=0.2)
-P_RECON = {**P, "edge_mode": "reconstruct"}
-P_THIN = {**P, "median": 3}
 
 # ---- Tiện ích ảnh ----
 def rgb(img):
@@ -100,17 +98,6 @@ def edge_region(ratio, dil):
     t, edge = cv2.threshold(g, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     return cv2.dilate(edge, ellipse(dil)) > 0, g, edge > 0, t
 
-def reconstruct(seed, support):
-    """Tái tạo nhị phân 8-láng giềng: giữ vùng support chạm seed (C7).
-
-    Tương đương lặp X = dilate(X) ∩ support đến ổn định, nhưng chỉ gán nhãn một lần.
-    """
-    _, labels = cv2.connectedComponents(support.astype(np.uint8), connectivity=8)
-    keep = np.zeros(int(labels.max()) + 1, dtype=bool)
-    keep[np.unique(labels[seed & support])] = True
-    keep[0] = False
-    return keep[labels]
-
 # ---- Bước 4: hậu xử lý ----
 def closing(mask, k):
     return cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_CLOSE, ellipse(k)) > 0
@@ -161,9 +148,8 @@ def raw_mask(img, p):
     else:
         D, theta = dark_region(ratio, p["hist_w"])
     E = edge_region(ratio, p["dil"])[0] if p.get("use_edge", True) else np.ones_like(D)
-    seed = D & E
-    M = reconstruct(seed, D) if p.get("edge_mode") == "reconstruct" else seed
-    return M, dict(small=small_, gray=gray, den=den, ratio=ratio, D=D, E=E, seed=seed, theta=theta)
+    M = D & E
+    return M, dict(small=small_, gray=gray, den=den, ratio=ratio, D=D, E=E, seed=M, theta=theta)
 
 def post(M, p):
     """Bước 4: đóng -> lọc diện tích -> lọc độ dãn -> quyết định mức ảnh."""

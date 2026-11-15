@@ -2,9 +2,9 @@
 
 Nhánh `hieugm` phát triển từ `mailinh`, vốn đã bao gồm `develop`. Mục tiêu là thử cải thiện phân đoạn và sửa sai lệch giữa module, notebook, app. Không dùng học sâu, mô hình huấn luyện sẵn hay kỹ thuật ngoài học phần.
 
-## Hai ứng viên được giữ để kiểm chứng
+## Hai ứng viên đã bị loại khỏi pipeline sử dụng
 
-`P` giữ nguyên các tham số và thuật toán đã đánh giá trong [PIPELINE.md](../PIPELINE.md). Hai cấu hình bên dưới là **thử nghiệm**, có thể chọn trong app và so sánh bằng benchmark; chúng chưa thay thế `P`.
+`P` giữ nguyên các tham số và thuật toán đã đánh giá trong [PIPELINE.md](../PIPELINE.md). Hai cấu hình bên dưới đã **không đạt tiêu chí kiểm chứng trên nguồn ngoài**, nên bị loại khỏi module production và app. Mã chỉ còn trong `code/experiments.py` để tái hiện thí nghiệm; không phải cấu hình được khuyên dùng. Quyết định này thay thế ý định ban đầu cho chọn ứng viên thử nghiệm trong app.
 
 | Cấu hình | Thay đổi so với `P` | Cơ sở học phần | Đánh đổi |
 |---|---|---|---|
@@ -27,11 +27,11 @@ Máy hiện có 10 cặp ảnh–GT trong `samples/` và 10 cặp trong `samples
 | `P_RECON` | 0.560 | 0.326 |
 | `P_THIN` | 0.569 | 0.335 |
 
-Hai ứng viên tăng nhẹ Dice trên PCS mẫu nhưng giảm trên CFD mẫu. `P` vẫn là mặc định. Mỗi ảnh cần được xem riêng qua `per_image.csv`, vì điểm trung bình có thể che việc một ảnh cải thiện trong khi ảnh khác kém đi.
+Hai ứng viên tăng nhẹ Dice trên PCS mẫu nhưng giảm trên CFD mẫu. Những số liệu này chỉ là khảo sát ban đầu, không đủ để giữ ứng viên trong sản phẩm. Kiểm tra sau đó trên 100 ảnh PaveSeg thật cho thấy cả hai làm tăng báo nhầm và không vượt tiêu chí đã đặt trước; xem [báo cáo kiểm chứng bên ngoài](external-stress-report.md). `P` vẫn là baseline, cũng còn nhiều thất bại trên nguồn ngoài.
 
 Kết quả đã lưu: [bảng tổng hợp](benchmarks/samples/summary.csv), [từng ảnh](benchmarks/samples/per_image.csv), [tham số, phiên bản và mã băm dữ liệu](benchmarks/samples/metadata.json). Lệnh tái tạo: `python code/benchmark.py --output results/benchmark`. Các thời gian chạy phụ thuộc máy; điểm số được tính xác định từ ảnh và cấu hình.
 
-Các hướng đã khảo sát nhưng không đưa thành cấu hình trong app:
+Các hướng khảo sát khác cũng không đưa vào app:
 
 | Hướng thử | CFD mẫu | PCS mẫu | Nhận xét |
 |---|---:|---:|---|
@@ -52,7 +52,7 @@ Các hướng đã khảo sát nhưng không đưa thành cấu hình trong app:
 - App tìm thư mục mẫu theo vị trí file, nên có thể chạy từ thư mục repo. Notebook PCS import hàm từ module chung để các lần chạy sau dùng cùng logic với app.
 - Benchmark ghi cấu hình và số liệu từng ảnh để so sánh có thể chạy lại, thay vì chỉ nhìn ảnh phủ đỏ.
 
-13 kiểm thử đã đạt, gồm thực thi app bằng AppTest. So sánh với module của `origin/mailinh` trên cả 20 ảnh xác nhận cấu hình `P` và các mặt nạ trung gian giữ nguyên từng pixel. Notebook đã kiểm tra cú pháp và import; đầu ra lưu sẵn vẫn được ghi rõ là kết quả lịch sử, chưa chạy lại toàn bộ vì thiếu dataset.
+So sánh với module của `origin/mailinh` trên cả 20 ảnh xác nhận cấu hình `P` và các mặt nạ trung gian giữ nguyên từng pixel. Notebook đã kiểm tra cú pháp và import; đầu ra lưu sẵn vẫn được ghi rõ là kết quả lịch sử, chưa chạy lại toàn bộ vì thiếu dataset PCS đầy đủ. Kiểm thử hồi quy và AppTest được chạy cùng mã cuối trước khi đẩy nhánh.
 
 ## Chạy lại và đánh giá tiếp
 
@@ -77,4 +77,4 @@ Các ảnh mẫu thuộc test và đã được quan sát trong khảo sát. Ch�
 
 ## Trạng thái
 
-Đã thêm hai hướng thử thuộc học phần, sửa sự nhất quán khi chạy và cung cấp benchmark. Việc xác nhận cấu hình mới trên toàn bộ train/val còn chờ dữ liệu; chưa có cơ sở để công bố cải thiện trên toàn bộ tập test.
+Đã khảo sát hai hướng thuộc học phần và **loại cả hai** sau kiểm chứng ngoài. Nhánh chỉ giữ các sửa lỗi về API/app, chia sẻ logic và tối ưu gán nhãn không đổi mặt nạ baseline; kèm công cụ và bằng chứng thí nghiệm. Không công bố cải thiện chất lượng phân đoạn trên toàn bộ tập test hoặc độ tin cậy ngoài thực tế.
