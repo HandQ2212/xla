@@ -1,0 +1,74 @@
+[
+  {
+    "name": "scale_960_fixed_connected",
+    "fine_size": 960,
+    "geometry": "fixed",
+    "blend": "connected"
+  },
+  {
+    "name": "scale_960_fixed_supported",
+    "fine_size": 960,
+    "geometry": "fixed",
+    "blend": "supported"
+  },
+  {
+    "name": "scale_960_fixed_imagegate",
+    "fine_size": 960,
+    "geometry": "fixed",
+    "blend": "imagegate"
+  },
+  {
+    "name": "scale_960_physical_connected",
+    "fine_size": 960,
+    "geometry": "physical",
+    "blend": "connected"
+  },
+  {
+    "name": "scale_960_physical_supported",
+    "fine_size": 960,
+    "geometry": "physical",
+    "blend": "supported"
+  },
+  {
+    "name": "scale_960_physical_imagegate",
+    "fine_size": 960,
+    "geometry": "physical",
+    "blend": "imagegate"
+  },
+  {
+    "name": "scale_1280_fixed_connected",
+    "fine_size": 1280,
+    "geometry": "fixed",
+    "blend": "connected"
+  },
+  {
+    "name": "scale_1280_fixed_supported",
+    "fine_size": 1280,
+    "geometry": "fixed",
+    "blend": "supported"
+  },
+  {
+    "name": "scale_1280_fixed_imagegate",
+    "fine_size": 1280,
+    "geometry": "fixed",
+    "blend": "imagegate"
+  },
+  {
+    "name": "scale_1280_physical_connected",
+    "fine_size": 1280,
+    "geometry": "physical",
+    "blend": "connected"
+  },
+  {
+    "name": "scale_1280_physical_supported",
+    "fine_size": 1280,
+    "geometry": "physical",
+    "blend": "supported"
+  },
+  {
+    "name": "scale_1280_physical_imagegate",
+    "fine_size": 1280,
+    "geometry": "physical",
+    "blend": "imagegate"
+  }
+]

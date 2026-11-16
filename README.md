@@ -40,10 +40,14 @@ Lưới 4320 cấu hình trên 300 ảnh train; 10 cấu hình tốt nhất đư
 Mức tăng chủ yếu đến từ ảnh không nứt (bước 4.4) và từ việc báo nhầm ít hơn. Đổi lại, 45/186 ảnh có nứt nhỏ bị trả rỗng, nên Dice trên ảnh có nứt giảm nhẹ.
 
 ## Cài đặt
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt jupyter matplotlib pandas scikit-image
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt jupyter matplotlib pandas
 ```
+
+Linux/macOS: kích hoạt môi trường bằng `source .venv/bin/activate`.
 
 ## Dữ liệu
 ```
@@ -56,11 +60,48 @@ DoAn/
 ```
 
 ## Chạy
+
+App Streamlit (chạy từ thư mục repo, dùng ngay 10 ảnh mẫu PCS):
+
+```bash
+python -m streamlit run code/app.py
+```
+
+Notebook cần bộ dữ liệu đầy đủ:
+
 ```bash
 cd code
 jupyter nbconvert --to notebook --execute --inplace crack_segmentation.ipynb   # hoặc mở bằng Jupyter rồi Run All
 ```
 Notebook chạy khoảng 2 phút trên laptop 10 nhân (song song theo ảnh bằng `multiprocessing`, kiểu fork). Riêng phần tìm tham số mất khoảng 2 phút.
+
+## Thử nghiệm cải thiện trên nhánh `hieugm`
+
+Nhánh này phát triển từ `mailinh`, đã bao gồm pipeline của `develop`. `P` tiếp tục là cấu hình mặc định đã được đánh giá trước đây. App và notebook dùng chung `code/pipeline.py`; app giữ kích thước ảnh gốc và nút tắt hậu xử lý hoạt động đúng cả khi xem từng bước.
+
+Cải thiện được giữ là **hiệu năng với đầu ra không đổi**. Trên 150 ảnh PCS, trung vị hệ số tăng tốc theo cặp là **1,083×** ở chế độ OpenCV mặc định của máy đo, **1,177×** khi đặt OpenCV một luồng. Kiểm tra riêng 1.210 ảnh/2.010 điều kiện xác nhận mọi ảnh trung gian và mặt nạ kích thước gốc đều khớp snapshot baseline. Đây không phải mức tăng Dice/IoU. Xem [phương pháp đo, giới hạn và lệnh tái hiện](docs/performance-report.md).
+
+Các hướng tương phản cục bộ trên ảnh xám/ảnh bù sáng, đa độ phân giải và khôi phục mặt nạ đã được thử nhưng không vượt đủ tiêu chí chất lượng, nên không đưa vào pipeline sử dụng. [Báo cáo thử nghiệm](docs/pipeline-improvement.md) giữ cả kết quả tốt và ca thất bại; 158 ảnh giữ riêng cuối chưa được mở/chấm vì không ứng viên nào vượt vòng train.
+
+Đã thử tái tạo vùng bằng liên thông (C7) và giảm lọc trung vị xuống 3×3 (C3), sau đó kiểm tra trên **100 ảnh đường thật cùng nhãn pixel từ PaveSeg công khai**. Cả hai ứng viên **bị loại**: trên 50 ảnh discovery, Dice ảnh có nứt tăng từ 0.0178 lên 0.0297/0.0291 nhưng không đạt mức tăng đã đặt trước; số ảnh không có nứt hở bị báo nhầm tăng từ 12/17 lên 17/17 và 16/17. Chúng cũng không đạt kiểm tra lật ảnh, thay đổi gamma, JPEG và bóng đổ tổng hợp. Các ứng viên chỉ còn trong `code/experiments.py` để tái hiện nghiên cứu, không có trong app hay pipeline dùng thực tế.
+
+50 ảnh còn lại chỉ chạy `P` để chẩn đoán baseline: Dice ảnh có nứt 0.0337, báo nhầm 15/19 ảnh không có nứt hở. Gộp hai tập ảnh gốc, baseline báo nhầm **27/36 ảnh âm (75%)**. Đây là bằng chứng pipeline còn yếu khi đổi miền dữ liệu; giữ `P` để tái lập bài tập, chưa thể xem là bộ phát hiện đáng tin cậy ngoài thực tế. Vệt trám, khe nối, vạch sơn và bóng có thể bị nhầm với vết nứt. Xem [báo cáo ảnh ngoài và stress test](docs/external-stress-report.md), gồm nguồn, nhãn, từng ảnh và ca thất bại.
+
+```bash
+python -m unittest discover -s tests
+python code/benchmark.py
+python code/benchmark.py --data-root data/Pavement_Crack_Segmentation_Dataset --split val --output results/benchmark-val
+```
+
+Benchmark ghi `per_image.csv`, `summary.csv` và `metadata.json`. Không truyền `--data-root` thì chỉ chạy 20 ảnh mẫu kèm repo. Xem [cách hoạt động, kết quả và giới hạn thử nghiệm](docs/pipeline-experiments.md).
+
+Tái hiện kiểm tra nguồn ngoài (cần mạng để tải lần đầu):
+
+```bash
+python code/external_data.py --download
+python code/stress_eval.py --split discovery --output results/external-discovery
+python code/stress_eval.py --split confirmation --variants legacy --output results/external-confirmation
+```
 
 ## Đầu ra (`results/pcs/`)
 * `split.json`: seed, danh sách ảnh tune / val / test.

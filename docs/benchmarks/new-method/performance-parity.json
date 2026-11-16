@@ -1,0 +1,11 @@
+{
+  "mask_hashes_equal": 800,
+  "originals": 400,
+  "median_ms": {
+    "legacy": 16.96559999254532,
+    "conservative_local": 27.483700003358535
+  },
+  "ratio": 1.6199662856270844,
+  "runtime_gate_pass": true,
+  "note": "Performance-only reuse/count/conditionalranking; no configuration or output changes"
+}

@@ -1,0 +1,2263 @@
+{
+  "source": "https://zenodo.org/records/20040434",
+  "archive_url": "https://zenodo.org/api/records/20040434/files/Pavement_Crack_Segmentation_Dataset.zip/content",
+  "archive_size": 1406283443,
+  "published_archive_md5": "4b530eba05708a195355a0064e520db4",
+  "split": "train",
+  "seed": 42,
+  "selection": "150 IDs sampled with random.Random(42).sample from sorted original train IDs, frozen before any image/GT viewing",
+  "ids": [
+    "A_00011",
+    "A_00020",
+    "A_00036",
+    "A_00091",
+    "A_00095",
+    "A_00111",
+    "A_00140",
+    "B_00008",
+    "B_00016",
+    "B_00021",
+    "B_00049",
+    "B_00072",
+    "B_00080",
+    "B_00089",
+    "B_00096",
+    "B_00119",
+    "B_00121",
+    "B_00146",
+    "B_00157",
+    "B_00160",
+    "B_00163",
+    "B_00172",
+    "B_00181",
+    "B_00189",
+    "B_00212",
+    "B_00218",
+    "B_00229",
+    "B_00264",
+    "B_00309",
+    "B_00312",
+    "B_00325",
+    "B_00350",
+    "B_00360",
+    "B_00366",
+    "B_00370",
+    "B_00371",
+    "B_00387",
+    "B_00388",
+    "B_00412",
+    "B_00483",
+    "B_00507",
+    "B_00547",
+    "B_00552",
+    "B_00557",
+    "B_00563",
+    "B_00574",
+    "B_00577",
+    "B_00579",
+    "B_00587",
+    "B_00600",
+    "B_00604",
+    "B_00612",
+    "B_00644",
+    "B_00651",
+    "B_00666",
+    "C_00141",
+    "C_00145",
+    "C_00146",
+    "C_00150",
+    "C_00152",
+    "C_00157",
+    "C_00174",
+    "C_00182",
+    "C_00218",
+    "C_00230",
+    "C_00232",
+    "C_00291",
+    "C_00293",
+    "C_00318",
+    "C_00357",
+    "C_00368",
+    "C_00382",
+    "C_00417",
+    "C_00432",
+    "C_00442",
+    "C_00443",
+    "C_00452",
+    "C_00482",
+    "C_00501",
+    "C_00504",
+    "C_00505",
+    "C_00508",
+    "C_00521",
+    "C_00552",
+    "C_00561",
+    "C_00566",
+    "C_00616",
+    "C_00622",
+    "C_00624",
+    "C_00641",
+    "C_00659",
+    "C_00700",
+    "C_00716",
+    "C_00717",
+    "C_00731",
+    "C_00732",
+    "C_00742",
+    "C_00758",
+    "C_00827",
+    "C_00849",
+    "C_00864",
+    "C_00875",
+    "C_01219",
+    "C_01236",
+    "C_01244",
+    "C_01245",
+    "C_01254",
+    "C_01271",
+    "C_01288",
+    "C_01294",
+    "C_01305",
+    "C_01315",
+    "C_01332",
+    "C_01365",
+    "C_01384",
+    "C_01386",
+    "C_01463",
+    "C_01466",
+    "C_01482",
+    "C_01484",
+    "C_01563",
+    "C_01568",
+    "C_01582",
+    "C_01611",
+    "C_01639",
+    "C_01642",
+    "C_01673",
+    "C_01675",
+    "C_01696",
+    "C_01698",
+    "C_01701",
+    "C_01707",
+    "C_01725",
+    "C_01729",
+    "C_01742",
+    "C_01761",
+    "C_01792",
+    "C_01906",
+    "C_01933",
+    "C_01937",
+    "C_01940",
+    "C_01947",
+    "C_01955",
+    "C_02236",
+    "C_02247",
+    "C_02251",
+    "C_02259",
+    "C_02294",
+    "C_02319",
+    "C_02329"
+  ],
+  "members": [
+    {
+      "id": "A_00011",
+      "folder": "images",
+      "source_member": "train/images/A_00011.jpg",
+      "zip_crc32": 3565191297,
+      "uncompressed_bytes": 792520
+    },
+    {
+      "id": "A_00011",
+      "folder": "masks",
+      "source_member": "train/masks/A_00011.png",
+      "zip_crc32": 1226015761,
+      "uncompressed_bytes": 5236
+    },
+    {
+      "id": "A_00020",
+      "folder": "images",
+      "source_member": "train/images/A_00020.jpg",
+      "zip_crc32": 3718718987,
+      "uncompressed_bytes": 768720
+    },
+    {
+      "id": "A_00020",
+      "folder": "masks",
+      "source_member": "train/masks/A_00020.png",
+      "zip_crc32": 3353183828,
+      "uncompressed_bytes": 7280
+    },
+    {
+      "id": "A_00036",
+      "folder": "images",
+      "source_member": "train/images/A_00036.jpg",
+      "zip_crc32": 2275000292,
+      "uncompressed_bytes": 768666
+    },
+    {
+      "id": "A_00036",
+      "folder": "masks",
+      "source_member": "train/masks/A_00036.png",
+      "zip_crc32": 629321087,
+      "uncompressed_bytes": 4982
+    },
+    {
+      "id": "A_00091",
+      "folder": "images",
+      "source_member": "train/images/A_00091.jpg",
+      "zip_crc32": 341602998,
+      "uncompressed_bytes": 764008
+    },
+    {
+      "id": "A_00091",
+      "folder": "masks",
+      "source_member": "train/masks/A_00091.png",
+      "zip_crc32": 1086067143,
+      "uncompressed_bytes": 9020
+    },
+    {
+      "id": "A_00095",
+      "folder": "images",
+      "source_member": "train/images/A_00095.jpg",
+      "zip_crc32": 2932882631,
+      "uncompressed_bytes": 756485
+    },
+    {
+      "id": "A_00095",
+      "folder": "masks",
+      "source_member": "train/masks/A_00095.png",
+      "zip_crc32": 1974091929,
+      "uncompressed_bytes": 11137
+    },
+    {
+      "id": "A_00111",
+      "folder": "images",
+      "source_member": "train/images/A_00111.jpg",
+      "zip_crc32": 2626791649,
+      "uncompressed_bytes": 778041
+    },
+    {
+      "id": "A_00111",
+      "folder": "masks",
+      "source_member": "train/masks/A_00111.png",
+      "zip_crc32": 554967517,
+      "uncompressed_bytes": 12240
+    },
+    {
+      "id": "A_00140",
+      "folder": "images",
+      "source_member": "train/images/A_00140.jpg",
+      "zip_crc32": 3908098544,
+      "uncompressed_bytes": 800997
+    },
+    {
+      "id": "A_00140",
+      "folder": "masks",
+      "source_member": "train/masks/A_00140.png",
+      "zip_crc32": 2298775121,
+      "uncompressed_bytes": 6918
+    },
+    {
+      "id": "B_00008",
+      "folder": "images",
+      "source_member": "train/images/B_00008.jpg",
+      "zip_crc32": 2609784245,
+      "uncompressed_bytes": 1002443
+    },
+    {
+      "id": "B_00008",
+      "folder": "masks",
+      "source_member": "train/masks/B_00008.png",
+      "zip_crc32": 256064710,
+      "uncompressed_bytes": 10377
+    },
+    {
+      "id": "B_00016",
+      "folder": "images",
+      "source_member": "train/images/B_00016.jpg",
+      "zip_crc32": 4055351541,
+      "uncompressed_bytes": 964670
+    },
+    {
+      "id": "B_00016",
+      "folder": "masks",
+      "source_member": "train/masks/B_00016.png",
+      "zip_crc32": 3904651067,
+      "uncompressed_bytes": 9339
+    },
+    {
+      "id": "B_00021",
+      "folder": "images",
+      "source_member": "train/images/B_00021.jpg",
+      "zip_crc32": 2918154217,
+      "uncompressed_bytes": 923640
+    },
+    {
+      "id": "B_00021",
+      "folder": "masks",
+      "source_member": "train/masks/B_00021.png",
+      "zip_crc32": 1502065381,
+      "uncompressed_bytes": 8456
+    },
+    {
+      "id": "B_00049",
+      "folder": "images",
+      "source_member": "train/images/B_00049.jpg",
+      "zip_crc32": 3036178804,
+      "uncompressed_bytes": 868744
+    },
+    {
+      "id": "B_00049",
+      "folder": "masks",
+      "source_member": "train/masks/B_00049.png",
+      "zip_crc32": 2715620736,
+      "uncompressed_bytes": 8731
+    },
+    {
+      "id": "B_00072",
+      "folder": "images",
+      "source_member": "train/images/B_00072.jpg",
+      "zip_crc32": 2924684245,
+      "uncompressed_bytes": 893696
+    },
+    {
+      "id": "B_00072",
+      "folder": "masks",
+      "source_member": "train/masks/B_00072.png",
+      "zip_crc32": 467528314,
+      "uncompressed_bytes": 8429
+    },
+    {
+      "id": "B_00080",
+      "folder": "images",
+      "source_member": "train/images/B_00080.jpg",
+      "zip_crc32": 2120138310,
+      "uncompressed_bytes": 869953
+    },
+    {
+      "id": "B_00080",
+      "folder": "masks",
+      "source_member": "train/masks/B_00080.png",
+      "zip_crc32": 2312674196,
+      "uncompressed_bytes": 8605
+    },
+    {
+      "id": "B_00089",
+      "folder": "images",
+      "source_member": "train/images/B_00089.jpg",
+      "zip_crc32": 921865614,
+      "uncompressed_bytes": 932504
+    },
+    {
+      "id": "B_00089",
+      "folder": "masks",
+      "source_member": "train/masks/B_00089.png",
+      "zip_crc32": 3029850087,
+      "uncompressed_bytes": 8568
+    },
+    {
+      "id": "B_00096",
+      "folder": "images",
+      "source_member": "train/images/B_00096.jpg",
+      "zip_crc32": 1255333376,
+      "uncompressed_bytes": 840282
+    },
+    {
+      "id": "B_00096",
+      "folder": "masks",
+      "source_member": "train/masks/B_00096.png",
+      "zip_crc32": 407992280,
+      "uncompressed_bytes": 8842
+    },
+    {
+      "id": "B_00119",
+      "folder": "images",
+      "source_member": "train/images/B_00119.jpg",
+      "zip_crc32": 3094558846,
+      "uncompressed_bytes": 893780
+    },
+    {
+      "id": "B_00119",
+      "folder": "masks",
+      "source_member": "train/masks/B_00119.png",
+      "zip_crc32": 1924576312,
+      "uncompressed_bytes": 12226
+    },
+    {
+      "id": "B_00121",
+      "folder": "images",
+      "source_member": "train/images/B_00121.jpg",
+      "zip_crc32": 2270380594,
+      "uncompressed_bytes": 871675
+    },
+    {
+      "id": "B_00121",
+      "folder": "masks",
+      "source_member": "train/masks/B_00121.png",
+      "zip_crc32": 2562053559,
+      "uncompressed_bytes": 12454
+    },
+    {
+      "id": "B_00146",
+      "folder": "images",
+      "source_member": "train/images/B_00146.jpg",
+      "zip_crc32": 3019782073,
+      "uncompressed_bytes": 876668
+    },
+    {
+      "id": "B_00146",
+      "folder": "masks",
+      "source_member": "train/masks/B_00146.png",
+      "zip_crc32": 1501820061,
+      "uncompressed_bytes": 13007
+    },
+    {
+      "id": "B_00157",
+      "folder": "images",
+      "source_member": "train/images/B_00157.jpg",
+      "zip_crc32": 2513509928,
+      "uncompressed_bytes": 849380
+    },
+    {
+      "id": "B_00157",
+      "folder": "masks",
+      "source_member": "train/masks/B_00157.png",
+      "zip_crc32": 2644842273,
+      "uncompressed_bytes": 11908
+    },
+    {
+      "id": "B_00160",
+      "folder": "images",
+      "source_member": "train/images/B_00160.jpg",
+      "zip_crc32": 2983677757,
+      "uncompressed_bytes": 821728
+    },
+    {
+      "id": "B_00160",
+      "folder": "masks",
+      "source_member": "train/masks/B_00160.png",
+      "zip_crc32": 613382897,
+      "uncompressed_bytes": 11951
+    },
+    {
+      "id": "B_00163",
+      "folder": "images",
+      "source_member": "train/images/B_00163.jpg",
+      "zip_crc32": 2559156082,
+      "uncompressed_bytes": 869089
+    },
+    {
+      "id": "B_00163",
+      "folder": "masks",
+      "source_member": "train/masks/B_00163.png",
+      "zip_crc32": 2697487575,
+      "uncompressed_bytes": 11982
+    },
+    {
+      "id": "B_00172",
+      "folder": "images",
+      "source_member": "train/images/B_00172.jpg",
+      "zip_crc32": 2261955862,
+      "uncompressed_bytes": 810027
+    },
+    {
+      "id": "B_00172",
+      "folder": "masks",
+      "source_member": "train/masks/B_00172.png",
+      "zip_crc32": 1640263397,
+      "uncompressed_bytes": 14229
+    },
+    {
+      "id": "B_00181",
+      "folder": "images",
+      "source_member": "train/images/B_00181.jpg",
+      "zip_crc32": 1041664628,
+      "uncompressed_bytes": 818632
+    },
+    {
+      "id": "B_00181",
+      "folder": "masks",
+      "source_member": "train/masks/B_00181.png",
+      "zip_crc32": 36909969,
+      "uncompressed_bytes": 14383
+    },
+    {
+      "id": "B_00189",
+      "folder": "images",
+      "source_member": "train/images/B_00189.jpg",
+      "zip_crc32": 2727835261,
+      "uncompressed_bytes": 820162
+    },
+    {
+      "id": "B_00189",
+      "folder": "masks",
+      "source_member": "train/masks/B_00189.png",
+      "zip_crc32": 1550968188,
+      "uncompressed_bytes": 15651
+    },
+    {
+      "id": "B_00212",
+      "folder": "images",
+      "source_member": "train/images/B_00212.jpg",
+      "zip_crc32": 315140476,
+      "uncompressed_bytes": 818428
+    },
+    {
+      "id": "B_00212",
+      "folder": "masks",
+      "source_member": "train/masks/B_00212.png",
+      "zip_crc32": 398448682,
+      "uncompressed_bytes": 9178
+    },
+    {
+      "id": "B_00218",
+      "folder": "images",
+      "source_member": "train/images/B_00218.jpg",
+      "zip_crc32": 3175072319,
+      "uncompressed_bytes": 798859
+    },
+    {
+      "id": "B_00218",
+      "folder": "masks",
+      "source_member": "train/masks/B_00218.png",
+      "zip_crc32": 1126550577,
+      "uncompressed_bytes": 7234
+    },
+    {
+      "id": "B_00229",
+      "folder": "images",
+      "source_member": "train/images/B_00229.jpg",
+      "zip_crc32": 675487014,
+      "uncompressed_bytes": 853340
+    },
+    {
+      "id": "B_00229",
+      "folder": "masks",
+      "source_member": "train/masks/B_00229.png",
+      "zip_crc32": 1821967311,
+      "uncompressed_bytes": 5352
+    },
+    {
+      "id": "B_00264",
+      "folder": "images",
+      "source_member": "train/images/B_00264.jpg",
+      "zip_crc32": 231053785,
+      "uncompressed_bytes": 819908
+    },
+    {
+      "id": "B_00264",
+      "folder": "masks",
+      "source_member": "train/masks/B_00264.png",
+      "zip_crc32": 137978804,
+      "uncompressed_bytes": 9803
+    },
+    {
+      "id": "B_00309",
+      "folder": "images",
+      "source_member": "train/images/B_00309.jpg",
+      "zip_crc32": 4182655135,
+      "uncompressed_bytes": 851880
+    },
+    {
+      "id": "B_00309",
+      "folder": "masks",
+      "source_member": "train/masks/B_00309.png",
+      "zip_crc32": 3455675890,
+      "uncompressed_bytes": 8825
+    },
+    {
+      "id": "B_00312",
+      "folder": "images",
+      "source_member": "train/images/B_00312.jpg",
+      "zip_crc32": 4144789762,
+      "uncompressed_bytes": 870664
+    },
+    {
+      "id": "B_00312",
+      "folder": "masks",
+      "source_member": "train/masks/B_00312.png",
+      "zip_crc32": 3816145081,
+      "uncompressed_bytes": 8707
+    },
+    {
+      "id": "B_00325",
+      "folder": "images",
+      "source_member": "train/images/B_00325.jpg",
+      "zip_crc32": 2773752168,
+      "uncompressed_bytes": 856299
+    },
+    {
+      "id": "B_00325",
+      "folder": "masks",
+      "source_member": "train/masks/B_00325.png",
+      "zip_crc32": 89222600,
+      "uncompressed_bytes": 8514
+    },
+    {
+      "id": "B_00350",
+      "folder": "images",
+      "source_member": "train/images/B_00350.jpg",
+      "zip_crc32": 1371633963,
+      "uncompressed_bytes": 884543
+    },
+    {
+      "id": "B_00350",
+      "folder": "masks",
+      "source_member": "train/masks/B_00350.png",
+      "zip_crc32": 3738618537,
+      "uncompressed_bytes": 8146
+    },
+    {
+      "id": "B_00360",
+      "folder": "images",
+      "source_member": "train/images/B_00360.jpg",
+      "zip_crc32": 2805366216,
+      "uncompressed_bytes": 816627
+    },
+    {
+      "id": "B_00360",
+      "folder": "masks",
+      "source_member": "train/masks/B_00360.png",
+      "zip_crc32": 2300542207,
+      "uncompressed_bytes": 7290
+    },
+    {
+      "id": "B_00366",
+      "folder": "images",
+      "source_member": "train/images/B_00366.jpg",
+      "zip_crc32": 473537402,
+      "uncompressed_bytes": 851588
+    },
+    {
+      "id": "B_00366",
+      "folder": "masks",
+      "source_member": "train/masks/B_00366.png",
+      "zip_crc32": 1061925525,
+      "uncompressed_bytes": 6195
+    },
+    {
+      "id": "B_00370",
+      "folder": "images",
+      "source_member": "train/images/B_00370.jpg",
+      "zip_crc32": 2548931099,
+      "uncompressed_bytes": 825792
+    },
+    {
+      "id": "B_00370",
+      "folder": "masks",
+      "source_member": "train/masks/B_00370.png",
+      "zip_crc32": 3912676523,
+      "uncompressed_bytes": 5757
+    },
+    {
+      "id": "B_00371",
+      "folder": "images",
+      "source_member": "train/images/B_00371.jpg",
+      "zip_crc32": 939495833,
+      "uncompressed_bytes": 883683
+    },
+    {
+      "id": "B_00371",
+      "folder": "masks",
+      "source_member": "train/masks/B_00371.png",
+      "zip_crc32": 284616597,
+      "uncompressed_bytes": 5715
+    },
+    {
+      "id": "B_00387",
+      "folder": "images",
+      "source_member": "train/images/B_00387.jpg",
+      "zip_crc32": 667870111,
+      "uncompressed_bytes": 844542
+    },
+    {
+      "id": "B_00387",
+      "folder": "masks",
+      "source_member": "train/masks/B_00387.png",
+      "zip_crc32": 151063207,
+      "uncompressed_bytes": 6931
+    },
+    {
+      "id": "B_00388",
+      "folder": "images",
+      "source_member": "train/images/B_00388.jpg",
+      "zip_crc32": 1758845153,
+      "uncompressed_bytes": 921970
+    },
+    {
+      "id": "B_00388",
+      "folder": "masks",
+      "source_member": "train/masks/B_00388.png",
+      "zip_crc32": 1654468819,
+      "uncompressed_bytes": 7039
+    },
+    {
+      "id": "B_00412",
+      "folder": "images",
+      "source_member": "train/images/B_00412.jpg",
+      "zip_crc32": 2452232952,
+      "uncompressed_bytes": 898359
+    },
+    {
+      "id": "B_00412",
+      "folder": "masks",
+      "source_member": "train/masks/B_00412.png",
+      "zip_crc32": 2675621112,
+      "uncompressed_bytes": 11528
+    },
+    {
+      "id": "B_00483",
+      "folder": "images",
+      "source_member": "train/images/B_00483.jpg",
+      "zip_crc32": 2523775813,
+      "uncompressed_bytes": 934932
+    },
+    {
+      "id": "B_00483",
+      "folder": "masks",
+      "source_member": "train/masks/B_00483.png",
+      "zip_crc32": 1344673243,
+      "uncompressed_bytes": 10826
+    },
+    {
+      "id": "B_00507",
+      "folder": "images",
+      "source_member": "train/images/B_00507.jpg",
+      "zip_crc32": 306496843,
+      "uncompressed_bytes": 891773
+    },
+    {
+      "id": "B_00507",
+      "folder": "masks",
+      "source_member": "train/masks/B_00507.png",
+      "zip_crc32": 4048492702,
+      "uncompressed_bytes": 14602
+    },
+    {
+      "id": "B_00547",
+      "folder": "images",
+      "source_member": "train/images/B_00547.jpg",
+      "zip_crc32": 3950386164,
+      "uncompressed_bytes": 898929
+    },
+    {
+      "id": "B_00547",
+      "folder": "masks",
+      "source_member": "train/masks/B_00547.png",
+      "zip_crc32": 729154938,
+      "uncompressed_bytes": 9923
+    },
+    {
+      "id": "B_00552",
+      "folder": "images",
+      "source_member": "train/images/B_00552.jpg",
+      "zip_crc32": 271338508,
+      "uncompressed_bytes": 906647
+    },
+    {
+      "id": "B_00552",
+      "folder": "masks",
+      "source_member": "train/masks/B_00552.png",
+      "zip_crc32": 2182612669,
+      "uncompressed_bytes": 8982
+    },
+    {
+      "id": "B_00557",
+      "folder": "images",
+      "source_member": "train/images/B_00557.jpg",
+      "zip_crc32": 2982040788,
+      "uncompressed_bytes": 930268
+    },
+    {
+      "id": "B_00557",
+      "folder": "masks",
+      "source_member": "train/masks/B_00557.png",
+      "zip_crc32": 4170124042,
+      "uncompressed_bytes": 8515
+    },
+    {
+      "id": "B_00563",
+      "folder": "images",
+      "source_member": "train/images/B_00563.jpg",
+      "zip_crc32": 3371835114,
+      "uncompressed_bytes": 899492
+    },
+    {
+      "id": "B_00563",
+      "folder": "masks",
+      "source_member": "train/masks/B_00563.png",
+      "zip_crc32": 2212693688,
+      "uncompressed_bytes": 8228
+    },
+    {
+      "id": "B_00574",
+      "folder": "images",
+      "source_member": "train/images/B_00574.jpg",
+      "zip_crc32": 2397758359,
+      "uncompressed_bytes": 939327
+    },
+    {
+      "id": "B_00574",
+      "folder": "masks",
+      "source_member": "train/masks/B_00574.png",
+      "zip_crc32": 938233853,
+      "uncompressed_bytes": 8254
+    },
+    {
+      "id": "B_00577",
+      "folder": "images",
+      "source_member": "train/images/B_00577.jpg",
+      "zip_crc32": 141628487,
+      "uncompressed_bytes": 892643
+    },
+    {
+      "id": "B_00577",
+      "folder": "masks",
+      "source_member": "train/masks/B_00577.png",
+      "zip_crc32": 551524273,
+      "uncompressed_bytes": 8004
+    },
+    {
+      "id": "B_00579",
+      "folder": "images",
+      "source_member": "train/images/B_00579.jpg",
+      "zip_crc32": 2862765069,
+      "uncompressed_bytes": 889296
+    },
+    {
+      "id": "B_00579",
+      "folder": "masks",
+      "source_member": "train/masks/B_00579.png",
+      "zip_crc32": 3826824771,
+      "uncompressed_bytes": 7784
+    },
+    {
+      "id": "B_00587",
+      "folder": "images",
+      "source_member": "train/images/B_00587.jpg",
+      "zip_crc32": 2349695940,
+      "uncompressed_bytes": 949688
+    },
+    {
+      "id": "B_00587",
+      "folder": "masks",
+      "source_member": "train/masks/B_00587.png",
+      "zip_crc32": 965724511,
+      "uncompressed_bytes": 7383
+    },
+    {
+      "id": "B_00600",
+      "folder": "images",
+      "source_member": "train/images/B_00600.jpg",
+      "zip_crc32": 174612540,
+      "uncompressed_bytes": 926033
+    },
+    {
+      "id": "B_00600",
+      "folder": "masks",
+      "source_member": "train/masks/B_00600.png",
+      "zip_crc32": 3145806014,
+      "uncompressed_bytes": 8325
+    },
+    {
+      "id": "B_00604",
+      "folder": "images",
+      "source_member": "train/images/B_00604.jpg",
+      "zip_crc32": 2325460194,
+      "uncompressed_bytes": 883821
+    },
+    {
+      "id": "B_00604",
+      "folder": "masks",
+      "source_member": "train/masks/B_00604.png",
+      "zip_crc32": 2829068056,
+      "uncompressed_bytes": 8405
+    },
+    {
+      "id": "B_00612",
+      "folder": "images",
+      "source_member": "train/images/B_00612.jpg",
+      "zip_crc32": 1922959845,
+      "uncompressed_bytes": 1030450
+    },
+    {
+      "id": "B_00612",
+      "folder": "masks",
+      "source_member": "train/masks/B_00612.png",
+      "zip_crc32": 398887247,
+      "uncompressed_bytes": 8399
+    },
+    {
+      "id": "B_00644",
+      "folder": "images",
+      "source_member": "train/images/B_00644.jpg",
+      "zip_crc32": 4228186236,
+      "uncompressed_bytes": 926692
+    },
+    {
+      "id": "B_00644",
+      "folder": "masks",
+      "source_member": "train/masks/B_00644.png",
+      "zip_crc32": 3435620258,
+      "uncompressed_bytes": 9255
+    },
+    {
+      "id": "B_00651",
+      "folder": "images",
+      "source_member": "train/images/B_00651.jpg",
+      "zip_crc32": 3411423356,
+      "uncompressed_bytes": 909794
+    },
+    {
+      "id": "B_00651",
+      "folder": "masks",
+      "source_member": "train/masks/B_00651.png",
+      "zip_crc32": 3739465470,
+      "uncompressed_bytes": 9563
+    },
+    {
+      "id": "B_00666",
+      "folder": "images",
+      "source_member": "train/images/B_00666.jpg",
+      "zip_crc32": 121089084,
+      "uncompressed_bytes": 895597
+    },
+    {
+      "id": "B_00666",
+      "folder": "masks",
+      "source_member": "train/masks/B_00666.png",
+      "zip_crc32": 3196355905,
+      "uncompressed_bytes": 10491
+    },
+    {
+      "id": "C_00141",
+      "folder": "images",
+      "source_member": "train/images/C_00141.jpg",
+      "zip_crc32": 725462269,
+      "uncompressed_bytes": 461780
+    },
+    {
+      "id": "C_00141",
+      "folder": "masks",
+      "source_member": "train/masks/C_00141.png",
+      "zip_crc32": 3552394476,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00145",
+      "folder": "images",
+      "source_member": "train/images/C_00145.jpg",
+      "zip_crc32": 2148602527,
+      "uncompressed_bytes": 478399
+    },
+    {
+      "id": "C_00145",
+      "folder": "masks",
+      "source_member": "train/masks/C_00145.png",
+      "zip_crc32": 2497057865,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00146",
+      "folder": "images",
+      "source_member": "train/images/C_00146.jpg",
+      "zip_crc32": 1322837167,
+      "uncompressed_bytes": 484699
+    },
+    {
+      "id": "C_00146",
+      "folder": "masks",
+      "source_member": "train/masks/C_00146.png",
+      "zip_crc32": 2960924442,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00150",
+      "folder": "images",
+      "source_member": "train/images/C_00150.jpg",
+      "zip_crc32": 3411515188,
+      "uncompressed_bytes": 493876
+    },
+    {
+      "id": "C_00150",
+      "folder": "masks",
+      "source_member": "train/masks/C_00150.png",
+      "zip_crc32": 3403392371,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00152",
+      "folder": "images",
+      "source_member": "train/images/C_00152.jpg",
+      "zip_crc32": 2902072260,
+      "uncompressed_bytes": 499260
+    },
+    {
+      "id": "C_00152",
+      "folder": "masks",
+      "source_member": "train/masks/C_00152.png",
+      "zip_crc32": 2349860669,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00157",
+      "folder": "images",
+      "source_member": "train/images/C_00157.jpg",
+      "zip_crc32": 2551010229,
+      "uncompressed_bytes": 494018
+    },
+    {
+      "id": "C_00157",
+      "folder": "masks",
+      "source_member": "train/masks/C_00157.png",
+      "zip_crc32": 3340858160,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00174",
+      "folder": "images",
+      "source_member": "train/images/C_00174.jpg",
+      "zip_crc32": 2000103381,
+      "uncompressed_bytes": 492378
+    },
+    {
+      "id": "C_00174",
+      "folder": "masks",
+      "source_member": "train/masks/C_00174.png",
+      "zip_crc32": 1901949617,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00182",
+      "folder": "images",
+      "source_member": "train/images/C_00182.jpg",
+      "zip_crc32": 1026422092,
+      "uncompressed_bytes": 557386
+    },
+    {
+      "id": "C_00182",
+      "folder": "masks",
+      "source_member": "train/masks/C_00182.png",
+      "zip_crc32": 1147329702,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00218",
+      "folder": "images",
+      "source_member": "train/images/C_00218.jpg",
+      "zip_crc32": 4137868011,
+      "uncompressed_bytes": 540523
+    },
+    {
+      "id": "C_00218",
+      "folder": "masks",
+      "source_member": "train/masks/C_00218.png",
+      "zip_crc32": 668240518,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00230",
+      "folder": "images",
+      "source_member": "train/images/C_00230.jpg",
+      "zip_crc32": 4009140682,
+      "uncompressed_bytes": 543272
+    },
+    {
+      "id": "C_00230",
+      "folder": "masks",
+      "source_member": "train/masks/C_00230.png",
+      "zip_crc32": 1160523934,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00232",
+      "folder": "images",
+      "source_member": "train/images/C_00232.jpg",
+      "zip_crc32": 258189422,
+      "uncompressed_bytes": 476926
+    },
+    {
+      "id": "C_00232",
+      "folder": "masks",
+      "source_member": "train/masks/C_00232.png",
+      "zip_crc32": 2528974580,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00291",
+      "folder": "images",
+      "source_member": "train/images/C_00291.jpg",
+      "zip_crc32": 3824634742,
+      "uncompressed_bytes": 419489
+    },
+    {
+      "id": "C_00291",
+      "folder": "masks",
+      "source_member": "train/masks/C_00291.png",
+      "zip_crc32": 2636896487,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00293",
+      "folder": "images",
+      "source_member": "train/images/C_00293.jpg",
+      "zip_crc32": 326390808,
+      "uncompressed_bytes": 458297
+    },
+    {
+      "id": "C_00293",
+      "folder": "masks",
+      "source_member": "train/masks/C_00293.png",
+      "zip_crc32": 800145127,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00318",
+      "folder": "images",
+      "source_member": "train/images/C_00318.jpg",
+      "zip_crc32": 764555002,
+      "uncompressed_bytes": 501601
+    },
+    {
+      "id": "C_00318",
+      "folder": "masks",
+      "source_member": "train/masks/C_00318.png",
+      "zip_crc32": 1136848014,
+      "uncompressed_bytes": 5494
+    },
+    {
+      "id": "C_00357",
+      "folder": "images",
+      "source_member": "train/images/C_00357.jpg",
+      "zip_crc32": 3607372180,
+      "uncompressed_bytes": 469173
+    },
+    {
+      "id": "C_00357",
+      "folder": "masks",
+      "source_member": "train/masks/C_00357.png",
+      "zip_crc32": 2028855296,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00368",
+      "folder": "images",
+      "source_member": "train/images/C_00368.jpg",
+      "zip_crc32": 1289319624,
+      "uncompressed_bytes": 477057
+    },
+    {
+      "id": "C_00368",
+      "folder": "masks",
+      "source_member": "train/masks/C_00368.png",
+      "zip_crc32": 3668017233,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00382",
+      "folder": "images",
+      "source_member": "train/images/C_00382.jpg",
+      "zip_crc32": 509415341,
+      "uncompressed_bytes": 444006
+    },
+    {
+      "id": "C_00382",
+      "folder": "masks",
+      "source_member": "train/masks/C_00382.png",
+      "zip_crc32": 887264264,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00417",
+      "folder": "images",
+      "source_member": "train/images/C_00417.jpg",
+      "zip_crc32": 3309624534,
+      "uncompressed_bytes": 540085
+    },
+    {
+      "id": "C_00417",
+      "folder": "masks",
+      "source_member": "train/masks/C_00417.png",
+      "zip_crc32": 2807802713,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00432",
+      "folder": "images",
+      "source_member": "train/images/C_00432.jpg",
+      "zip_crc32": 691813236,
+      "uncompressed_bytes": 544440
+    },
+    {
+      "id": "C_00432",
+      "folder": "masks",
+      "source_member": "train/masks/C_00432.png",
+      "zip_crc32": 2987309895,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00442",
+      "folder": "images",
+      "source_member": "train/images/C_00442.jpg",
+      "zip_crc32": 502693910,
+      "uncompressed_bytes": 534286
+    },
+    {
+      "id": "C_00442",
+      "folder": "masks",
+      "source_member": "train/masks/C_00442.png",
+      "zip_crc32": 3278583746,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00443",
+      "folder": "images",
+      "source_member": "train/images/C_00443.jpg",
+      "zip_crc32": 1361689629,
+      "uncompressed_bytes": 534409
+    },
+    {
+      "id": "C_00443",
+      "folder": "masks",
+      "source_member": "train/masks/C_00443.png",
+      "zip_crc32": 1021406975,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00452",
+      "folder": "images",
+      "source_member": "train/images/C_00452.jpg",
+      "zip_crc32": 3887237673,
+      "uncompressed_bytes": 528604
+    },
+    {
+      "id": "C_00452",
+      "folder": "masks",
+      "source_member": "train/masks/C_00452.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_00482",
+      "folder": "images",
+      "source_member": "train/images/C_00482.jpg",
+      "zip_crc32": 3299964212,
+      "uncompressed_bytes": 537349
+    },
+    {
+      "id": "C_00482",
+      "folder": "masks",
+      "source_member": "train/masks/C_00482.png",
+      "zip_crc32": 2455534101,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00501",
+      "folder": "images",
+      "source_member": "train/images/C_00501.jpg",
+      "zip_crc32": 3691622583,
+      "uncompressed_bytes": 555168
+    },
+    {
+      "id": "C_00501",
+      "folder": "masks",
+      "source_member": "train/masks/C_00501.png",
+      "zip_crc32": 1032739708,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00504",
+      "folder": "images",
+      "source_member": "train/images/C_00504.jpg",
+      "zip_crc32": 3500158144,
+      "uncompressed_bytes": 553462
+    },
+    {
+      "id": "C_00504",
+      "folder": "masks",
+      "source_member": "train/masks/C_00504.png",
+      "zip_crc32": 448572390,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00505",
+      "folder": "images",
+      "source_member": "train/images/C_00505.jpg",
+      "zip_crc32": 872858825,
+      "uncompressed_bytes": 548125
+    },
+    {
+      "id": "C_00505",
+      "folder": "masks",
+      "source_member": "train/masks/C_00505.png",
+      "zip_crc32": 2017543027,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00508",
+      "folder": "images",
+      "source_member": "train/images/C_00508.jpg",
+      "zip_crc32": 1996038576,
+      "uncompressed_bytes": 526177
+    },
+    {
+      "id": "C_00508",
+      "folder": "masks",
+      "source_member": "train/masks/C_00508.png",
+      "zip_crc32": 3536452381,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00521",
+      "folder": "images",
+      "source_member": "train/images/C_00521.jpg",
+      "zip_crc32": 4253544154,
+      "uncompressed_bytes": 547802
+    },
+    {
+      "id": "C_00521",
+      "folder": "masks",
+      "source_member": "train/masks/C_00521.png",
+      "zip_crc32": 3657918319,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00552",
+      "folder": "images",
+      "source_member": "train/images/C_00552.jpg",
+      "zip_crc32": 3151061350,
+      "uncompressed_bytes": 524111
+    },
+    {
+      "id": "C_00552",
+      "folder": "masks",
+      "source_member": "train/masks/C_00552.png",
+      "zip_crc32": 2343947728,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00561",
+      "folder": "images",
+      "source_member": "train/images/C_00561.jpg",
+      "zip_crc32": 2841365573,
+      "uncompressed_bytes": 541760
+    },
+    {
+      "id": "C_00561",
+      "folder": "masks",
+      "source_member": "train/masks/C_00561.png",
+      "zip_crc32": 2657678731,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00566",
+      "folder": "images",
+      "source_member": "train/images/C_00566.jpg",
+      "zip_crc32": 3007320312,
+      "uncompressed_bytes": 547212
+    },
+    {
+      "id": "C_00566",
+      "folder": "masks",
+      "source_member": "train/masks/C_00566.png",
+      "zip_crc32": 1950524790,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00616",
+      "folder": "images",
+      "source_member": "train/images/C_00616.jpg",
+      "zip_crc32": 75042643,
+      "uncompressed_bytes": 519438
+    },
+    {
+      "id": "C_00616",
+      "folder": "masks",
+      "source_member": "train/masks/C_00616.png",
+      "zip_crc32": 2828961624,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00622",
+      "folder": "images",
+      "source_member": "train/images/C_00622.jpg",
+      "zip_crc32": 109459303,
+      "uncompressed_bytes": 529758
+    },
+    {
+      "id": "C_00622",
+      "folder": "masks",
+      "source_member": "train/masks/C_00622.png",
+      "zip_crc32": 4120168518,
+      "uncompressed_bytes": 12262
+    },
+    {
+      "id": "C_00624",
+      "folder": "images",
+      "source_member": "train/images/C_00624.jpg",
+      "zip_crc32": 2394250554,
+      "uncompressed_bytes": 535059
+    },
+    {
+      "id": "C_00624",
+      "folder": "masks",
+      "source_member": "train/masks/C_00624.png",
+      "zip_crc32": 3958709345,
+      "uncompressed_bytes": 12947
+    },
+    {
+      "id": "C_00641",
+      "folder": "images",
+      "source_member": "train/images/C_00641.jpg",
+      "zip_crc32": 3280911192,
+      "uncompressed_bytes": 544268
+    },
+    {
+      "id": "C_00641",
+      "folder": "masks",
+      "source_member": "train/masks/C_00641.png",
+      "zip_crc32": 2807997577,
+      "uncompressed_bytes": 7792
+    },
+    {
+      "id": "C_00659",
+      "folder": "images",
+      "source_member": "train/images/C_00659.jpg",
+      "zip_crc32": 577026253,
+      "uncompressed_bytes": 546835
+    },
+    {
+      "id": "C_00659",
+      "folder": "masks",
+      "source_member": "train/masks/C_00659.png",
+      "zip_crc32": 1182032639,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00700",
+      "folder": "images",
+      "source_member": "train/images/C_00700.jpg",
+      "zip_crc32": 77868240,
+      "uncompressed_bytes": 534374
+    },
+    {
+      "id": "C_00700",
+      "folder": "masks",
+      "source_member": "train/masks/C_00700.png",
+      "zip_crc32": 4123328444,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00716",
+      "folder": "images",
+      "source_member": "train/images/C_00716.jpg",
+      "zip_crc32": 509405904,
+      "uncompressed_bytes": 537158
+    },
+    {
+      "id": "C_00716",
+      "folder": "masks",
+      "source_member": "train/masks/C_00716.png",
+      "zip_crc32": 3282684664,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00717",
+      "folder": "images",
+      "source_member": "train/images/C_00717.jpg",
+      "zip_crc32": 1292456108,
+      "uncompressed_bytes": 533979
+    },
+    {
+      "id": "C_00717",
+      "folder": "masks",
+      "source_member": "train/masks/C_00717.png",
+      "zip_crc32": 2760945264,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00731",
+      "folder": "images",
+      "source_member": "train/images/C_00731.jpg",
+      "zip_crc32": 3865697306,
+      "uncompressed_bytes": 530031
+    },
+    {
+      "id": "C_00731",
+      "folder": "masks",
+      "source_member": "train/masks/C_00731.png",
+      "zip_crc32": 4284792449,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00732",
+      "folder": "images",
+      "source_member": "train/images/C_00732.jpg",
+      "zip_crc32": 229470059,
+      "uncompressed_bytes": 526327
+    },
+    {
+      "id": "C_00732",
+      "folder": "masks",
+      "source_member": "train/masks/C_00732.png",
+      "zip_crc32": 2717538547,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00742",
+      "folder": "images",
+      "source_member": "train/images/C_00742.jpg",
+      "zip_crc32": 4006015380,
+      "uncompressed_bytes": 536878
+    },
+    {
+      "id": "C_00742",
+      "folder": "masks",
+      "source_member": "train/masks/C_00742.png",
+      "zip_crc32": 2455534101,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00758",
+      "folder": "images",
+      "source_member": "train/images/C_00758.jpg",
+      "zip_crc32": 3964307650,
+      "uncompressed_bytes": 551207
+    },
+    {
+      "id": "C_00758",
+      "folder": "masks",
+      "source_member": "train/masks/C_00758.png",
+      "zip_crc32": 3972102712,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00827",
+      "folder": "images",
+      "source_member": "train/images/C_00827.jpg",
+      "zip_crc32": 966128909,
+      "uncompressed_bytes": 717521
+    },
+    {
+      "id": "C_00827",
+      "folder": "masks",
+      "source_member": "train/masks/C_00827.png",
+      "zip_crc32": 2455534101,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00849",
+      "folder": "images",
+      "source_member": "train/images/C_00849.jpg",
+      "zip_crc32": 784024582,
+      "uncompressed_bytes": 715755
+    },
+    {
+      "id": "C_00849",
+      "folder": "masks",
+      "source_member": "train/masks/C_00849.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_00864",
+      "folder": "images",
+      "source_member": "train/images/C_00864.jpg",
+      "zip_crc32": 2838748171,
+      "uncompressed_bytes": 551418
+    },
+    {
+      "id": "C_00864",
+      "folder": "masks",
+      "source_member": "train/masks/C_00864.png",
+      "zip_crc32": 1268920149,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_00875",
+      "folder": "images",
+      "source_member": "train/images/C_00875.jpg",
+      "zip_crc32": 3618058744,
+      "uncompressed_bytes": 483761
+    },
+    {
+      "id": "C_00875",
+      "folder": "masks",
+      "source_member": "train/masks/C_00875.png",
+      "zip_crc32": 2561916122,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01219",
+      "folder": "images",
+      "source_member": "train/images/C_01219.jpg",
+      "zip_crc32": 3525200922,
+      "uncompressed_bytes": 496741
+    },
+    {
+      "id": "C_01219",
+      "folder": "masks",
+      "source_member": "train/masks/C_01219.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01236",
+      "folder": "images",
+      "source_member": "train/images/C_01236.jpg",
+      "zip_crc32": 3440320502,
+      "uncompressed_bytes": 513500
+    },
+    {
+      "id": "C_01236",
+      "folder": "masks",
+      "source_member": "train/masks/C_01236.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01244",
+      "folder": "images",
+      "source_member": "train/images/C_01244.jpg",
+      "zip_crc32": 2467591263,
+      "uncompressed_bytes": 506462
+    },
+    {
+      "id": "C_01244",
+      "folder": "masks",
+      "source_member": "train/masks/C_01244.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01245",
+      "folder": "images",
+      "source_member": "train/images/C_01245.jpg",
+      "zip_crc32": 3109464829,
+      "uncompressed_bytes": 509116
+    },
+    {
+      "id": "C_01245",
+      "folder": "masks",
+      "source_member": "train/masks/C_01245.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01254",
+      "folder": "images",
+      "source_member": "train/images/C_01254.jpg",
+      "zip_crc32": 206004605,
+      "uncompressed_bytes": 515105
+    },
+    {
+      "id": "C_01254",
+      "folder": "masks",
+      "source_member": "train/masks/C_01254.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01271",
+      "folder": "images",
+      "source_member": "train/images/C_01271.jpg",
+      "zip_crc32": 3380080724,
+      "uncompressed_bytes": 512767
+    },
+    {
+      "id": "C_01271",
+      "folder": "masks",
+      "source_member": "train/masks/C_01271.png",
+      "zip_crc32": 2212314083,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01288",
+      "folder": "images",
+      "source_member": "train/images/C_01288.jpg",
+      "zip_crc32": 3334430978,
+      "uncompressed_bytes": 501654
+    },
+    {
+      "id": "C_01288",
+      "folder": "masks",
+      "source_member": "train/masks/C_01288.png",
+      "zip_crc32": 2455534101,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01294",
+      "folder": "images",
+      "source_member": "train/images/C_01294.jpg",
+      "zip_crc32": 3312998269,
+      "uncompressed_bytes": 516408
+    },
+    {
+      "id": "C_01294",
+      "folder": "masks",
+      "source_member": "train/masks/C_01294.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01305",
+      "folder": "images",
+      "source_member": "train/images/C_01305.jpg",
+      "zip_crc32": 1025970920,
+      "uncompressed_bytes": 520188
+    },
+    {
+      "id": "C_01305",
+      "folder": "masks",
+      "source_member": "train/masks/C_01305.png",
+      "zip_crc32": 4054282794,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01315",
+      "folder": "images",
+      "source_member": "train/images/C_01315.jpg",
+      "zip_crc32": 24812246,
+      "uncompressed_bytes": 520504
+    },
+    {
+      "id": "C_01315",
+      "folder": "masks",
+      "source_member": "train/masks/C_01315.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01332",
+      "folder": "images",
+      "source_member": "train/images/C_01332.jpg",
+      "zip_crc32": 2646300433,
+      "uncompressed_bytes": 529115
+    },
+    {
+      "id": "C_01332",
+      "folder": "masks",
+      "source_member": "train/masks/C_01332.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01365",
+      "folder": "images",
+      "source_member": "train/images/C_01365.jpg",
+      "zip_crc32": 2462540603,
+      "uncompressed_bytes": 501274
+    },
+    {
+      "id": "C_01365",
+      "folder": "masks",
+      "source_member": "train/masks/C_01365.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01384",
+      "folder": "images",
+      "source_member": "train/images/C_01384.jpg",
+      "zip_crc32": 2957088819,
+      "uncompressed_bytes": 509938
+    },
+    {
+      "id": "C_01384",
+      "folder": "masks",
+      "source_member": "train/masks/C_01384.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01386",
+      "folder": "images",
+      "source_member": "train/images/C_01386.jpg",
+      "zip_crc32": 2094534394,
+      "uncompressed_bytes": 503027
+    },
+    {
+      "id": "C_01386",
+      "folder": "masks",
+      "source_member": "train/masks/C_01386.png",
+      "zip_crc32": 113720403,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01463",
+      "folder": "images",
+      "source_member": "train/images/C_01463.jpg",
+      "zip_crc32": 3016262115,
+      "uncompressed_bytes": 524053
+    },
+    {
+      "id": "C_01463",
+      "folder": "masks",
+      "source_member": "train/masks/C_01463.png",
+      "zip_crc32": 1184903141,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01466",
+      "folder": "images",
+      "source_member": "train/images/C_01466.jpg",
+      "zip_crc32": 821282186,
+      "uncompressed_bytes": 486340
+    },
+    {
+      "id": "C_01466",
+      "folder": "masks",
+      "source_member": "train/masks/C_01466.png",
+      "zip_crc32": 273498281,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01482",
+      "folder": "images",
+      "source_member": "train/images/C_01482.jpg",
+      "zip_crc32": 3244396937,
+      "uncompressed_bytes": 522299
+    },
+    {
+      "id": "C_01482",
+      "folder": "masks",
+      "source_member": "train/masks/C_01482.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01484",
+      "folder": "images",
+      "source_member": "train/images/C_01484.jpg",
+      "zip_crc32": 3126113671,
+      "uncompressed_bytes": 520328
+    },
+    {
+      "id": "C_01484",
+      "folder": "masks",
+      "source_member": "train/masks/C_01484.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01563",
+      "folder": "images",
+      "source_member": "train/images/C_01563.jpg",
+      "zip_crc32": 3456443072,
+      "uncompressed_bytes": 449632
+    },
+    {
+      "id": "C_01563",
+      "folder": "masks",
+      "source_member": "train/masks/C_01563.png",
+      "zip_crc32": 103060909,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01568",
+      "folder": "images",
+      "source_member": "train/images/C_01568.jpg",
+      "zip_crc32": 2658363740,
+      "uncompressed_bytes": 437643
+    },
+    {
+      "id": "C_01568",
+      "folder": "masks",
+      "source_member": "train/masks/C_01568.png",
+      "zip_crc32": 2123504381,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01582",
+      "folder": "images",
+      "source_member": "train/images/C_01582.jpg",
+      "zip_crc32": 1638098687,
+      "uncompressed_bytes": 471498
+    },
+    {
+      "id": "C_01582",
+      "folder": "masks",
+      "source_member": "train/masks/C_01582.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01611",
+      "folder": "images",
+      "source_member": "train/images/C_01611.jpg",
+      "zip_crc32": 57660599,
+      "uncompressed_bytes": 512562
+    },
+    {
+      "id": "C_01611",
+      "folder": "masks",
+      "source_member": "train/masks/C_01611.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_01639",
+      "folder": "images",
+      "source_member": "train/images/C_01639.jpg",
+      "zip_crc32": 472042066,
+      "uncompressed_bytes": 497700
+    },
+    {
+      "id": "C_01639",
+      "folder": "masks",
+      "source_member": "train/masks/C_01639.png",
+      "zip_crc32": 4010321660,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01642",
+      "folder": "images",
+      "source_member": "train/images/C_01642.jpg",
+      "zip_crc32": 2775090224,
+      "uncompressed_bytes": 490021
+    },
+    {
+      "id": "C_01642",
+      "folder": "masks",
+      "source_member": "train/masks/C_01642.png",
+      "zip_crc32": 1541546430,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01673",
+      "folder": "images",
+      "source_member": "train/images/C_01673.jpg",
+      "zip_crc32": 2607921004,
+      "uncompressed_bytes": 483988
+    },
+    {
+      "id": "C_01673",
+      "folder": "masks",
+      "source_member": "train/masks/C_01673.png",
+      "zip_crc32": 2152054826,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01675",
+      "folder": "images",
+      "source_member": "train/images/C_01675.jpg",
+      "zip_crc32": 3567551590,
+      "uncompressed_bytes": 481365
+    },
+    {
+      "id": "C_01675",
+      "folder": "masks",
+      "source_member": "train/masks/C_01675.png",
+      "zip_crc32": 413715538,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01696",
+      "folder": "images",
+      "source_member": "train/images/C_01696.jpg",
+      "zip_crc32": 2950865203,
+      "uncompressed_bytes": 488349
+    },
+    {
+      "id": "C_01696",
+      "folder": "masks",
+      "source_member": "train/masks/C_01696.png",
+      "zip_crc32": 533845509,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01698",
+      "folder": "images",
+      "source_member": "train/images/C_01698.jpg",
+      "zip_crc32": 2874163901,
+      "uncompressed_bytes": 484400
+    },
+    {
+      "id": "C_01698",
+      "folder": "masks",
+      "source_member": "train/masks/C_01698.png",
+      "zip_crc32": 3267668969,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01701",
+      "folder": "images",
+      "source_member": "train/images/C_01701.jpg",
+      "zip_crc32": 2852039327,
+      "uncompressed_bytes": 482899
+    },
+    {
+      "id": "C_01701",
+      "folder": "masks",
+      "source_member": "train/masks/C_01701.png",
+      "zip_crc32": 1456981482,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01707",
+      "folder": "images",
+      "source_member": "train/images/C_01707.jpg",
+      "zip_crc32": 1625157774,
+      "uncompressed_bytes": 486947
+    },
+    {
+      "id": "C_01707",
+      "folder": "masks",
+      "source_member": "train/masks/C_01707.png",
+      "zip_crc32": 2738302991,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01725",
+      "folder": "images",
+      "source_member": "train/images/C_01725.jpg",
+      "zip_crc32": 1747517847,
+      "uncompressed_bytes": 480010
+    },
+    {
+      "id": "C_01725",
+      "folder": "masks",
+      "source_member": "train/masks/C_01725.png",
+      "zip_crc32": 4149408768,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01729",
+      "folder": "images",
+      "source_member": "train/images/C_01729.jpg",
+      "zip_crc32": 1476019403,
+      "uncompressed_bytes": 488349
+    },
+    {
+      "id": "C_01729",
+      "folder": "masks",
+      "source_member": "train/masks/C_01729.png",
+      "zip_crc32": 1022903648,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01742",
+      "folder": "images",
+      "source_member": "train/images/C_01742.jpg",
+      "zip_crc32": 923406293,
+      "uncompressed_bytes": 503340
+    },
+    {
+      "id": "C_01742",
+      "folder": "masks",
+      "source_member": "train/masks/C_01742.png",
+      "zip_crc32": 3485540409,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01761",
+      "folder": "images",
+      "source_member": "train/images/C_01761.jpg",
+      "zip_crc32": 3869974292,
+      "uncompressed_bytes": 524970
+    },
+    {
+      "id": "C_01761",
+      "folder": "masks",
+      "source_member": "train/masks/C_01761.png",
+      "zip_crc32": 2155372675,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01792",
+      "folder": "images",
+      "source_member": "train/images/C_01792.jpg",
+      "zip_crc32": 588470272,
+      "uncompressed_bytes": 483965
+    },
+    {
+      "id": "C_01792",
+      "folder": "masks",
+      "source_member": "train/masks/C_01792.png",
+      "zip_crc32": 1552368379,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_01906",
+      "folder": "images",
+      "source_member": "train/images/C_01906.jpg",
+      "zip_crc32": 2861461541,
+      "uncompressed_bytes": 479525
+    },
+    {
+      "id": "C_01906",
+      "folder": "masks",
+      "source_member": "train/masks/C_01906.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_01933",
+      "folder": "images",
+      "source_member": "train/images/C_01933.jpg",
+      "zip_crc32": 3265762402,
+      "uncompressed_bytes": 358246
+    },
+    {
+      "id": "C_01933",
+      "folder": "masks",
+      "source_member": "train/masks/C_01933.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_01937",
+      "folder": "images",
+      "source_member": "train/images/C_01937.jpg",
+      "zip_crc32": 2657501873,
+      "uncompressed_bytes": 366175
+    },
+    {
+      "id": "C_01937",
+      "folder": "masks",
+      "source_member": "train/masks/C_01937.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_01940",
+      "folder": "images",
+      "source_member": "train/images/C_01940.jpg",
+      "zip_crc32": 2030469634,
+      "uncompressed_bytes": 387875
+    },
+    {
+      "id": "C_01940",
+      "folder": "masks",
+      "source_member": "train/masks/C_01940.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_01947",
+      "folder": "images",
+      "source_member": "train/images/C_01947.jpg",
+      "zip_crc32": 957774519,
+      "uncompressed_bytes": 437137
+    },
+    {
+      "id": "C_01947",
+      "folder": "masks",
+      "source_member": "train/masks/C_01947.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_01955",
+      "folder": "images",
+      "source_member": "train/images/C_01955.jpg",
+      "zip_crc32": 115790104,
+      "uncompressed_bytes": 426779
+    },
+    {
+      "id": "C_01955",
+      "folder": "masks",
+      "source_member": "train/masks/C_01955.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_02236",
+      "folder": "images",
+      "source_member": "train/images/C_02236.jpg",
+      "zip_crc32": 3923054607,
+      "uncompressed_bytes": 361816
+    },
+    {
+      "id": "C_02236",
+      "folder": "masks",
+      "source_member": "train/masks/C_02236.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_02247",
+      "folder": "images",
+      "source_member": "train/images/C_02247.jpg",
+      "zip_crc32": 2080127419,
+      "uncompressed_bytes": 310462
+    },
+    {
+      "id": "C_02247",
+      "folder": "masks",
+      "source_member": "train/masks/C_02247.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_02251",
+      "folder": "images",
+      "source_member": "train/images/C_02251.jpg",
+      "zip_crc32": 551425465,
+      "uncompressed_bytes": 326102
+    },
+    {
+      "id": "C_02251",
+      "folder": "masks",
+      "source_member": "train/masks/C_02251.png",
+      "zip_crc32": 3892672427,
+      "uncompressed_bytes": 5479
+    },
+    {
+      "id": "C_02259",
+      "folder": "images",
+      "source_member": "train/images/C_02259.jpg",
+      "zip_crc32": 1748564891,
+      "uncompressed_bytes": 391437
+    },
+    {
+      "id": "C_02259",
+      "folder": "masks",
+      "source_member": "train/masks/C_02259.png",
+      "zip_crc32": 1492260952,
+      "uncompressed_bytes": 2073
+    },
+    {
+      "id": "C_02294",
+      "folder": "images",
+      "source_member": "train/images/C_02294.jpg",
+      "zip_crc32": 3196925772,
+      "uncompressed_bytes": 517788
+    },
+    {
+      "id": "C_02294",
+      "folder": "masks",
+      "source_member": "train/masks/C_02294.png",
+      "zip_crc32": 642688731,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_02319",
+      "folder": "images",
+      "source_member": "train/images/C_02319.jpg",
+      "zip_crc32": 2877500671,
+      "uncompressed_bytes": 480701
+    },
+    {
+      "id": "C_02319",
+      "folder": "masks",
+      "source_member": "train/masks/C_02319.png",
+      "zip_crc32": 3643267943,
+      "uncompressed_bytes": 2463668
+    },
+    {
+      "id": "C_02329",
+      "folder": "images",
+      "source_member": "train/images/C_02329.jpg",
+      "zip_crc32": 2337434299,
+      "uncompressed_bytes": 472114
+    },
+    {
+      "id": "C_02329",
+      "folder": "masks",
+      "source_member": "train/masks/C_02329.png",
+      "zip_crc32": 2874507889,
+      "uncompressed_bytes": 2463668
+    }
+  ]
+}

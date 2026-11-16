@@ -1,0 +1,50 @@
+{
+  "stage": "ratio-reserve",
+  "config": {
+    "name": "ratio_w31_k1.0_c0",
+    "window": 31,
+    "k": 1.0,
+    "protect_core": false
+  },
+  "conditions": [
+    "original"
+  ],
+  "repeats": 3,
+  "warmup": true,
+  "threads": 1,
+  "opencv": "5.0.0",
+  "numpy": "2.3.4",
+  "frozen": {
+    "date": "2026-11-16",
+    "selection": "Highest mean of original and shadow positiveDice among prospectively qualifying12configs on150trainingpairs only",
+    "training_gains": [
+      0.017920171835992316,
+      0.022530412567651148
+    ],
+    "config": {
+      "name": "ratio_w31_k1.0_c0",
+      "window": 31,
+      "k": 1.0,
+      "protect_core": false
+    },
+    "raw_source_sha256": {
+      "pipeline.py": "7a019da2605e35e94efb294f1cfcb0d234fbb01b15ae039d95d961da92ced03c",
+      "ratio_local.py": "fd97046ce89d28785ed62a23721cd583ac553f28d07327a708d92808eeb6a556",
+      "experiments.py": "69534224482ef9cd92eaff63c48dbb71b657bf92075a3615c6614806e9586b75"
+    },
+    "lf_source_sha256": {
+      "pipeline.py": "2ac8116ce3b5411e7722efef3b8d9ee3e4d2a4901e553f3e68d9ee55826224f1",
+      "ratio_local.py": "fd97046ce89d28785ed62a23721cd583ac553f28d07327a708d92808eeb6a556",
+      "experiments.py": "69534224482ef9cd92eaff63c48dbb71b657bf92075a3615c6614806e9586b75"
+    },
+    "reserve_manifest": "ratio-reserve-manifest.json",
+    "raw_reserve_manifest_sha256": "d0799fc27e434afa9b53ffc7b844490e83dcb5ef6b0bab791feb8e01e9b0c0d7",
+    "source_limit": "largePCSimages only; lowres usesexactP;unknowncaptureindependence",
+    "no_further_tuning_after_reserve": true,
+    "freeze_utc": "2026-11-16T04:20:56.731772+00:00",
+    "lf_reserve_manifest_sha256": "6753fcb02add62239154eec1c3007b0832d057a8af9224266a93f52b0b9add29"
+  },
+  "scope": "Fresh confirmation after the official test became observed",
+  "source_dir": "code",
+  "engine": "ratio_local"
+}

@@ -1,0 +1,25 @@
+{
+  "selection_stage": "150 original PCS training pairs + 120 previously seen development examples only",
+  "official_validation_and_test_not_evaluated": true,
+  "config": {
+    "name": "ranked_local",
+    "median": 3,
+    "window": 71,
+    "k": 1.5,
+    "blend": "supported",
+    "area_guard": "ranked"
+  },
+  "source_sha256": {
+    "pipeline.py": "7a019da2605e35e94efb294f1cfcb0d234fbb01b15ae039d95d961da92ced03c",
+    "local_contrast.py": "115f8948ac5b9cd61e3bbd28ba6f91942b41115fd985c59f1fb947facf2e682e",
+    "local_fusion.py": "38c50a9eac79d75b4f85cbdb0e63a0b6a38ab779d7d07f8ab5e7c6d89411d657"
+  },
+  "training_positive_dice_gain": 0.026837897055753013,
+  "training_negative_false_alarms": [
+    18,
+    14
+  ],
+  "validation_passed_without_retuning": true,
+  "validation_positive_dice_gain": 0.022102066965640765,
+  "test_not_yet_evaluated": true
+}

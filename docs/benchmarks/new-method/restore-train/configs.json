@@ -1,0 +1,27 @@
+[
+  {
+    "name": "nearest_exact",
+    "interpolation": "nearest_exact",
+    "threshold": 0.5
+  },
+  {
+    "name": "linear_0.35",
+    "interpolation": "linear",
+    "threshold": 0.35
+  },
+  {
+    "name": "linear_0.45",
+    "interpolation": "linear",
+    "threshold": 0.45
+  },
+  {
+    "name": "linear_0.5",
+    "interpolation": "linear",
+    "threshold": 0.5
+  },
+  {
+    "name": "cubic_0.5",
+    "interpolation": "cubic",
+    "threshold": 0.5
+  }
+]
