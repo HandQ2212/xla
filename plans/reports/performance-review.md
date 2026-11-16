@@ -55,11 +55,15 @@ historical identities. No discrepancy in reported predictions was discovered.
 
 ## Validation and scientific limits
 
-The preceding 79-test final suite, low-level parity and AppTest report were reviewed.
-New replay mutation/newline regressions and the post-fix full suite are being run
-separately by the tester. This review intentionally did not start CPU-heavy tests
-or timing while the isolated measurement was active, and did not open any of the
-158 final-reserve images or their GT.
+Reviewed the tester's final report: **86/86 tests passed in 18.378 seconds**, with
+Ruff E9/F and compileall passing. Read all seven final replay-guard tests: actual
+snapshots, LF/CRLF copies, ID/order/CRC mutations, changed implementation/helper,
+incompatible stages and pre-decode CRC rejection are covered. Decoder traps assert
+early rejection only; they do not fabricate evaluation predictions. Final replay
+docstring/metadata correctly identify already observed historical cases rather
+than fresh confirmation. No unresolved regression or replay-integrity issue remains.
+This review intentionally did not start CPU-heavy tests or timing while the isolated
+measurement was active, and did not open any of the 158 final-reserve images or GT.
 
 Reports correctly retain failed quality gates, shadow regressions, negative/positive
 separation, observed-versus-new confirmation distinctions and image-bootstrap
