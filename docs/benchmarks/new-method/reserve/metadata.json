@@ -1,0 +1,53 @@
+{
+  "stage": "reserve",
+  "config": {
+    "name": "large_conservative_local",
+    "median": 3,
+    "window": 71,
+    "k": 1.5,
+    "blend": "supported",
+    "area_guard": "ranked",
+    "preserve_detection": true,
+    "min_retained": 0,
+    "large_only": true
+  },
+  "conditions": [
+    "original"
+  ],
+  "repeats": 3,
+  "warmup": true,
+  "threads": 1,
+  "opencv": "5.0.0",
+  "numpy": "2.3.4",
+  "frozen": {
+    "date": "2026-11-16",
+    "training_selection": "Fraction0 selected on original150train positiveDice .315122, versus fraction.25 .309280 and fraction.5 .305513; baseline.287918. No fresh reserve/DeepCrack pixels decoded.",
+    "config": {
+      "name": "large_conservative_local",
+      "median": 3,
+      "window": 71,
+      "k": 1.5,
+      "blend": "supported",
+      "area_guard": "ranked",
+      "preserve_detection": true,
+      "min_retained": 0,
+      "large_only": true
+    },
+    "raw_source_sha256": {
+      "pipeline.py": "7a019da2605e35e94efb294f1cfcb0d234fbb01b15ae039d95d961da92ced03c",
+      "local_contrast.py": "c205801cd31023844a1543f8fce35bb091d3d96e1d7de032d5445b8b5d6ab814",
+      "local_fusion.py": "3ad86e5f920105ff5d6bfd9368dd29d4f212602f9e0df823f814a754642160ea"
+    },
+    "lf_source_sha256": {
+      "pipeline.py": "2ac8116ce3b5411e7722efef3b8d9ee3e4d2a4901e553f3e68d9ee55826224f1",
+      "local_contrast.py": "c205801cd31023844a1543f8fce35bb091d3d96e1d7de032d5445b8b5d6ab814",
+      "local_fusion.py": "3ad86e5f920105ff5d6bfd9368dd29d4f212602f9e0df823f814a754642160ea"
+    },
+    "reserve_manifest_sha256": "81d002e05becefe6746904fdb247b2a7825b644bf1ef81997609d2fb56ead503",
+    "deepcrack_manifest_sha256": "ce7ab064d63b554e222d4d01e0bc485b1d8dde6e4e5942e42647c773fdb677a8",
+    "resolution_scope": "Apply refinement only when native longside>640; small images use exact P. Fixed before any reserve image/GT decoding.",
+    "quality_reference": "large-freeze.json and original reserve results: model parameters/scope unchanged; performance-only caching/counting edits, all prediction hashes must match"
+  },
+  "scope": "Fresh confirmation after the official test became observed",
+  "source_dir": "code"
+}

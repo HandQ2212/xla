@@ -1,0 +1,48 @@
+{
+  "stage": "deepcrack",
+  "config": {
+    "name": "conservative_local",
+    "median": 3,
+    "window": 71,
+    "k": 1.5,
+    "blend": "supported",
+    "area_guard": "ranked",
+    "preserve_detection": true,
+    "min_retained": 0
+  },
+  "conditions": [
+    "original"
+  ],
+  "repeats": 3,
+  "warmup": true,
+  "threads": 1,
+  "opencv": "5.0.0",
+  "numpy": "2.3.4",
+  "frozen": {
+    "date": "2026-11-16",
+    "training_selection": "Fraction0 selected on original150train positiveDice .315122, versus fraction.25 .309280 and fraction.5 .305513; baseline.287918. No fresh reserve/DeepCrack pixels decoded.",
+    "config": {
+      "name": "conservative_local",
+      "median": 3,
+      "window": 71,
+      "k": 1.5,
+      "blend": "supported",
+      "area_guard": "ranked",
+      "preserve_detection": true,
+      "min_retained": 0
+    },
+    "raw_source_sha256": {
+      "pipeline.py": "7a019da2605e35e94efb294f1cfcb0d234fbb01b15ae039d95d961da92ced03c",
+      "local_contrast.py": "115f8948ac5b9cd61e3bbd28ba6f91942b41115fd985c59f1fb947facf2e682e",
+      "local_fusion.py": "17513c9caabe2eb1bdfff2f489a082084d268a19320cb31f7a6254ce7e6bc07b"
+    },
+    "lf_source_sha256": {
+      "pipeline.py": "2ac8116ce3b5411e7722efef3b8d9ee3e4d2a4901e553f3e68d9ee55826224f1",
+      "local_contrast.py": "115f8948ac5b9cd61e3bbd28ba6f91942b41115fd985c59f1fb947facf2e682e",
+      "local_fusion.py": "17513c9caabe2eb1bdfff2f489a082084d268a19320cb31f7a6254ce7e6bc07b"
+    },
+    "reserve_manifest_sha256": "81d002e05becefe6746904fdb247b2a7825b644bf1ef81997609d2fb56ead503",
+    "deepcrack_manifest_sha256": "ce7ab064d63b554e222d4d01e0bc485b1d8dde6e4e5942e42647c773fdb677a8"
+  },
+  "scope": "Fresh confirmation after the official test became observed"
+}
