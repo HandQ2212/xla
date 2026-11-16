@@ -14,6 +14,7 @@ import cv2
 import streamlit as st
 
 import pipeline as pl
+import pipeline_view
 
 SAMPLE_DIR = Path(__file__).resolve().parents[1] / "samples_pcs"
 
@@ -22,6 +23,7 @@ st.set_page_config(page_title="Phát hiện vết nứt mặt đường", page_i
 
 # ---------------- Tính toán (cache theo nội dung ảnh + tham số) ----------------
 
+@st.cache_data(show_spinner=False, max_entries=4)
 def load_image(data: bytes) -> np.ndarray:
     """Bytes file upload -> BGR ở kích thước gốc; pipeline tự thu nhỏ để xử lý."""
     arr = np.frombuffer(data, np.uint8)
@@ -147,37 +149,7 @@ if gt is not None:
 
 # Từng bước biến đổi
 with st.expander("🔬 Xem từng bước của pipeline", expanded=False):
-    E = st_["E"]
-    steps = [
-        ("2.0+2.1 · Thu nhỏ + xám", st_["gray"],
-         f"Cạnh dài = {params['size'] or 'gốc'}; chuyển xám Y = 0.299R + 0.587G + 0.114B"),
-        ("2.2 · Lọc trung vị", st_["den"],
-         f"Kernel {params['median']}×{params['median']}: xoá nhiễu hạt mà giữ bờ vết nứt"),
-        ("2.3 · Bù chiếu sáng R = 128·I/B", st_["ratio"],
-         f"Nền B = trung vị {params['bg']}×{params['bg']}" if use_bg else "Đã bỏ qua bù chiếu sáng"),
-        (f"3.2 · Vùng tối D (θ = {st_['theta']})", pl.u8(st_["D"]),
-         f"Ngưỡng tam giác (lược đồ làm trơn W = {params['hist_w']}): D = R < θ – đuôi tối của lược đồ"),
-        ("3.3 · Vùng biên E (Sobel → Otsu → giãn)", pl.u8(E),
-         f"Sobel → Otsu → giãn {params['dil']}×{params['dil']}" if use_edge else "Đã bỏ qua biên: E = toàn bộ ảnh"),
-        ("3.4 · Mặt nạ thô M", pl.u8(st_["M"]),
-         "Giao vùng tối và vùng gần biên: D ∩ E"),
-        ("4.1 · Phép đóng", pl.u8(st_["C"]),
-         f"Ellipse {params['close']}×{params['close']}: nối các đoạn nứt bị đứt gãy"),
-        ("4.2 · Lọc diện tích", pl.u8(st_["A"]),
-         f"Bỏ thành phần liên thông < {params['a_min']} px"),
-        ("4.3 · Lọc độ dãn", pl.u8(st_["F"]),
-         f"Giữ vùng L/S ≥ {params['e_min']} (hộp chữ nhật xoay minAreaRect): bỏ đốm tròn, giữ vết dài"),
-        ("4.4 · KẾT QUẢ Z", pl.u8(st_["Z"]),
-         f"Ngưỡng diện tích {params['tmin']}%" if use_post else "Đã bỏ qua toàn bộ hậu xử lý; Z = M"),
-    ]
-    for title, im, note in steps:
-        colA, colB = st.columns([1, 2])
-        colA.markdown(f"**{title}**")
-        colB.image(pl.rgb(pl.small(im, 900)), use_container_width=True)
-        colB.caption(note)
-        st.divider()
-    if not use_post:
-        st.caption("Các khung 4.1–4.3 giữ nguyên M vì hậu xử lý đang tắt.")
+    pipeline_view.render(st_, params)
 
 # So sánh với đối chứng
 with st.expander("⚖️ So sánh với phương pháp đối chứng", expanded=False):

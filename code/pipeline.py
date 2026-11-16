@@ -4,6 +4,8 @@ P giữ benchmark lịch sử; giới hạn ngoài miền dữ liệu: docs/exte
 """
 import numpy as np
 import cv2
+import multiprocessing as mp
+from fast_median import tiled_median
 
 # Tham số đã chọn trên val, khớp PIPELINE.md và assert trong notebook.
 P = dict(size=640, median=5, bg=71, hist_w=3, dil=3, close=7, a_min=30, e_min=3, tmin=0.3)
@@ -59,15 +61,24 @@ def denoise(gray, p):
     return cv2.medianBlur(gray, k) if k > 1 else gray
 
 def illumination_ratio(img, k, mode="median", op="div"):
-    bg = cv2.medianBlur(img, k) if mode == "median" else cv2.morphologyEx(img, cv2.MORPH_CLOSE, ellipse(k))
-    I, B = img.astype(np.float32), bg.astype(np.float32)
-    R = 128.0 + I - B if op == "sub" else 128.0 * I / (B + 1.0)
-    return np.clip(R, 0, 255).astype(np.uint8), bg
+    parallel = (img.ndim == 2 and img.dtype == np.uint8 and img.size >= 200000 and k >= 31
+                and cv2.getNumThreads() == 1 and mp.current_process().name == "MainProcess")
+    bg = ((tiled_median(img, k, workers=2, axis=int(img.shape[1] >= img.shape[0])) if parallel
+           else cv2.medianBlur(img, k)) if mode == "median" else cv2.morphologyEx(img, cv2.MORPH_CLOSE, ellipse(k)))
+    R, B = img.astype(np.float32), bg.astype(np.float32)
+    if op == "sub":
+        R += 128.; R -= B
+    else:
+        R *= 128.; B += 1.; R /= B
+    np.clip(R, 0, 255, out=R)
+    return R.astype(np.uint8), bg
 
 # ---- Bước 3: xử lý chính ----
 def histogram(img, w=1):
     """Lược đồ xám, làm trơn bằng trung bình trượt cửa sổ w (Ch5 tr.62); w = 1: không làm trơn."""
-    h = np.bincount(img.ravel(), minlength=256).astype(np.float64)
+    h = (cv2.calcHist([img], [0], None, [256], [0, 256]).ravel().astype(np.float64)
+         if img.ndim == 2 and img.dtype == np.uint8 and 0 < img.size <= 2**24
+         else np.bincount(img.ravel(), minlength=256).astype(np.float64))
     if w > 1:
         h = np.convolve(np.pad(h, w // 2, mode="edge"), np.ones(w) / w, mode="valid")
     return h
@@ -91,7 +102,8 @@ def dark_region(ratio, w=3):
 def sobel_l1(img):
     gx = cv2.Sobel(img, cv2.CV_32F, 1, 0, ksize=3)
     gy = cv2.Sobel(img, cv2.CV_32F, 0, 1, ksize=3)
-    return cv2.normalize(np.abs(gx) + np.abs(gy), None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+    np.abs(gx, out=gx); np.abs(gy, out=gy); gx += gy
+    return cv2.normalize(gx, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
 
 def edge_region(ratio, dil):
     g = sobel_l1(ratio)
@@ -113,10 +125,12 @@ def area_filter(mask, a_min):
 
 def elongation(comp, rect="rotated"):
     """Trục dài / trục ngắn của hộp chữ nhật bao vùng: xoay nhỏ nhất (minAreaRect) hoặc thẳng (boundingRect)."""
-    pts = cv2.findNonZero(comp.astype(np.uint8))
+    binary = comp.astype(np.uint8)
     if rect == "axis":
-        _, _, w, h = cv2.boundingRect(pts)
+        _, _, w, h = cv2.boundingRect(binary)
     else:
+        contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        pts = np.concatenate(contours) if contours else cv2.findNonZero(binary)
         (_, _), (w, h), _ = cv2.minAreaRect(pts)
     return max(w, h) / max(min(w, h), 1.0)
 
@@ -126,7 +140,7 @@ def elongation_filter(mask, e_min, rect="rotated", a_min=0, return_area=False):
     area_keep = st[:, cv2.CC_STAT_AREA] >= a_min
     area_keep[0] = False
     keep = np.zeros(n, bool)
-    for i in np.flatnonzero(area_keep):
+    for i in np.flatnonzero(area_keep).tolist():
         x, y, w, h = st[i, :4]
         keep[i] = elongation(lab[y:y + h, x:x + w] == i, rect) >= e_min
     return (area_keep[lab], keep[lab]) if return_area else keep[lab]
