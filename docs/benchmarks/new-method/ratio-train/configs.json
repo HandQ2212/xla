@@ -1,0 +1,74 @@
+[
+  {
+    "name": "ratio_w31_k1.0_c0",
+    "window": 31,
+    "k": 1.0,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w31_k1.0_c1",
+    "window": 31,
+    "k": 1.0,
+    "protect_core": true
+  },
+  {
+    "name": "ratio_w31_k1.5_c0",
+    "window": 31,
+    "k": 1.5,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w31_k1.5_c1",
+    "window": 31,
+    "k": 1.5,
+    "protect_core": true
+  },
+  {
+    "name": "ratio_w31_k2.0_c0",
+    "window": 31,
+    "k": 2.0,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w31_k2.0_c1",
+    "window": 31,
+    "k": 2.0,
+    "protect_core": true
+  },
+  {
+    "name": "ratio_w71_k1.0_c0",
+    "window": 71,
+    "k": 1.0,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w71_k1.0_c1",
+    "window": 71,
+    "k": 1.0,
+    "protect_core": true
+  },
+  {
+    "name": "ratio_w71_k1.5_c0",
+    "window": 71,
+    "k": 1.5,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w71_k1.5_c1",
+    "window": 71,
+    "k": 1.5,
+    "protect_core": true
+  },
+  {
+    "name": "ratio_w71_k2.0_c0",
+    "window": 71,
+    "k": 2.0,
+    "protect_core": false
+  },
+  {
+    "name": "ratio_w71_k2.0_c1",
+    "window": 71,
+    "k": 2.0,
+    "protect_core": true
+  }
+]

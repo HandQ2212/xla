@@ -1,0 +1,14 @@
+{
+  "images": 1210,
+  "conditions": 2010,
+  "all_intermediates_and_native_masks_equal": true,
+  "gt_loaded": false,
+  "final_158_opened": false,
+  "cv_threads": 1,
+  "opencv": "5.0.0",
+  "source_sha256": {
+    "baseline_pipeline.py": "2ac8116ce3b5411e7722efef3b8d9ee3e4d2a4901e553f3e68d9ee55826224f1",
+    "pipeline.py": "ff2d2674f34726a2b7d91d77da7e17eeddcc344b14e7fe6f8880cc2ff13ce930",
+    "fast_median.py": "4009356919197e5a689e6801d65d96d6ad7ba458850d853ba7e21a2f4d48b981"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "scope": "bundled_test_examples_exploratory",
+  "warning": "Bundled samples have already been inspected; they are not a held-out validation set.",
+  "python": "3.12.9",
+  "opencv": "5.0.0",
+  "numpy": "2.3.4",
+  "platform": "Windows",
+  "threads": 1,
+  "variants": {
+    "legacy": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3
+    },
+    "reconstruct": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3,
+      "edge_mode": "reconstruct"
+    },
+    "thin": {
+      "size": 640,
+      "median": 3,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 7,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3
+    },
+    "close3": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 3,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3
+    },
+    "reconstruct_close3": {
+      "size": 640,
+      "median": 5,
+      "bg": 71,
+      "hist_w": 3,
+      "dil": 3,
+      "close": 3,
+      "a_min": 30,
+      "e_min": 3,
+      "tmin": 0.3,
+      "edge_mode": "reconstruct"
+    }
+  },
+  "inputs": [
+    {
+      "dataset": "samples",
+      "id": "002",
+      "sha256_pair": "94d1f4f0e2aba1845914c9ea04472256e4b8fcfccaedf8b73a2ef66d46fa9f71"
+    },
+    {
+      "dataset": "samples",
+      "id": "013",
+      "sha256_pair": "df1684706dd77385dffb1982453448cf13321cef60350b28bc12018355b3422a"
+    },
+    {
+      "dataset": "samples",
+      "id": "027",
+      "sha256_pair": "2b0acbf97e982660a13f46d713df771e2a6a58d058689b8cc2c380d2c452ad7e"
+    },
+    {
+      "dataset": "samples",
+      "id": "041",
+      "sha256_pair": "e87f41535532f02c360ad9762c71966d306e4b9380a588894ddbe5c43df12ef6"
+    },
+    {
+      "dataset": "samples",
+      "id": "054",
+      "sha256_pair": "7181d879cd843a1feec3a0b2c15bb71a88583eb8c54581719ffdd52aae1ded9a"
+    },
+    {
+      "dataset": "samples",
+      "id": "066",
+      "sha256_pair": "199a35d1d2cf61cd62d8922f3870fc5289e7abe3ca62fade33f2f52964239970"
+    },
+    {
+      "dataset": "samples",
+      "id": "081",
+      "sha256_pair": "24a30fa7b7aaab907a3a711aef8e3f03ad47dabb0f2b42df1d194caf6537048f"
+    },
+    {
+      "dataset": "samples",
+      "id": "094",
+      "sha256_pair": "ff6e4fb0711989cbb9617b719f0f1f0efae0d28b696c0ca2a0b912c80d8cacdf"
+    },
+    {
+      "dataset": "samples",
+      "id": "105",
+      "sha256_pair": "a9fa60e95e99e3cae9434b1b569c6a2f0424a8b7974fbba8b52ff0517372acda"
+    },
+    {
+      "dataset": "samples",
+      "id": "117",
+      "sha256_pair": "0f3fec2123cd87caa15ada2af646dd0352dd70be40370a495104ed30197a599e"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "A_00026",
+      "sha256_pair": "4bcbef205e6f18f91d7a13d0ff5c70ec2c94b798f8b3eb6e712975f216efd533"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "A_00139",
+      "sha256_pair": "3d9bccd370d9fc82facf09cb5de47367fa48bdeea9da69a4b46e01b66b782531"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "B_00038",
+      "sha256_pair": "26685950b34dcc82ee9aebde7bf650ddd299bfbc5d4f5e9f2509e9edff550f82"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "B_00283",
+      "sha256_pair": "1768ed9fa6f55f9241440ec87d42a7de3d9bae4f6b02b99e223ca1190329eb64"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "B_00536",
+      "sha256_pair": "e9bc11def56f3307c252964a9ab7967f518450a0cd0df1c345aa4eafad7c24c4"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "B_00647",
+      "sha256_pair": "4d5a353feaa9ba730041c7502d73a39a7907c31d740b4840a6490f4345591431"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "C_01223",
+      "sha256_pair": "5030db5db34403cf85d4202c983181341cea773d4810aa2e4379cfbbc4077e2f"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "C_01662",
+      "sha256_pair": "bd147d32fafee1c02b29e7acfe9d6e7ed6e50bfec1fb28cb0257a24ada479097"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "C_01697",
+      "sha256_pair": "b31bdb1dfd7ee95d42ae70784fc999ecebc7ad3320ca6e50a73d77b563352e64"
+    },
+    {
+      "dataset": "samples_pcs",
+      "id": "C_02275",
+      "sha256_pair": "06b4879d1b0c63d686b81469e3d23f584d7384f6c8d29d1e46d5a15c1df7ac0f"
+    }
+  ]
+}

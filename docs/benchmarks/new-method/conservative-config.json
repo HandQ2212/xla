@@ -1,0 +1,10 @@
+{
+  "name": "conservative_local",
+  "median": 3,
+  "window": 71,
+  "k": 1.5,
+  "blend": "supported",
+  "area_guard": "ranked",
+  "preserve_detection": true,
+  "min_retained": 0
+}

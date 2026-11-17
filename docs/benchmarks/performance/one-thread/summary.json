@@ -1,0 +1,10 @@
+{
+  "images": 150,
+  "intermediate_and_native_masks_equal": true,
+  "baseline_median_ms": 47.49265001737513,
+  "optimized_median_ms": 39.20265001943335,
+  "median_paired_speedup": 1.1772016014328077,
+  "mean_paired_speedup": 1.197336449241118,
+  "slower_images": 4,
+  "worst_slowdown": 1.0636535098318984
+}

@@ -1,0 +1,3 @@
+source,method,images,positives,dice,positive_dice,positive_iou,precision,recall,negative_false_alarms,negatives,negative_mean_area
+deepcrack_original,conservative_local,40,40,0.5370983618887571,0.5370983618887571,0.42791674219081893,0.7308871639557755,0.5043758143408978,0,0,0
+deepcrack_original,legacy,40,40,0.5795533861405889,0.5795533861405889,0.45264133560365566,0.6545512172588229,0.5977772813052513,0,0,0
