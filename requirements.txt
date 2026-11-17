@@ -1,5 +1,5 @@
 opencv-python>=4.8
 numpy>=1.24
 scikit-image>=0.21
-streamlit>=1.40
+streamlit>=1.58
 requests>=2.31
